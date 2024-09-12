@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class EssayQuestionFactory extends Factory
 {
+    protected $model = \App\Models\EssayQuestion::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +18,9 @@ class EssayQuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'answer_key' => $this->faker->sentence(),  // Generate a random answer key
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

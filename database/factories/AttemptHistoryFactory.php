@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Assessment;
+use App\Models\Learner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Attempt_History>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AttemptHistory>
  */
 class AttemptHistoryFactory extends Factory
 {
@@ -17,7 +19,8 @@ class AttemptHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'learner_id'  => Learner::factory(),
+            'assessment_id' =>  Assessment::factory(),
         ];
     }
 }

@@ -14,10 +14,15 @@ class MultipleChoiceOptionFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = \App\Models\MultipleChoiceOption::class;
+
     public function definition(): array
     {
         return [
-            //
+            'created_at' => now(),
+            'updated_at' => now(),
+            'option_text' => $this->faker->sentence(),
+            'is_true_option' => $this->faker->boolean(),
         ];
     }
 }

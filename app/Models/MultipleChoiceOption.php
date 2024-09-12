@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class MultipleChoiceOption extends Model
 {
     use HasFactory;
 
-    public function chapter()
+    public function multiple_choice_question()
     {
-        return $this->belongsTo(Chapter::class);
+        return $this->belongsTo(MultipleChoiceQuestion::class);
     }
 }

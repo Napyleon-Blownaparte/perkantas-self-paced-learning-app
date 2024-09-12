@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('learners__answers', function (Blueprint $table) {
+        Schema::create('multiple_choice_options', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('attempt_history_id')->constrained('attempt_histories');
-            $table->foreignId('question_id')->constrained('questions');
-            $table->string('essay_answer');
-            $table->integer('multiple_choice_answer');
+            $table->foreignId('multiple_choice_question_id')->constrained('multiple_choice_questions');
+            $table->string('option_text');
+            $table->boolean('is_true_option');
+
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('learners__answers');
+        Schema::dropIfExists('multiple_choice_options');
     }
 };

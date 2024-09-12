@@ -21,4 +21,9 @@ class Learner extends Model
     {
         return $this->hasMany(Enrollment::class, 'learner_id');
     }
+
+    public function attempt_histories()
+    {
+        return $this->hasMany(AttemptHistory::class, 'learner_id');
+    }
 }

@@ -11,11 +11,11 @@ class Instructor extends Model
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course__instructors', 'instructor_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'course_instructors', 'instructor_id', 'course_id');
     }
 
     public function course_instructors()
     {
-        return $this->hasMany(Course_Instructor::class, 'instructor_id');
+        return $this->hasMany(CourseInstructor::class, 'instructor_id');
     }
 }

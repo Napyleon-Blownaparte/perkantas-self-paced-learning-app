@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Chapter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class AssessmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'chapter_id' => Chapter::factory(),
+            'name' => $this->faker->sentence(),
         ];
     }
 }

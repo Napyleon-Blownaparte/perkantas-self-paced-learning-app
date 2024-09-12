@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attempt_History;
+use App\Models\AttemptHistory;
 use App\Http\Requests\StoreAttempt_HistoryRequest;
 use App\Http\Requests\UpdateAttempt_HistoryRequest;
 
@@ -35,7 +35,7 @@ class AttemptHistoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Attempt_History $attempt_History)
+    public function show(AttemptHistory $attempt_History)
     {
         //
     }
@@ -43,7 +43,7 @@ class AttemptHistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Attempt_History $attempt_History)
+    public function edit(AttemptHistory $attempt_History)
     {
         //
     }
@@ -51,7 +51,7 @@ class AttemptHistoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAttempt_HistoryRequest $request, Attempt_History $attempt_History)
+    public function update(UpdateAttempt_HistoryRequest $request, AttemptHistory $attempt_History)
     {
         //
     }
@@ -59,7 +59,7 @@ class AttemptHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Attempt_History $attempt_History)
+    public function destroy(AttemptHistory $attempt_History)
     {
         //
     }

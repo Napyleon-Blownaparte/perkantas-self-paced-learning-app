@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->nullableMorphs('questionable');
             $table->foreignId('assessment_id')->constrained('assessments');
             $table->string('question_text');
-            $table->boolean('isEssay');
+//            $table->boolean('isEssay');
         });
     }
 

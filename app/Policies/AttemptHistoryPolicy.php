@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Attempt_History;
+use App\Models\AttemptHistory;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -19,7 +19,7 @@ class AttemptHistoryPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Attempt_History $attemptHistory): bool
+    public function view(User $user, AttemptHistory $attemptHistory): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class AttemptHistoryPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Attempt_History $attemptHistory): bool
+    public function update(User $user, AttemptHistory $attemptHistory): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class AttemptHistoryPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Attempt_History $attemptHistory): bool
+    public function delete(User $user, AttemptHistory $attemptHistory): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class AttemptHistoryPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Attempt_History $attemptHistory): bool
+    public function restore(User $user, AttemptHistory $attemptHistory): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class AttemptHistoryPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Attempt_History $attemptHistory): bool
+    public function forceDelete(User $user, AttemptHistory $attemptHistory): bool
     {
         //
     }

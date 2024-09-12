@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class MultipleChoiceQuestionFactory extends Factory
 {
+    protected $model = \App\Models\MultipleChoiceQuestion::class;
     /**
      * Define the model's default state.
      *
@@ -16,8 +17,11 @@ class MultipleChoiceQuestionFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            //
+            'option_count' => 4,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

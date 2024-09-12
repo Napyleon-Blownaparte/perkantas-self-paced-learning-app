@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('multiple__choice__questions', function (Blueprint $table) {
+        Schema::create('learners_answers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('attempt_history_id')->constrained('attempt_histories');
             $table->foreignId('question_id')->constrained('questions');
-            $table->integer('options_count');
+            $table->string('essay_answer');
+            $table->integer('multiple_choice_answer');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('multiple__choice__questions');
+        Schema::dropIfExists('learners_answers');
     }
 };

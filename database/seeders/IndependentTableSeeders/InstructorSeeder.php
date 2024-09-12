@@ -1,9 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\IndependentTableSeeders;
 
 use App\Models\Instructor;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class InstructorSeeder extends Seeder
@@ -13,6 +12,6 @@ class InstructorSeeder extends Seeder
      */
     public function run(): void
     {
-        Instructor::factory(10)->create();
+        Instructor::factory(4)->create();
     }
 }

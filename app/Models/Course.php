@@ -24,11 +24,16 @@ class Course extends Model
 
     public function instructors()
     {
-        return $this->belongsToMany(Instructor::class, 'instructors', 'course_id', 'instructor_id');
+        return $this->belongsToMany(Instructor::class, 'course_instructors', 'course_id', 'instructor_id');
     }
 
     public function course_instructors()
     {
-        return $this->hasMany(Course_Instructor::class, 'course_id');
+        return $this->hasMany(CourseInstructor::class, 'course_id');
+    }
+
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class, 'course_id');
     }
 }
