@@ -17,12 +17,7 @@ class InstructorFactory extends Factory
     public function definition(): array
     {
         return [
-            'f_name' => $this->faker->firstName(),
-            'l_name' => $this->faker->lastName(),
-            'username' => $this->faker->unique()->userName(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'phone_number' => $this->faker->phoneNumber(),
-            'password' => $this->faker->password(),
+            'user_id' => null, // Akan diisi oleh UserSeeder
         ];
     }
 }

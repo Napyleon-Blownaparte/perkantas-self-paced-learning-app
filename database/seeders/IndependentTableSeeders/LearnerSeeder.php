@@ -12,6 +12,5 @@ class LearnerSeeder extends Seeder
      */
     public function run(): void
     {
-        Learner::factory(10)->create();
     }
 }

@@ -9,19 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('instructors', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('instructors', function (Blueprint $table) {
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('instructors');
+        Schema::table('instructors', function (Blueprint $table) {
+            //
+        });
     }
 };

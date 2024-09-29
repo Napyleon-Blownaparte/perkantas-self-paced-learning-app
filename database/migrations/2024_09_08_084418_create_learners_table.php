@@ -14,12 +14,6 @@ return new class extends Migration
         Schema::create('learners', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('f_name');
-            $table->string('l_name');
-            $table->string('username')->unique();
-            $table->string('email')->unique();
-            $table->string('phone_number')->unique();
-            $table->string('password');
         });
     }
 

@@ -13,6 +13,7 @@ use Database\Seeders\DependentTableSeeders\QuestionSeeder;
 use Database\Seeders\IndependentTableSeeders\CourseSeeder;
 use Database\Seeders\IndependentTableSeeders\InstructorSeeder;
 use Database\Seeders\IndependentTableSeeders\LearnerSeeder;
+use Database\Seeders\IndependentTableSeeders\UserSeeder;
 use Database\Seeders\PivotTableSeeders\AttemptHistorySeeder;
 use Database\Seeders\PivotTableSeeders\CourseInstructorSeeder;
 use Database\Seeders\PivotTableSeeders\EnrollmentSeeder;
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
             QuestionSeeder::class,
             MultipleChoiceOptionSeeder::class,
             LearnersAnswerSeeder::class,
+            UserSeeder::class
         ]);
     }
 }
