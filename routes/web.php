@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\InstructorLandingPageController;
-use App\Http\Controllers\LearnerLandingPageController;
+use App\Http\Controllers\InstructorDashboardController;
+use App\Http\Controllers\LearnerDashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,9 +32,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'learnerMiddleware'])->group(function() {
-   Route::get('learner-dashboard', [LearnerLandingPageController::class, 'index'])->name('learner-dashboard');
+   Route::get('learner-dashboard', [LearnerDashboardController::class, 'index'])->name('learner-dashboard');
 });
 
 Route::middleware(['auth', 'instructorMiddleware'])->group(function() {
-   Route::get('instructor-dashboard', [InstructorLandingPageController::class, 'index'])->name('instructor-dashboard');
+   Route::get('instructor-dashboard', [InstructorDashboardController::class, 'index'])->name('instructor-dashboard');
 });
