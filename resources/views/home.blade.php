@@ -6,9 +6,8 @@
     <title>PERKANTAS JATIM</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-cover" style="background-image: url('{{ asset('images/Landing Page.png') }}');">
-    {{-- <img src="{{ asset('images/Landing Page.png') }}" alt="" class="w-full h-auto"> --}}
-    <nav class="">
+<body>
+    <nav class="backdrop-blur fixed w-full z-20 top-0 start-0">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="https://perkantasjatim.org/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{{ asset('images/Logo White No Bg.png') }}" class="h-8" alt="Perkantas Logo" />
@@ -64,9 +63,8 @@
             </div>
         </div>
     </nav>    
-    <main class="py-8 px-4 mx-auto mb-10 mt-16 md:mb-20 max-w-screen-xl text-center lg:py-16 lg:px-12">
-        <div class ="hero">
-            <h1 class="mb-4 text-4xl font-extrabold text-white md:text-4xl lg:text-5xl">PEMURIDAN PERKANTAS</h1>
+    <section class="hero bg-cover text-center pb-16 pt-52" style="background-image: url('{{ asset('images/Landing Page.png') }}');" >
+        <h1 class="mb-4 text-4xl font-extrabold text-white md:text-4xl lg:text-5xl">PEMURIDAN PERKANTAS</h1>
             <h2 class="my-5 text-3xl font-bold text-white">“TRANSFORM OUR LIFE, TRANSFORM OUR WORLD”</h2>
             <p class="mb-8 mt-10 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 xl:px-48">
                 Untuk menjadi seorang murid kita harus menjadi pengikut Yesus, dan itu berarti kita harus memilih hidup yang sesuai standar Tuhan bukan dunia. 
@@ -83,17 +81,14 @@
                     Check our book collections
                 </a>  
             </div>
-        </div>
-        <div class="news">
-            <h1></h1>
-        </div>
-        <div class="course">
+    </section>
+    <section class="news bg-white py-16">
 
-        </div>
-        <div class="book">
+    </section>
+    <section class="course">
 
-        </div>
-    </main>
+    </section>
+    <section class="book"></section>
     
 </body>
 </html>
