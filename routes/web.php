@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('landing-page');
 });
 
 Route::get('home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
