@@ -11,7 +11,7 @@
         
         <!--background png image resposive atas/bawah di layar kecil, kiri/kanan di layar besar-->
         <div class="w-full md:w-1/2 md:flex items-center justify-center bg-orange-50 h-1/2 md:h-full hidden md:block">
-            <img src="../images/loginImage.png" alt="Login Image" class="w-full h-auto object-cover">
+            <img src="asset('images/loginImage.png')" alt="Login Image" class="w-full h-auto object-cover">
         </div>
         
         <!--form login-->
