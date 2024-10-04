@@ -20,6 +20,22 @@ Route::get('/', function () {
     return view('landing-page');
 });
 
+Route::get('/signup', function () {
+    return view('signup');
+});
+
+Route::get('/loginPage', function () {
+    return view('login-page');
+});
+
+Route::get('/loginInstructor', function () {
+    return view('login-instructor');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
 Route::get('home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
 
 

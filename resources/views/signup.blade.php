@@ -1,10 +1,10 @@
+@vite('resources/css/app.css')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-screen bg-orange-50 flex items-center justify-center">
     
@@ -13,28 +13,16 @@
         <h2 class="text-2xl font-bold text-center mb-6">Sign Up</h2>
 
         <!-- Email Input -->
-        <div class="mb-4">
-            <label for="email" class="block text-gray-700">Email</label>
-            <input id="email" type="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-        </div>
+        <x-login-input label="Email" type="email" id="email"/>
 
         <!-- Username Input -->
-        <div class="mb-4">
-            <label for="username" class="block text-gray-700">Username</label>
-            <input id="username" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-        </div>
+        <x-login-input label="Username" type="username" id="username"/>
 
         <!-- Password Input -->
-        <div class="mb-4">
-            <label for="password" class="block text-gray-700">Password</label>
-            <input id="password" type="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-        </div>
+        <x-login-input label="Password" type="password" id="password"/>
 
         <!-- Confirm Password Input -->
-        <div class="mb-4">
-            <label for="confirm-password" class="block text-gray-700">Confirm Password</label>
-            <input id="confirm-password" type="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-        </div>
+        <x-login-input label="Confirm password" type="password" id="confirm-password"/>
 
         <!-- Sign Up Button -->
         <div class="flex items-center justify-center">

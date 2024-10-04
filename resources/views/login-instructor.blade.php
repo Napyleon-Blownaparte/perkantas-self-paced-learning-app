@@ -11,7 +11,7 @@
         
         <!--background png image resposive atas/bawah di layar kecil, kiri/kanan di layar besar-->
         <div class="w-full md:w-1/2 md:flex items-center justify-center bg-orange-50 h-1/2 md:h-full hidden md:block">
-            <img src="../images/loginImageInstructor.png" alt="Login Image" class="w-full h-auto object-cover">
+            <img src="{{ asset('images/loginImageInstructor.png') }}" alt="Login Image" class="w-full h-auto object-cover">
         </div>
         
         <!--form login-->
@@ -20,16 +20,10 @@
                 <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
 
                 <!--username-->
-                <div class="mb-4">
-                    <label for="username" class="block text-gray-700">Username</label>
-                    <input id="username" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                </div>
+                <x-login-input label="Username" type="username" id="username"/>
 
                 <!--password-->
-                <div class="mb-4">
-                    <label for="password" class="block text-gray-700">Password</label>
-                    <input id="password" type="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                </div>
+                <x-login-input label="Password" type="password" id="password"/>
 
                 <!--forgot password-->
                 <div class="text-left mb-4">
