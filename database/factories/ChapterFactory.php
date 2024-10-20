@@ -18,7 +18,6 @@ class ChapterFactory extends Factory
     public function definition(): array
     {
         return [
-            'course_id' => Course::factory(),
             'title' => $this->faker->sentence(),
         ];
     }

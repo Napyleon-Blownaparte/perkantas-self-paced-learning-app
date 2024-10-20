@@ -17,7 +17,7 @@ class LearnerFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => null, // Akan diisi oleh UserSeeder
+            'user_id' => null,
         ];
     }
 }

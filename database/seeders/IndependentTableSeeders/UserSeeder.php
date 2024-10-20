@@ -14,29 +14,24 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seeder untuk Learner
         User::factory()
             ->count(10)
-            ->learner() // Set role sebagai learner
+            ->learner()
             ->create()
             ->each(function ($user) {
-                // Buat detail learner di tabel learners
                 Learner::factory()->create([
-                    'user_id' => $user->id, // Hubungkan user_id
+                    'user_id' => $user->id,
                 ]);
             });
 
-        // Seeder untuk Instructor
         User::factory()
             ->count(5)
-            ->instructor() // Set role sebagai instructor
+            ->instructor()
             ->create()
             ->each(function ($user) {
-                // Buat detail instructor di tabel instructors
                 Instructor::factory()->create([
-                    'user_id' => $user->id, // Hubungkan user_id
+                    'user_id' => $user->id,
                 ]);
             });
     }
-
 }

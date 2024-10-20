@@ -30,7 +30,7 @@ class EnrollmentSeeder extends Seeder
 
             foreach ($someCourseIds as $id) {
                 $transformedCourseIds[$id] = [
-                    'status' => Arr::random(['active', 'inactive']), // Example status
+                    'status' => Arr::random(['enrolled', 'pending', 'rejected', 'passed', 'stopped']), // Example status
                     'created_at' => now(), // Add timestamps
                     'updated_at' => now(), // Add timestamps
                 ];

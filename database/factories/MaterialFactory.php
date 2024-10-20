@@ -18,7 +18,6 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'chapter_id' => Chapter::factory(),
             'video' => $this->faker->imageUrl,
             'image' => $this->faker->imageUrl,
             'content' => $this->faker->paragraph,
