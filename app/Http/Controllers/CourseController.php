@@ -13,8 +13,18 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $allCourses = Course::all();
-        return view('course.index', ['courses' => $allCourses]);
+        try {
+            $allCourses = Course::all();
+
+
+            if ($allCourses->isEmpty()) {
+                return view('course.index', ['courses' => [], 'message' => 'No courses available at the moment.']);
+            }
+
+            return view('course.index', ['courses' => $allCourses]);
+        } catch (\Exception $e) {
+            return view('course.index', ['courses' => [], 'message' => 'Unable to connect to the database. Please try again later.']);
+        }
     }
 
     /**
