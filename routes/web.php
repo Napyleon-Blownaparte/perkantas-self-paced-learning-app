@@ -3,6 +3,7 @@
 use App\Http\Controllers\InstructorDashboardController;
 use App\Http\Controllers\LearnerDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,13 @@ Route::get('/', function () {
 });
 
 Route::get('home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
+
+Route::get('/course', [CourseController::class, 'index'])->name('course.index'); // Course list
+//Preview for Course details
+Route::get('/course/1',function () {
+        return view('course/show');
+});
+Route::get('/course/{id}', [CourseController::class, 'show'])->name('course.show'); // Course details
 
 
 Route::middleware('auth')->group(function () {
