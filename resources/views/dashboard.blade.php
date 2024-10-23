@@ -130,8 +130,8 @@
                 
                     <div class="flex flex-row space-x-4"> <!-- Max 2 cards please! -->
                         <!-- INPUT BACKEND DI SINI -->
-                        <x-mini-course-card title="The Coldest Sunset" image_src="images/loginImage.png"/>
-                        <x-mini-course-card title="The Coldest Sunset" image_src="images/loginImage.png"/>
+                        <x-mini-course-card title="The Coldest Sunset" image_src="images/loginImage.png" link_url="#"/>
+                        <x-mini-course-card title="The Coldest Sunset" image_src="images/loginImage.png" link_url="#"/>
                     </div>
                     
                     <div class="mt-1 flex justify-end items-center">
@@ -156,8 +156,8 @@
                 
                     <div class="flex flex-row space-x-4"> <!-- Max 2 cards please! -->
                         <!-- INPUT BACKEND DI SINI -->
-                        <x-mini-course-card title="The Coldest Sunset" image_src="images/loginImage.png"/>
-                        <x-mini-course-card title="The Coldest Sunset" image_src="images/loginImage.png"/>
+                        <x-mini-course-card title="The Coldest Sunset" image_src="images/loginImage.png" link_url="#"/>
+                        <x-mini-course-card title="The Coldest Sunset" image_src="images/loginImage.png" link_url="#"/>
                     </div>
                     
                     <div class="mt-1 flex justify-end items-center">
@@ -191,9 +191,9 @@
                     <div class="flex overflow-x-auto whitespace-nowrap max-w-full space-x-6 py-4 rounded-lg">
                         <!-- INPUT BACKEND DI SINI -->
                         <!-- Unfixed: too many image ~> web widen, tampilan rusak -->
-                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" id="1"/>
-                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" id="1"/>
-                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" id="1"/>
+                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" id="1" link_url="#"/>
+                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" id="1" link_url="#"/>
+                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" id="1" link_url="#"/>
 
                         <!-- Add additional cards here... -->
                     </div>
@@ -221,8 +221,8 @@
                     <!-- Scrollable Card Section -->
                     <div class="flex overflow-x-auto whitespace-nowrap max-w-full space-x-6 py-4 rounded-lg">
                         <!-- INPUT BACKEND DISINI -->
-                        <x-book-card title="Agama Hidup Bermakna" image_src="images/pattern-background1.png"/>
-                        <x-book-card title="Agama Hidup Bermakna" image_src="images/pattern-background1.png"/>
+                        <x-book-card title="Agama Hidup Bermakna" image_src="images/pattern-background1.png" link_url="#"/>
+                        <x-book-card title="Agama Hidup Bermakna" image_src="images/pattern-background1.png" link_url="#"/>
                         <!-- Add additional cards here... -->
                     </div>
                 </div>
@@ -248,7 +248,7 @@
                     <!-- Scrollable Card Section -->
                     <div class="flex overflow-x-auto whitespace-nowrap max-w-full space-x-6 py-4 rounded-lg">
                         <!-- BACKEND INPUT DISINI -->
-                        <x-enroll-course image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" est="50"/>      
+                        <x-enroll-course image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" est="50" link_url="#"/>      
                         <!-- Add additional cards here... -->
                     </div>
                 </div>

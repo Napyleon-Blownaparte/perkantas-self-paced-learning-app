@@ -36,6 +36,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/instructorDashboard', function () {
+    return view('dashboardInstructor');
+});
+
+
 Route::get('home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
 
 

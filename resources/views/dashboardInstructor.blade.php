@@ -1,10 +1,10 @@
+@vite('resources/css/app.css')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-orange-50 h-screen">
     <!-- Main Container -->
@@ -178,43 +178,6 @@
                 </a>
 
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                
-                <!-- Add books -->
-                <a href="#" class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col items-center justify-center space-y-4 hover:bg-gray-100 transition-colors group">
-                    <div class="flex items-center justify-center p-4 rounded-lg bg-white backdrop-blur-sm transition-colors group-hover:bg-gray-100">
-                        <h3 class="text-2xl font-semibold mr-2">Add Books</h3>
-                        <svg width="50" height="50" viewBox="0 0 64 61" fill="none">
-                            <path d="M32 50.6672C28.3515 48.5608 24.2129 47.4518 20 47.4518C15.7871 47.4518 11.6485 48.5608 8 50.6672V16.0005C11.6485 13.8941 15.7871 12.7852 20 12.7852C24.2129 12.7852 28.3515 13.8941 32 16.0005M32 50.6672C35.6485 48.5608 39.7871 47.4518 44 47.4518C48.2129 47.4518 52.3515 48.5608 56 50.6672V16.0005C52.3515 13.8941 48.2129 12.7852 44 12.7852C39.7871 12.7852 35.6485 13.8941 32 16.0005M32 50.6672V16.0005" stroke="#333333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </a>
-                
-                  
-
-                <!-- Add Courses -->
-                <a href="#" class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col items-center justify-center space-y-4 hover:bg-gray-100 transition-colors group">
-                    <div class="flex items-center justify-center p-4 rounded-lg bg-white backdrop-blur-sm transition-colors group-hover:bg-gray-100">
-                        <h3 class="text-2xl font-semibold mr-2">Add Courses</h3>
-                        <svg width="50" height="50" viewBox="0 0 64 61" fill="none">
-                            <path d="M17.3706 5.33398C13.8933 5.67798 11.552 6.45132 9.80265 8.20332C6.66931 11.342 6.66931 16.3953 6.66931 26.5047V37.2246C6.66931 47.3313 6.66931 52.3873 9.80265 55.5286C12.936 58.67 17.9813 58.6673 28.0693 58.6673H33.4213C43.5093 58.6673 48.5546 58.6673 51.688 55.5286C54.5333 52.6753 54.7973 48.2833 54.8213 39.9393" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M28.0693 18.6671L30.744 28.0004C32.2373 30.9604 34.112 31.7338 38.7707 32.0004C42.4747 31.9098 44.624 31.4724 46.4587 29.8778C47.7093 28.7898 48.2747 27.1498 48.5493 25.5178L49.4667 20.0004M56.1547 14.6671V28.0004M22.936 13.1551C27.168 9.64311 30.9387 7.75777 38.76 5.68311C39.6424 5.45015 40.5707 5.45475 41.4507 5.69644C48.3733 7.60044 52.112 9.29111 57.12 13.0511C57.3333 13.2111 57.3973 13.5098 57.248 13.7311C55.6133 16.1364 51.9627 18.0858 43.008 21.5578C41.1429 22.2754 39.0758 22.264 37.2187 21.5258C27.6827 17.7391 23.2987 15.7124 22.7653 13.6084C22.748 13.5245 22.7548 13.4373 22.7851 13.3571C22.8153 13.2768 22.8676 13.2068 22.936 13.1551Z" stroke="#333333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </a>
-                
-                <!-- Add News -->
-                <a href="#" class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col items-center justify-center space-y-4 hover:bg-gray-100 transition-colors group">
-                    <div class="flex items-center justify-center p-4 rounded-lg bg-white backdrop-blur-sm transition-colors group-hover:bg-gray-100">
-                        <h3 class="text-2xl font-semibold mr-2">Add News</h3>
-                        <svg width="50" height="50" viewBox="0 0 64 61" fill="none">
-                            <path d="M14.9761 53.3327C13.7476 53.3327 12.7227 52.922 11.9014 52.1007C11.0801 51.2794 10.6685 50.2536 10.6667 49.0234V14.9753C10.6667 13.7469 11.0783 12.722 11.9014 11.9007C12.7245 11.0793 13.7494 10.6678 14.9761 10.666H41.5387L53.3334 22.4607V49.026C53.3334 50.2527 52.9227 51.2776 52.1014 52.1007C51.2801 52.9238 50.2543 53.3345 49.0241 53.3327H14.9761ZM14.9761 50.666H49.0267C49.505 50.666 49.8979 50.5122 50.2054 50.2047C50.513 49.8971 50.6667 49.5042 50.6667 49.026V23.9993H40.0001V13.3327H14.9761C14.4961 13.3327 14.1023 13.4865 13.7947 13.794C13.4872 14.1016 13.3334 14.4953 13.3334 14.9753V49.026C13.3334 49.5042 13.4872 49.8971 13.7947 50.2047C14.1023 50.5122 14.4961 50.666 14.9761 50.666ZM20.0001 42.666H44.0001V39.9993H20.0001V42.666ZM20.0001 23.9993H32.0001V21.3327H20.0001V23.9993ZM20.0001 33.3327H44.0001V30.666H20.0001V33.3327Z" fill="#333333"/>
-                        </svg>
-                    </div>
-                </a>
-
-            </div>
             
             <!-- My Course-->
             <div class="w-full flex flex-col justify-center items-start p-4 bg-[url('../../public/images/pattern-background3.png')] bg-cover rounded-lg mt-8">
@@ -236,20 +199,7 @@
                     <div class="flex overflow-x-auto whitespace-nowrap max-w-full space-x-6 py-4 rounded-lg">
                         <!-- INPUT BACKEND DI SINI -->
                         <!-- Unfixed: too many image ~> web widen, tampilan rusak -->
-                        <a href="{{ $link_url }}" class="block">
-                            <div class="inline-block min-w-[300px] bg-white bg-opacity-55 backdrop-blur-sm rounded-lg shadow-md overflow-hidden p-2">
-                                <img src="{{ asset($image_src) }}" alt="Course Image" class="w-full h-64 object-cover">
-                                <div class="p-4">
-                                    <h3 class="text-lg font-semibold text-white mb-6">{{ $title }}</h3>  
-                        
-                                    <!-- Button -->
-                                    <div class="flex items-center justify-center">
-                                        <button class="bg-cyan-500 text-white rounded-md px-4 py-2 hover:bg-cyan-600">More Info</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
+                        <x-course-card-instructor image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" link_url="#"/>
                         <!-- Add additional cards here... -->
                     </div>
                 </div>
@@ -276,6 +226,7 @@
                     <!-- Scrollable Card Section -->
                     <div class="flex overflow-x-auto whitespace-nowrap max-w-full space-x-6 py-4 rounded-lg">
                         <!-- INPUT BACKEND DISINI -->
+                        <x-book-card title="Agama Hidup Bermakna" image_src="images/pattern-background1.png" link_url="#"/>
                         <!-- Add additional cards here... -->
                     </div>
                 </div>
