@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
 
         Learner::create([
             'user_id' => $user->id,
+            'id' => $user->id,
         ]);
 
         event(new Registered($user));

@@ -23,7 +23,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
+// TEST
+Route::view('/kiko', 'dashboardInstructor');
+
+
+
+Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
+Route::get('/home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
 
 
 Route::middleware('auth')->group(function () {
@@ -34,26 +40,19 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// Course
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+
 Route::middleware(['auth', 'learnerMiddleware'])->group(function() {
     // Dashboard
    Route::get('/learner-dashboard', [LearnerDashboardController::class, 'index'])->name('learner-dashboard');
-
-   // Course
-   Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
-   Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 
    // Enrollment
    Route::post('/enrollments', [EnrollmentController::class, 'store'])->name('enrollments.store');
 
    // Chapter
    Route::get('/chapters', [ChapterController::class, 'show'])->name('chapters.show');
-
-   // Material
-   Route::get('/materials', [MaterialController::class, 'show'])->name('materials.show');
-
-   // Assessment
-   Route::get('/assessments', [AssessmentController::class, 'index'])->name('assessment.index');
-
 
 
 });
@@ -63,10 +62,10 @@ Route::middleware(['auth', 'instructorMiddleware'])->group(function() {
    Route::get('/instructor-dashboard', [InstructorDashboardController::class, 'index'])->name('instructor-dashboard');
 
    // Course
-   Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+   Route::get('/courses', [CourseController::class, 'indexInstructedCourse'])->name('courses.indexInstructedCourse');
    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
-   Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+//    Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
    Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
    Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');

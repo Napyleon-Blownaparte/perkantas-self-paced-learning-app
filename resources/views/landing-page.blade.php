@@ -22,33 +22,45 @@
                 </div>
                 <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-100 border border-gray-100 rounded-lg bg-gray-50 bg-transparent" placeholder="Search...">
             </div>
-            @auth
-            <div x-data="{ open: false }" class="relative inline-block text-left">
-                <div>
-                    <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" aria-expanded="true" aria-haspopup="true" @click="open = !open">
-                        {{ Auth::user()->name }}
-                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
 
-                <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" x-show="open" @click.away="open = false" x-transition>
-                    <div class="py-1" role="none">
-                        <x-dropdown-link :href="route('profile.edit')" role="menuitem">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-                        <form method="POST" action="{{ route('logout') }}" role="none">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')" role="menuitem" onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
+            <!-- Jika pengguna terotentikasi -->
+            @auth
+                <div x-data="{ open: false }" class="relative inline-block text-left">
+                    <div>
+                        <button type="button" class="inline-flex justify-center w-full ml-3 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" aria-expanded="true" aria-haspopup="true" @click="open = !open">
+                            {{ Auth::user()->name }}
+                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Dropdown menu -->
+                    <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" x-show="open" @click.away="open = false" x-transition>
+                        <div class="py-1" role="none">
+                            <x-dropdown-link :href="route('profile.edit')" role="menuitem">
+                                {{ __('Profile') }}
                             </x-dropdown-link>
-                        </form>
+                            <form method="POST" action="{{ route('logout') }}" role="none">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')" role="menuitem" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endauth
 
+            @endauth
+            @guest
+            <div class="border border-gray-100 rounded-lg ml-5">
+                <a href="{{ route('login') }}" class="block text-center mt-[0.3em] text-white rounded hover:text-[#e3e3e3c8] px-7 transition">Log In</a>
+            </div>
+            @endguest
+
+
+
+            <!-- Jika pengguna tidak terotentikasi -->
 
 
 
@@ -58,7 +70,9 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
                 </svg>
             </button>
+
         </div>
+
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
             <div class="relative mt-3 md:hidden">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -72,16 +86,26 @@
                 <li>
                     <a href="#" class="block py-2 px-3 bg-gray-100 text-black rounded md:bg-transparent md:text-[#e3e3e3c8] md:p-0" aria-current="page">Home</a>
                 </li>
+                @auth
+
+
+                @if(Auth::user()->role === 'learner')
                 <li>
-                    <a href="#course" class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition ">Course</a>
+                    <a href="/learner-dashboard" class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition"">Learner Dashboard</a>
+                </li>
+                @elseif (Auth::user()->role === 'instructor')
+                <li>
+                    <a href="/instructor-dashboard" class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition">Instructor Dashboard</a>
+                </li>
+                @endif
+                @endauth
+                <li>
+                    <a href="#course" class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition">Course</a>
                 </li>
                 <li>
                     <a href="#book" class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition">Books</a>
                 </li>
             </ul>
-            <div class="border border-gray-100 rounded-lg p-2 mt-4 md:hidden">
-                <a href="{{ route('login') }}" class="block text-white rounded hover:text-[#e3e3e3c8] py-1 px-3 transition">Log In</a>
-            </div>
         </div>
     </div>
 </nav>
@@ -96,11 +120,11 @@
         Tentu hal ini membutuhkan pengorbanan, tetapi juga menjanjikan hadiah yang lebih besar daripada yang orang lain dapat berikan.
     </p>
     <div class="flex flex-col mb-8 mt-24 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-        <a href="#" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#110a39] hover:bg-white hover:text-black transition-colors">
+        <a href="{{ route('learner-dashboard') }}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#110a39] hover:bg-white hover:text-black transition-colors">
             Start learning
             <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </a>
-        <a href="#book" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white hover:text-black transition-colors">
+        <a href="#book" class=" text-gray-100 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white hover:text-black transition-colors">
             <svg class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 2H18C19.1 2 20 2.9 20 4V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V4C4 2.9 4.9 2 6 2ZM6 4V20H18V4H6ZM8 6H16V8H8V6ZM8 10H16V12H8V10Z"></path></svg>
             Check our book collections
         </a>
@@ -187,40 +211,28 @@
 
         <div class="swiper multiple-slide-carousel swiper-container relative">
             <div class="swiper-wrapper mb-16 pb-16">
+                @foreach ($courses as $course)
                 <div class="swiper-slide">
                     <div class="bg-customPurple rounded-lg shadow h-96 overflow-hidden flex flex-col justify-between">
-                        <img class="rounded-t-lg object-cover w-full h-48" src="https://placehold.co/600" alt="" />
+                        <img class="rounded-t-lg object-cover w-full h-48" src="{{ $course->thumbnail_image }}" alt="" />
                         <div class="p-5 flex-grow overflow-hidden">
                             <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-100 line-clamp-2">
-                                Noteworthy technology acquisitions 2021 that happened over the past year, many notable deals were made
+                                {{ $course->title }}
                             </h5>
-                            <p class="mb-3 font-normal text-gray-200">Est. Hours</p>
+                            <p class="mb-3 font-normal text-gray-200">Est. Hours <span>{{ $course->estimated_time }}</span></p>
                         </div>
                         <div class="p-5 flex justify-between space-x-4">
-                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-100 hover:text-gray-900 rounded-lg hover:bg-gray-100 outline-white border transition-colors">
+                            <a href=" {{ '/courses/' . $course->id }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-100 hover:text-gray-900 rounded-lg hover:bg-gray-100 outline-white border transition-colors">
                                 Learn more
                             </a>
-                            <a href="#" class="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition-colors">
+                            {{-- <a href="#" class="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition-colors">
                                 Enroll
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                        <span class="text-2xl font-semibold text-indigo-600">Slide 2 </span>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                        <span class="text-2xl font-semibold text-indigo-600">Slide 3 </span>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                        <span class="text-2xl font-semibold text-indigo-600">Slide 4 </span>
-                    </div>
-                </div>
+            @endforeach
+
             </div>
             <div class="absolute flex justify-center items-center m-auto left-0 right-0 w-fit bottom-12">
                 <button id="slider-button-left" class="swiper-button-prevs z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full  hover:bg-customPurple !-translate-x-16" data-carousel-prev>

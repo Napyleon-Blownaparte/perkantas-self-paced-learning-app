@@ -10,16 +10,34 @@ class LearnerDashboardController extends Controller
 {
     public function index()
     {
-       $user = request()->user();
-       $enrollments = $user->learner->enrollments;
-       $courses = $user->learner->courses;
-       $recommendedCourses = Course::all();
+        $user = request()->user();
+        $enrollments = $user->learner->enrollments;
+        $courses = $user->learner->courses;
+        $recommendedCourses = Course::all();
+        $finishedCoursesCount = $enrollments->where('status', 'finished')->count();
+        $acceptedCoursesCount = $enrollments->where('status', 'accepted')->count();
+        $pendingCoursesCount = $enrollments->where('status', 'pending')->count();
 
-       return view('learner-dashboard', [
-           'user' => $user,
-           'enrollments' => $enrollments,
-           'courses' => $courses,
-           'recommendedCourses' => $recommendedCourses
-       ]);
+        // Mengambil Course yang diterima
+$acceptedCourseIds = $enrollments->where('status', 'enrolled')->pluck('course_id');
+$acceptedCourses = Course::whereIn('id', $acceptedCourseIds)->get();
+
+// Mengambil Course yang tertunda
+$pendingCourseIds = $enrollments->where('status', 'pending')->pluck('course_id');
+$pendingCourses = Course::whereIn('id', $pendingCourseIds)->get();
+
+
+        return view('learner-dashboard', [
+            'user' => $user,
+            'enrollments' => $enrollments,
+            'courses' => $courses,
+            'recommendedCourses' => $recommendedCourses,
+            'finishedCoursesCount' => $finishedCoursesCount,
+            'acceptedCoursesCount' => $acceptedCoursesCount,
+            'pendingCoursesCount' => $pendingCoursesCount,
+            'acceptedCourses' => $acceptedCourses,
+            'pendingCourses' => $pendingCourses,
+        ]);
     }
+
 }

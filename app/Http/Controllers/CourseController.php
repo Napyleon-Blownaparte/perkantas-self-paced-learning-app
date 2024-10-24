@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use Illuminate\Support\Facades\Gate;
 
 class CourseController extends Controller
 {
@@ -40,15 +41,19 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $recommendedCourses = Course::where('id', '!=', $course->id)
-                                ->inRandomOrder()
-                                ->limit(5)
-                                ->get();
+        // if (Gate::denies('view', $course)) {
+        //     // Redirect atau abort jika akses ditolak
+        //     return redirect()->route('courses.index')->with('error', 'Unauthorized access.');
+        // }
+        // $recommendedCourses = Course::where('id', '!=', $course->id)
+        //                         ->inRandomOrder()
+        //                         ->limit(5)
+        //                         ->get();
 
 
-        return view('test.courses.show', [
+        return view('courses.show', [
             'course' => $course,
-            'recommendedCourses' => $recommendedCourses
+            // 'recommendedCourses' => $recommendedCourses
         ]);
     }
 
