@@ -22,44 +22,36 @@
                 </div>
                 <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-100 border border-gray-100 rounded-lg bg-gray-50 bg-transparent" placeholder="Search...">
             </div>
-            @auth()
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
-                    <x-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition">
-                                <div>{{ Auth::user()->name }}</div> <!-- Pastikan pengguna terautentikasi -->
-                                <div class="ms-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </button>
-                        </x-slot>
+            @auth
+            <div x-data="{ open: false }" class="relative inline-block text-left">
+                <div>
+                    <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" aria-expanded="true" aria-haspopup="true" @click="open = !open">
+                        {{ Auth::user()->name }}
+                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
 
-                        <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" x-show="open" @click.away="open = false" x-transition>
+                    <div class="py-1" role="none">
+                        <x-dropdown-link :href="route('profile.edit')" role="menuitem">
+                            {{ __('Profile') }}
+                        </x-dropdown-link>
+                        <form method="POST" action="{{ route('logout') }}" role="none">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')" role="menuitem" onclick="event.preventDefault(); this.closest('form').submit();">
+                                {{ __('Log Out') }}
                             </x-dropdown-link>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endauth
 
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <x-dropdown-link :href="route('logout')"
-                                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-dropdown-link>
-                            </form>
-                        </x-slot>
-                    </x-dropdown>
-                </div>
-            @else
-                <div class="hidden md:flex">
-                    <a href=" {{ route('login') }}">
-                        <button class="ml-2 px-4 py-1.5 border border-white text-white rounded-lg bg-transparent hover:bg-white hover:text-gray-900 transition">
-                            Log In
-                        </button>
-                    </a>
-                </div>
-            @endauth
+
+
+
             <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-100 rounded-lg md:hidden hover:bg-gray-700" aria-controls="navbar-search" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -124,7 +116,7 @@
         </svg>
         <h1 class="px-2">News</h1>
     </div>
-    {{-- https://flowbite.com/docs/components/carousel/ --}}   
+    {{-- https://flowbite.com/docs/components/carousel/ --}}
     <div id="default-carousel" class="relative w-full " data-carousel="slide">
         <div class="flex overflow-hidden rounded-lg md:h-96 items-center">
         <!-- Item 1 -->
@@ -190,9 +182,9 @@
     </svg>
     <h1 class="px-2">Courses</h1>
 </div>
-    
+
     <div class="w-full relative">
-        
+
         <div class="swiper multiple-slide-carousel swiper-container relative">
             <div class="swiper-wrapper mb-16 pb-16">
                 <div class="swiper-slide">
@@ -213,7 +205,7 @@
                             </a>
                         </div>
                     </div>
-                </div>  
+                </div>
                 <div class="swiper-slide">
                     <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
                         <span class="text-2xl font-semibold text-indigo-600">Slide 2 </span>
@@ -253,7 +245,7 @@
         <h1>Books</h1>
     </div>
     <div class="w-full relative">
-        
+
         <div class="swiper multiple-slide-carousel swiper-container relative">
             <div class="swiper-wrapper mb-16 pb-16">
                 <div class="swiper-slide">
@@ -268,10 +260,10 @@
                             <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-100 hover:text-gray-900 rounded-lg hover:bg-gray-100 outline-white border transition-colors">
                                 More Info
                             </a>
-                        
+
                         </div>
                     </div>
-                </div>  
+                </div>
                 <div class="swiper-slide">
                     <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
                         <span class="text-2xl font-semibold text-indigo-600">Slide 2 </span>
@@ -404,9 +396,9 @@
         if (window.scrollY + navbarHeight >= changePoint) {
             navbar.style.backgroundColor = '#251F4F';
             navbar.style.borderBottom = '1px solid #ffffff';
-        
+
         } else {
-            navbar.style.backgroundColor = 'transparent'; 
+            navbar.style.backgroundColor = 'transparent';
             navbar.style.borderBottom = 'none'
         }
     });
@@ -416,7 +408,7 @@
         const prevButton = document.querySelector('[data-carousel-prev]');
         const nextButton = document.querySelector('[data-carousel-next]');
         let currentIndex = 0;
-        let intervalTime = 3000; 
+        let intervalTime = 3000;
         let autoSlideInterval;
         function showSlide(index) {
             items.forEach((item, i) => {
@@ -453,15 +445,15 @@
             nextSlide();
             startAutoSlide();
         });
-        
+
         startAutoSlide();
-    });    
+    });
 
     // Toggle navbar for small device
     document.addEventListener("DOMContentLoaded", function() {
         const toggleMenuButton = document.querySelectorAll('[data-collapse-toggle="navbar-search"]');
         const navbarSearch = document.getElementById('navbar-search');
-        
+
         toggleMenuButton.forEach((btn) => {
             btn.addEventListener('click', function() {
                 navbarSearch.classList.toggle('hidden');

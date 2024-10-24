@@ -11,8 +11,10 @@ class StoreEnrollmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        // Hanya izinkan pengguna dengan peran 'learner'
+        return $this->user() && $this->user()->role === 'learner';
     }
+
 
     /**
      * Get the validation rules that apply to the request.

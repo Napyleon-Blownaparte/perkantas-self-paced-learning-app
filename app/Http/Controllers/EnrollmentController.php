@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Enrollment;
 use App\Http\Requests\StoreEnrollmentRequest;
 use App\Http\Requests\UpdateEnrollmentRequest;
@@ -29,7 +30,19 @@ class EnrollmentController extends Controller
      */
     public function store(StoreEnrollmentRequest $request)
     {
-        //
+        // Otorisasi manual
+        $this->authorize('create', Enrollment::class); // Ini mungkin menyebabkan masalah jika policy salah
+
+        $user = $request->user();
+        $course = Course::findOrFail($request->course_id);
+
+        Enrollment::create([
+            'learner_id' => $user->learner->id,
+            'course_id' => $course->id,
+            'status' => 'pending',
+        ]);
+
+        return redirect('/courses/' . $request->course_id);
     }
 
     /**

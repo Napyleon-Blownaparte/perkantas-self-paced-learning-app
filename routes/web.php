@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InstructorDashboardController;
 use App\Http\Controllers\LearnerDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EnrollmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,9 +34,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'learnerMiddleware'])->group(function() {
-   Route::get('learner-dashboard', [LearnerDashboardController::class, 'index'])->name('learner-dashboard');
+   Route::get('/learner-dashboard', [LearnerDashboardController::class, 'index'])->name('learner-dashboard');
+   Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+   Route::post('/enrollments', [EnrollmentController::class, 'store'])->name('enrollments.store');
 });
 
 Route::middleware(['auth', 'instructorMiddleware'])->group(function() {
-   Route::get('instructor-dashboard', [InstructorDashboardController::class, 'index'])->name('instructor-dashboard');
+   Route::get('/instructor-dashboard', [InstructorDashboardController::class, 'index'])->name('instructor-dashboard');
 });

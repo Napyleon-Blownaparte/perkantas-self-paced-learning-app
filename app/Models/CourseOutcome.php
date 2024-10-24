@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class CourseOutcome extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    public function chapter()
+    public function course()
     {
-        return $this->belongsTo(Chapter::class);
+        $this->belongsTo(Course::class);
     }
 }

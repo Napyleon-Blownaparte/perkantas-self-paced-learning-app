@@ -8,6 +8,16 @@ class InstructorDashboardController extends Controller
 {
     public function index()
     {
-        return view('instructor-dashboard');
+        $user = request()->user();
+        $courses = $user->instructor->courses;
+        $learnersCount = $courses->sum(function($course) {
+            return $course->learners()->count();
+        });
+
+        return view('instructor-dashboard', [
+            'user' => $user,
+            'courses' => $courses,
+            'learnersCount' => $learnersCount
+        ]);
     }
 }

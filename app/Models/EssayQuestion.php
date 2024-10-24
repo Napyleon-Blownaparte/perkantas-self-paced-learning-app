@@ -9,6 +9,8 @@ class EssayQuestion extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function question()
     {
         return $this->morphOne(Question::class, 'questionable');
