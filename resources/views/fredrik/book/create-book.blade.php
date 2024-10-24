@@ -14,7 +14,7 @@
     <div class="w-full max-w-xl mx-auto p-8 bg-gray-100  shadow-md rounded-lg">
         <h1 class="text-3xl font-bold mb-6">Add Book</h1>
 
-        <form method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-6">

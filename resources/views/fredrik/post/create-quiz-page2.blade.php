@@ -16,7 +16,7 @@
     <div class="w-full max-w-3xl p-16 bg-gray-100 rounded-lg shadow-md">
         <h1 class="text-3xl font-bold mb-8 text-center">Add Quiz</h1>
 
-        <form action="/quizzes" method="POST" x-data="{ questionType: 'multiple-choice' }" @submit.prevent="submitForm">
+        <form action="" method="POST" x-data="{ questionType: 'multiple-choice' }" @submit.prevent="submitForm" enctype="multipart/form-data">
             @csrf
             <div class="flex justify-between items-center mb-6">
                 <div class="flex-1 mr-2">
