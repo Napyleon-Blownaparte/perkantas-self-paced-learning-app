@@ -9,8 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-2xl mx-auto">
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    <div class="bg-gray-100 shadow-md rounded-lg p-6 w-full max-w-2xl mx-auto">
         <h2 class="text-3xl font-bold mb-6">Add Chapter</h2>
         
         <h3 class="text-lg font-semibold mb-4">Chapter Detail</h3>
