@@ -26,11 +26,9 @@
                 <x-text-input class="block w-full focus:!border-blue-400 focus:!ring-blue-400 focus:ring-2 p-2 mt-2" />
             </div>
     
-            <div>
                 <x-primary-button class="mt-4 !bg-cyan-500 focus:!bg-cyan-500 active:!bg-cyan-500 hover:!bg-cyan-200 focus:!ring-offset-0 focus:!ring-0 !text-white !font-semibold py-3 px-16 !rounded-md">
                     Submit
                 </x-primary-button>
-            </div>
         </form>
     </div>
 </body>

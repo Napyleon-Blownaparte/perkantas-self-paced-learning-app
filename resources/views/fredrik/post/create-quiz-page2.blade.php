@@ -48,7 +48,7 @@
                 <x-input-label for="choices" value="Choice(s)" class="block !text-black !font-bold !text-sm mb-2" />
                 @for($i = 1; $i <= 4; $i++)
                     <div class="flex items-center mb-2">
-                        <input type="radio" name="correct_answer" value="choice{{ $i }}" class="form-radio text-blue-500">
+                        <x-text-input type="radio" name="correct_answer" class="form-radio text-blue-500" />
                         <x-text-input name="choices[]" placeholder="Choice {{ $i }}" class="block w-full focus:!border-blue-400 focus:!ring-blue-400 focus:ring-2 p-2 ml-2" />
                     </div>
                 @endfor
