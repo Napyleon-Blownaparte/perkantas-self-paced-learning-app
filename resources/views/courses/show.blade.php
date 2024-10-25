@@ -23,23 +23,35 @@
 
                 {{-- Change with query --}}
                 @php
-                    $isEnrolled = false;
-                    $enrolledCount = 7;
+                    $enrollment = $course->enrollments->firstWhere('learner_id', Auth::user()->id);
+                    $isEnrolled = $enrollment && $enrollment->status !== 'stopped';
+                    $enrolledCount = $course->enrollments->count();
                 @endphp
 
-                @if ($isEnrolled)
-                    <span class="text-green-600 font-semibold">✔ Already Enrolled</span>
-                @else
-                    <button
-                        class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none">
-                        Enroll Now
-                    </button>
+                @if (Auth::user()->role === 'learner')
+                    @if ($isEnrolled)
+                        <span class="text-green-600 font-semibold">✔ Already Enrolled</span>
+                    @else
+                        <form action="{{ route('enrollments.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="course_id" value="{{ $course->id }}">
+                            <button type="submit"
+                                class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none">
+                                Enroll Now
+                            </button>
+                        </form>
+                    @endif
                 @endif
-                {{-- Instructor View --}}
-                {{-- <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none">
-                Add Instructor
-            </button>     --}}
+
+                @if (Auth::user()->role === 'instructor' && Auth::user()->can('update', $course))
+                <a href="{{ route('courses.edit', $course->id) }}"
+                    class="mt-4 inline-block px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 focus:outline-none">
+                    Manage Course
+                </a>
+            @endif
+
                 <span class="text-green-600 font-semibold">{{ $enrolledCount }} people already enrolled</span>
+
             </div>
             <div class="mt-8">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -53,7 +65,8 @@
                     </div>
                     <div class="p-4 border rounded-lg text-center">
                         <h4 class="font-semibold">Course Start Period</h4>
-                        <p class="text-gray-600">{{ \Carbon\Carbon::parse($course->start_period)->format('d F Y') }}</p>
+                        <p class="text-gray-600">{{ \Carbon\Carbon::parse($course->start_period)->format('d F Y') }}
+                        </p>
                     </div>
                     <div class="p-4 border rounded-lg text-center">
                         <h4 class="font-semibold">Course End Period</h4>
@@ -108,17 +121,19 @@
                                 <div class="chapter-details mt-4 text-gray-600 hidden">
                                     <div class="divide-y divide-gray-300">
                                         @foreach ($chapter->materials as $material)
-                                            <a href="{{ '/materials/' . $material->id }}"
-                                                class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
-                                                <span
-                                                    class="text-blue-600 font-semibold">{{ $material->content }}</span>
-                                            </a>
+                                        <a href="{{ '/courses/' . $course->id . '/chapters/' . $chapter->id }}"
+                                            class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
+                                            <span class="text-blue-600 font-semibold">{{ $material->title }}</span>
+                                        </a>
+
+
                                         @endforeach
-                                        <a href="{{ '/assessments/' . $chapter->id}}"
+                                        <a href="{{ route('chapters.show', ['course' => $course->id, 'chapter' => $chapter->id]) }}"
                                             class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
                                             <span class="text-blue-600 font-semibold">Chapter Quiz</span>
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                         @endforeach
@@ -131,7 +146,8 @@
         </div>
     </section>
     <section class="course px-4 md:px-16 pb-8 pt-24" id="course">
-        <div class="course-container bg-customPurple flex items-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl">
+        <div
+            class="course-container bg-customPurple flex items-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl">
             <h1 class="px-2">Course Recommendation</h1>
         </div>
 
@@ -139,19 +155,24 @@
             <div class="swiper multiple-slide-carousel swiper-container relative">
                 <div class="swiper-wrapper mb-16 pb-16">
                     <div class="swiper-slide">
-                        <div class="bg-customPurple rounded-lg shadow h-96 overflow-hidden flex flex-col justify-between">
-                            <img class="rounded-t-lg object-cover w-full h-48" src="https://placehold.co/600" alt="" />
+                        <div
+                            class="bg-customPurple rounded-lg shadow h-96 overflow-hidden flex flex-col justify-between">
+                            <img class="rounded-t-lg object-cover w-full h-48" src="https://placehold.co/600"
+                                alt="" />
                             <div class="p-5 flex-grow overflow-hidden">
                                 <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-100 line-clamp-2">
-                                    Noteworthy technology acquisitions 2021 that happened over the past year, many notable deals were made
+                                    Noteworthy technology acquisitions 2021 that happened over the past year, many
+                                    notable deals were made
                                 </h5>
                                 <p class="mb-3 font-normal text-gray-200">Est. Hours</p>
                             </div>
                             <div class="p-5 flex justify-between space-x-4">
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-100 hover:text-gray-900 rounded-lg hover:bg-gray-100 outline-white border transition-colors">
+                                <a href="#"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-100 hover:text-gray-900 rounded-lg hover:bg-gray-100 outline-white border transition-colors">
                                     Learn more
                                 </a>
-                                <a href="#" class="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition-colors">
+                                <a href="#"
+                                    class="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition-colors">
                                     Enroll
                                 </a>
                             </div>
@@ -174,14 +195,24 @@
                     </div>
                 </div>
                 <div class="absolute flex justify-center items-center m-auto left-0 right-0 w-fit bottom-12">
-                    <button id="slider-button-left" class="swiper-button-prevs z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full  hover:bg-customPurple !-translate-x-16" data-carousel-prev>
-                        <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    <button id="slider-button-left"
+                        class="swiper-button-prevs z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full  hover:bg-customPurple !-translate-x-16"
+                        data-carousel-prev>
+                        <svg class="h-5 w-5 text-customPurple group-hover:text-white"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                            fill="none">
+                            <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor"
+                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
-                    <button id="slider-button-right" class="swiper-button-nexts z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full hover:bg-customPurple !translate-x-16" data-carousel-next>
-                        <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    <button id="slider-button-right"
+                        class="swiper-button-nexts z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full hover:bg-customPurple !translate-x-16"
+                        data-carousel-next>
+                        <svg class="h-5 w-5 text-customPurple group-hover:text-white"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                            fill="none">
+                            <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor"
+                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
                 </div>
@@ -198,7 +229,7 @@
             downwardV.classList.toggle('hidden');
             upwardV.classList.toggle('hidden');
         }
-         var swiper = new Swiper(".multiple-slide-carousel", {
+        var swiper = new Swiper(".multiple-slide-carousel", {
             loop: true,
             slidesPerView: 1,
             spaceBetween: 20,

@@ -13,7 +13,7 @@ class LearnerDashboardController extends Controller
         $user = request()->user();
         $enrollments = $user->learner->enrollments;
         $courses = $user->learner->courses;
-        $recommendedCourses = Course::all();
+        $recommendedCourses = Course::take(3)->get();
         $finishedCoursesCount = $enrollments->where('status', 'finished')->count();
         $acceptedCoursesCount = $enrollments->where('status', 'accepted')->count();
         $pendingCoursesCount = $enrollments->where('status', 'pending')->count();

@@ -5,7 +5,7 @@
         <nav class="bg-white w-16 p-4 flex flex-col items-center justify-between shadow-lg fixed top-0 z-10 h-screen">
             <!-- Menu Icons -->
             <div class="flex flex-col space-y-6 justify-center flex-grow">
-                <a href="#"
+                <a href="/courses"
                     class="relative group p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-200 rounded-lg">
                     <!-- Icon  -->
                     <svg viewBox="0 0 64 64" width="35" height="35">
@@ -19,7 +19,7 @@
                         Courses
                     </span>
                 </a>
-                <a href="#"
+                <a href="/learner-dashboard"
                     class="relative group p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-200 rounded-lg bg-gray-200">
                     <!-- Icon -->
                     <svg width="35" height="35" viewBox="0 0 64 65" fill="none">
@@ -80,8 +80,7 @@
                 <div class="flex items-center bg-blue-950 text-white rounded-lg p-6 w-4/5 lg:w-2/5 relative">
                     <div class="ml-2 relative z-10"> <!-- Set z-index for text container -->
                         <h2 class="text-xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Welcome,
-                            <span>{{ explode(' ', Auth::user()->name)[0] }}</span>
-                        </h2>
+                            <span>{{ explode(' ', Auth::user()->name)[0] }}</span></h2>
                         <p class="text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Ready to Learn?</p>
                     </div>
                     <img src="{{ asset('images/avatar.png') }}" alt="Avatar"
@@ -131,12 +130,21 @@
                         <!-- INPUT BACKEND DI SINI -->
                         @if ($acceptedCourses->isNotEmpty())
                             @foreach ($acceptedCourses as $acceptedCourse)
+                            <div class="flex-none">
                                 <x-mini-course-card title="{{ $acceptedCourse->title }}"
                                     image_src="{{ $acceptedCourse->thumbnail_image }}"
-                                    link_url="{{'/courses/' . $acceptedCourse->id}}" />
+                                    link_url="{{ '/courses/' . $acceptedCourse->id }}" />
+                            </div>
                             @endforeach
+                        @endif
+
+
                     </div>
+
+
+
                     <div class="mt-1 flex justify-end items-center">
+                        @if ($acceptedCourses->isNotEmpty())
                         <p class="mr-2">More</p>
                         <svg width="40" height="40" viewBox="0 0 64 64" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -148,10 +156,14 @@
                                 fill="black" />
                             <path d="M20.4805 30.72H42.2405V33.28H20.4805V30.72Z" fill="black" />
                         </svg>
+
+                        @else
+                        <p>Tidak ada course yang accepted</p>
+                        @endif
                     </div>
-                @else
-                    <p class="text-gray-600">No accepted courses available.</p>
-                    @endif
+
+
+
                 </div>
 
 
@@ -172,12 +184,17 @@
                         <!-- INPUT BACKEND DI SINI -->
                         @if ($pendingCourses->isNotEmpty())
                             @foreach ($pendingCourses as $pendingCourse)
+                            <div class="flex-none">
                                 <x-mini-course-card title="{{ $pendingCourse->title }}"
                                     image_src="{{ $pendingCourse->thumbnail_image }}"
                                     link_url="{{ '/courses/' . $pendingCourse->id }}" />
+                                </div>
                             @endforeach
+                        @endif
                     </div>
+
                     <div class="mt-1 flex justify-end items-center">
+                        @if ($pendingCourses->isNotEmpty())
                         <p class="mr-2">More</p>
                         <svg width="40" height="40" viewBox="0 0 64 64" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -189,10 +206,11 @@
                                 fill="black" />
                             <path d="M20.4805 30.72H42.2405V33.28H20.4805V30.72Z" fill="black" />
                         </svg>
+
+                        @else
+                        <p>Tidak ada course yang pending</p>
+                        @endif
                     </div>
-                @else
-                    <p class="text-gray-600">No pending courses available.</p>
-                    @endif
                 </div>
             </div>
 
@@ -221,12 +239,11 @@
                     <div class="flex overflow-x-auto whitespace-nowrap max-w-full space-x-6 py-4 rounded-lg">
                         <!-- INPUT BACKEND DI SINI -->
                         <!-- Unfixed: too many image ~> web widen, tampilan rusak -->
-                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna"
-                            id="1" link_url="#" />
-                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna"
-                            id="1" link_url="#" />
-                        <x-course-card image_src="images/pattern-background1.png" title="Agama Hidup Bermakna"
-                            id="1" link_url="#" />
+                        @foreach ($recommendedCourses as $course)
+                        <div class="flex-none"> <!-- Menghapus lebar tetap, agar fleksibel -->
+                            <x-course-card image_src="{{ $course->thumbnail_image }}" title="{{ $course->title }}" id="{{ $course->id }}" link_url="{{ '/courses/' . $course->id }}" text_color="text-black"/>
+                        </div>
+                        @endforeach
 
                         <!-- Add additional cards here... -->
                     </div>
@@ -333,6 +350,7 @@
         }
 
         //Use backend to make the progress circle (finished_course, total_course)
+
         updateProgressCircle({{ $finishedCoursesCount }}, {{ $courses->count() }});
 
         //use backend for each course progression (card_id, progress_float)

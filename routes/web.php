@@ -24,11 +24,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // TEST
-Route::view('/kiko', 'dashboardInstructor');
+Route::view('/fredrik', 'fredrik.chapter.create');
 
 
 
-Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
+Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index']);
 Route::get('/home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
 
 
@@ -44,6 +44,9 @@ require __DIR__.'/auth.php';
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 
+// Chapter
+Route::get('/courses/{course}/chapters/{chapter}', [ChapterController::class, 'show'])->name('chapters.show');
+
 Route::middleware(['auth', 'learnerMiddleware'])->group(function() {
     // Dashboard
    Route::get('/learner-dashboard', [LearnerDashboardController::class, 'index'])->name('learner-dashboard');
@@ -58,12 +61,13 @@ Route::middleware(['auth', 'learnerMiddleware'])->group(function() {
 });
 
 Route::middleware(['auth', 'instructorMiddleware'])->group(function() {
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
     // Dashboard
    Route::get('/instructor-dashboard', [InstructorDashboardController::class, 'index'])->name('instructor-dashboard');
 
    // Course
-   Route::get('/courses', [CourseController::class, 'indexInstructedCourse'])->name('courses.indexInstructedCourse');
-   Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+
+   Route::get('/myCourses', [CourseController::class, 'indexInstructedCourses'])->name('courses.indexInstructedCourse');
    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
 //    Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
@@ -72,33 +76,33 @@ Route::middleware(['auth', 'instructorMiddleware'])->group(function() {
 
    // Enrollment
    Route::get('/enrollments', [EnrollmentController::class, 'index'])->name('enrollments.index');
-   Route::get('/enrollments/{enrollment}/edit', [EnrollmentController::class, 'edit'])->name('enrollment.edit');
-   Route::put('/enrollments/{enrollment}', [EnrollmentController::class, 'update'])->name('enrollment.update');
+   Route::get('/enrollments/{enrollment}/edit', [EnrollmentController::class, 'edit'])->name('enrollments.edit');
+   Route::put('/enrollments/{enrollment}', [EnrollmentController::class, 'update'])->name('enrollments.update');
 
    // Chapter
-   Route::get('/chapters', [ChapterController::class, 'index'])->name('chapters.index');
-   Route::get('/chapters/create', [ChapterController::class, 'create'])->name('chapters.create');
-   Route::post('/chapters', [ChapterController::class, 'store'])->name('chapters.store');
-   Route::get('/chapters/{chapter}', [ChapterController::class, 'show'])->name('chapters.show');
-   Route::get('/chapters/{chapter}/edit', [ChapterController::class, 'edit'])->name('chapters.edit');
-   Route::put('/chapters/{chapter}', [ChapterController::class, 'update'])->name('chapters.update');
-   Route::delete('/chapters/{chapter}', [ChapterController::class, 'destroy'])->name('chapters.destroy');
+    Route::get('/courses/{course}/chapters', [ChapterController::class, 'index'])->name('chapters.index');
+    Route::get('/courses/{course}/chapters/create', [ChapterController::class, 'create'])->name('chapters.create');
+    Route::post('courses/{course}/chapters', [ChapterController::class, 'store'])->name('chapters.store');
+
+    Route::get('/courses/{course}/chapters/{chapter}/edit', [ChapterController::class, 'edit'])->name('chapters.edit');
+    Route::put('/courses/{course}/chapters/{chapter}', [ChapterController::class, 'update'])->name('chapters.update');
+    Route::delete('/courses/{course}/chapters/{chapter}', [ChapterController::class, 'destroy'])->name('chapters.destroy');
 
    // Material
-   Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
-   Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
-   Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
-   Route::get('/materials/{material}', [MaterialController::class, 'show'])->name('materials.show');
-   Route::get('/materials/{material}/edit', [MaterialController::class, 'edit'])->name('materials.edit');
-   Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('materials.update');
-   Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('materials.destroy');
+   Route::get('/courses/{course}/chapters/{chapters}/materials', [MaterialController::class, 'index'])->name('materials.index');
+   Route::get('/courses/{course}/chapters/{chapters}/materials/create', [MaterialController::class, 'create'])->name('materials.create');
+   Route::post('/courses/{course}/chapters/{chapter}/materials', [MaterialController::class, 'store'])->name('materials.store');
+   Route::get('/courses/{course}/chapters/{chapters}/materials/{material}', [MaterialController::class, 'show'])->name('materials.show');
+   Route::get('/courses/{course}/chapters/{chapters}/materials/{material}/edit', [MaterialController::class, 'edit'])->name('materials.edit');
+   Route::put('/courses/{course}/chapters/{chapters}/materials/{material}', [MaterialController::class, 'update'])->name('materials.update');
+   Route::delete('/courses/{course}/chapters/{chapters}/materials/{material}', [MaterialController::class, 'destroy'])->name('materials.destroy');
 
    // Question
-   Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
-   Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
-   Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
-   Route::get('/questions/{question}', [QuestionController::class, 'show'])->name('questions.show');
-   Route::get('/questions/{question}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
-   Route::put('/questions/{question}', [QuestionController::class, 'update'])->name('questions.update');
-   Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
+//    Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
+   Route::get('/courses/{course}/chapters/{chapters}/questions/create', [QuestionController::class, 'create'])->name('questions.create');
+   Route::post('/courses/{course}/chapters/{chapters}/questions', [QuestionController::class, 'store'])->name('questions.store');
+//    Route::get('/questions/{question}', [QuestionController::class, 'show'])->name('questions.show');
+//    Route::get('/questions/{question}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
+//    Route::put('/questions/{question}', [QuestionController::class, 'update'])->name('questions.update');
+//    Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 });

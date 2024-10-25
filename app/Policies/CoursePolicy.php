@@ -13,7 +13,8 @@ class CoursePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        // You can define logic here if needed, for now, allow all users
+        return true;
     }
 
     /**
@@ -29,7 +30,7 @@ class CoursePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->role === 'instructor';
     }
 
     /**
@@ -37,15 +38,18 @@ class CoursePolicy
      */
     public function update(User $user, Course $course): bool
     {
-        //
+        // Memeriksa apakah pengguna adalah instruktur dan terasosiasi dengan kursus
+        return $course->instructors()->where('user_id', $user->id)->exists();
     }
+
 
     /**
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, Course $course): bool
     {
-        //
+        // Check if the user is an instructor and is associated with the course
+        return $course->instructors()->where('id', $user->id)->exists();
     }
 
     /**
@@ -53,7 +57,8 @@ class CoursePolicy
      */
     public function restore(User $user, Course $course): bool
     {
-        //
+        // Assuming restoration is also restricted to course instructors
+        return $course->instructors()->where('id', $user->id)->exists();
     }
 
     /**
@@ -61,6 +66,7 @@ class CoursePolicy
      */
     public function forceDelete(User $user, Course $course): bool
     {
-        //
+        // Check if the user is an instructor and is associated with the course
+        return $course->instructors()->where('id', $user->id)->exists();
     }
 }

@@ -43,23 +43,22 @@
 
         <!-- Main Content -->
         <div class="flex-1 p-6 ml-16">
+            <a href="{{ route('profile.edit') }}">
+                <div class="flex justify-between items-center mb-8 cursor-pointer">
+                    <!-- Logo -->
+                    <div>
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20">
+                    </div>
 
-            <!-- Logo and Profile Section -->
-            <div class="flex justify-between items-center mb-8">
-                <!-- Logo -->
-                <div>
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20">
+                    <!-- Profile Icon with White Background and Shadow -->
+                    <div
+                        class="h-32 bg-white p-2 pl-4 pr-4 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-gray-200 transition-colors duration-200">
+                        <img src="{{ asset('images/profilePicture.jpg') }}" alt="Profile"
+                            class="w-12 h-12 object-cover rounded-full mb-2">
+                        <p class="text-gray-700 font-semibold">{{ Auth::user()->name }}</p>
+                    </div>
                 </div>
-
-                <!-- Profile Icon with White Background and Shadow -->
-                <div class="bg-white p-2 pl-4 pr-4 rounded-lg shadow-lg flex items-center space-x-4">
-                    <!-- Name on the left -->
-                    <p class="text-gray-700 font-semibold">John Doe</p>
-
-                    <!-- Profile Picture on the right -->
-                    <img src="{{ asset('images/profilePicture.jpg') }}" alt="Profile" class="w-12 h-12 object-cover rounded-full">
-                </div>
-            </div>
+            </a>
 
             <!-- Header Section -->
             <div class="flex justify-between items-center mb-6">
@@ -77,6 +76,7 @@
             <div class="grid grid-cols-1 md:grid-cols-1 gap-6 w-3/5">
 
                 <!-- Manage Course -->
+                <a href="/myCourses">
                 <div class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col space-y-4 relative">
                     <div class="flex flex-row items-center justify-between w-full mb-4 p-4 rounded-lg bg-white bg-opacity-50 backdrop-blur-sm">
                         <div class="flex justify-center items-center">
@@ -102,8 +102,10 @@
                         </svg>
                     </div>
                 </div>
+            </a>
 
                 <!-- Manage Enrollment -->
+                <a href="/enrollments">
                 <div class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col space-y-4 relative">
                     <div class="flex flex-row items-center justify-between w-full mb-4 p-4 rounded-lg bg-white bg-opacity-50 backdrop-blur-sm">
                         <div class="flex justify-center items-center">
@@ -129,6 +131,7 @@
                         </svg>
                     </div>
                 </div>
+            </a>
 
 
             </div>
@@ -148,7 +151,7 @@
 
 
                 <!-- Add Courses -->
-                <a href="#" class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col items-center justify-center space-y-4 hover:bg-gray-100 transition-colors group">
+                <a href="{{ route('courses.index') }}" class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col items-center justify-center space-y-4 hover:bg-gray-100 transition-colors group">
                     <div class="flex items-center justify-center p-4 rounded-lg bg-white backdrop-blur-sm transition-colors group-hover:bg-gray-100">
                         <h3 class="text-2xl font-semibold mr-2">Add Courses</h3>
                         <svg width="50" height="50" viewBox="0 0 64 61" fill="none">
@@ -170,65 +173,62 @@
 
             </div>
 
-            <!-- My Course-->
-            <div class="w-full flex flex-col justify-center items-start p-4 bg-[url('../../public/images/pattern-background3.png')] bg-cover rounded-lg mt-8">
-                <div class="flex justify-end w-full items-center"> <!-- Adjusted to use justify-between -->
-                    <h2 class="text-white text-xl">More</h2>
-                    <div class="flex items-center"> <!-- Added this wrapper div for the icon -->
-                        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
-                            <path d="M32.0002 53.76C19.9682 53.76 10.2402 44.032 10.2402 32C10.2402 19.968 19.9682 10.24 32.0002 10.24C44.0322 10.24 53.7602 19.968 53.7602 32C53.7602 44.032 44.0322 53.76 32.0002 53.76ZM32.0002 12.8C21.3762 12.8 12.8002 21.376 12.8002 32C12.8002 42.624 21.3762 51.2 32.0002 51.2C42.6242 51.2 51.2002 42.624 51.2002 32C51.2002 21.376 42.6242 12.8 32.0002 12.8Z" fill="white"/>
-                            <path d="M31.6162 44.416L29.8242 42.624L40.4482 32L29.8242 21.376L31.6162 19.584L44.0322 32L31.6162 44.416Z" fill="white"/>
-                            <path d="M20.4805 30.72H42.2405V33.28H20.4805V30.72Z" fill="white"/>
-                        </svg>
-                    </div>
+<!-- Course and Book Sections -->
+<section class="p-6">
+    <div class="grid grid-cols-1 gap-6">
+        <!-- Courses Section -->
+        <div class="bg-black p-6 rounded grid grid-cols-2 grid-flow-col">
+            <div class="flex items-center">
+                <h2 class="text-7xl text-white font-bold mb-4">Course</h2>
+            </div>
+            <div class="flex space-x-4 overflow-x-auto">
+                @foreach ($courses as $course)
+                    <x-course-card
+                    image_src="{{ $course->thumbnail_image }}"
+                    title="{{ $course->title }}"
+                    id="{{ $course->id }}"
+                    link_url="{{ '/courses/' . $course->id }}"
+                    text_color="text-black"
+                />
+
+                @endforeach
+
+            </div>
+        </div>
+
+        <!-- Books Section -->
+        <div class="bg-black p-6 rounded grid grid-cols-2 grid-flow-col">
+            <div class="flex items-center">
+                <h2 class="text-7xl text-white font-bold mb-4">Books</h2>
+            </div>
+            <div class="flex space-x-4 overflow-x-auto">
+                <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                    <img src="https://via.placeholder.com/360x640" alt="Course Image" class="w-full rounded">
+                    <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan Hidup
+                        dalam Yesus</h3>
+                    <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
                 </div>
-                <div class="flex items-center space-x-6">
-
-                    <h1 class="text-3xl font-semibold mb-0 ml-4 mr-4 text-white text-center max-w-xs">Our Courses</h1>
-
-                    <!-- Scrollable Card Section -->
-                    <div class="flex overflow-x-auto whitespace-nowrap max-w-full space-x-6 py-4 rounded-lg">
-                        <!-- INPUT BACKEND DI SINI -->
-                        <!-- Unfixed: too many image ~> web widen, tampilan rusak -->
-                        <x-course-card-instructor image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" link_url="#"/>
-                        <x-course-card-instructor image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" link_url="#"/>
-                        <x-course-card-instructor image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" link_url="#"/>
-                        <x-course-card-instructor image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" link_url="#"/>
-                        <x-course-card-instructor image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" link_url="#"/>
-                        <x-course-card-instructor image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" link_url="#"/>
-                        <x-course-card-instructor image_src="images/pattern-background1.png" title="Agama Hidup Bermakna" link_url="#"/>
-
-                        <!-- Add additional cards here... -->
-                    </div>
+                <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                    <img src="https://via.placeholder.com/360x640" alt="Course Image" class="w-full rounded">
+                    <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan Hidup
+                        dalam Yesus</h3>
+                    <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
+                </div>
+                <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                    <img src="https://via.placeholder.com/360x640" alt="Course Image" class="w-full rounded">
+                    <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan Hidup
+                        dalam Yesus</h3>
+                    <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
+                </div>
+                <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                    <img src="https://via.placeholder.com/360x640" alt="Course Image" class="w-full rounded">
+                    <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan Hidup
+                        dalam Yesus</h3>
+                    <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
                 </div>
             </div>
-
-
-            <!-- Our Books -->
-            <div class="w-full flex flex-col justify-center items-start p-4 bg-[url('../../public/images/pattern-background3.png')] bg-cover rounded-lg mt-8">
-                <div class="flex justify-end w-full items-center"> <!-- Adjusted to use justify-between -->
-                    <h2 class="text-white text-xl">More</h2>
-                    <div class="flex items-center"> <!-- Added this wrapper div for the icon -->
-                        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
-                            <path d="M32.0002 53.76C19.9682 53.76 10.2402 44.032 10.2402 32C10.2402 19.968 19.9682 10.24 32.0002 10.24C44.0322 10.24 53.7602 19.968 53.7602 32C53.7602 44.032 44.0322 53.76 32.0002 53.76ZM32.0002 12.8C21.3762 12.8 12.8002 21.376 12.8002 32C12.8002 42.624 21.3762 51.2 32.0002 51.2C42.6242 51.2 51.2002 42.624 51.2002 32C51.2002 21.376 42.6242 12.8 32.0002 12.8Z" fill="white"/>
-                            <path d="M31.6162 44.416L29.8242 42.624L40.4482 32L29.8242 21.376L31.6162 19.584L44.0322 32L31.6162 44.416Z" fill="white"/>
-                            <path d="M20.4805 30.72H42.2405V33.28H20.4805V30.72Z" fill="white"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-6">
-                    <!-- Title on the left -->
-                    <h1 class="text-3xl font-semibold mb-0 ml-4 mr-4 text-white text-center">Books</h1>
-
-
-                    <!-- Scrollable Card Section -->
-                    <div class="flex overflow-x-auto whitespace-nowrap max-w-full space-x-6 py-4 rounded-lg">
-                        <!-- INPUT BACKEND DISINI -->
-                        <x-book-card title="Agama Hidup Bermakna" image_src="images/pattern-background1.png" link_url="#"/>
-                        <!-- Add additional cards here... -->
-                    </div>
-                </div>
-            </div>
+        </div>
+</section>
 
             <x-footer/>
 

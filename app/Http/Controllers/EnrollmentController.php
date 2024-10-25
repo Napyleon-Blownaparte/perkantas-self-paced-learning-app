@@ -14,8 +14,17 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        //
+        // Mengambil semua enrollments dari setiap course yang diajarkan oleh instruktur
+        $enrollments = request()->user()->instructor->courses->flatMap(function ($course) {
+            return $course->enrollments;
+        });
+
+
+        return view('enrollments.index', [
+            'enrollments' => $enrollments,
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -66,8 +75,15 @@ class EnrollmentController extends Controller
      */
     public function update(UpdateEnrollmentRequest $request, Enrollment $enrollment)
     {
-        //
+        // Validate and update the enrollment status
+        $enrollment->status = $request->input('status');
+        $enrollment->save();
+    
+        // Redirect back with a success message
+        return redirect()->route('enrollments.index')->with('success', 'Enrollment status updated successfully.');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('chapter_id')->constrained('chapters');
-            $table->string('video');
-            $table->string('image');
-            $table->string('content');
+            $table->string('title');
+            $table->string('video')->nullable();
+            $table->string('image')->nullable();
+            $table->text('content');
         });
     }
 

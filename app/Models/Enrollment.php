@@ -10,4 +10,5 @@ class Enrollment extends Model
     use HasFactory;
 
     protected $guarded = [];
+
 }

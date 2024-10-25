@@ -22,7 +22,13 @@ class StoreCourseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'start_period' => 'required|date',
+            'end_period' => 'required|date|after_or_equal:start_period',
+            'estimated_time' => 'required|integer|min:1',
+            'thumbnail_image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'banner_image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 }
