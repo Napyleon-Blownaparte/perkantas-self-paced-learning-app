@@ -9,6 +9,8 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function questionable()
     {
         return $this->morphTo();

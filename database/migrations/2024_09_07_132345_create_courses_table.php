@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->integer('period');
+            $table->string('description');
+            $table->date('start_period');
+            $table->date('end_period');
             $table->integer('estimated_time');
-            $table->integer('number_of_chapters');
-            $table->string('course_activity');
+            $table->string('thumbnail_image');
+            $table->string('banner_image');
         });
     }
 

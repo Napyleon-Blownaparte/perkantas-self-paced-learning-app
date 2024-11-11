@@ -29,7 +29,7 @@ class EnrollmentPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->role === 'learner';
     }
 
     /**

@@ -18,9 +18,6 @@ class AttemptHistoryFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'learner_id'  => Learner::factory(),
-            'assessment_id' =>  Assessment::factory(),
-        ];
+
     }
 }

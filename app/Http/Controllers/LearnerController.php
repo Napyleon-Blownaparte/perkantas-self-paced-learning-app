@@ -13,7 +13,8 @@ class LearnerController extends Controller
      */
     public function index()
     {
-        //
+        $allLearner = Learner::all();
+        return view('learner.index', ['learners' => $allLearner]);
     }
 
     /**
@@ -21,7 +22,7 @@ class LearnerController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

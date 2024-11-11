@@ -9,6 +9,8 @@ class AttemptHistory extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function learner()
     {
         return $this->belongsTo(Learner::class);

@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Chapter;
 use App\Models\User;
+use App\Models\Course;
 use Illuminate\Auth\Access\Response;
 
 class ChapterPolicy
@@ -13,7 +14,7 @@ class ChapterPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,15 +22,15 @@ class ChapterPolicy
      */
     public function view(User $user, Chapter $chapter): bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user, Course $course): bool
     {
-        //
+        return $this->isInstructorOfCourse($user, $course);
     }
 
     /**
@@ -37,7 +38,7 @@ class ChapterPolicy
      */
     public function update(User $user, Chapter $chapter): bool
     {
-        //
+        return $this->isInstructorOfCourse($user, $chapter->course);
     }
 
     /**
@@ -45,22 +46,14 @@ class ChapterPolicy
      */
     public function delete(User $user, Chapter $chapter): bool
     {
-        //
+        return $this->isInstructorOfCourse($user, $chapter->course);
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Check if the user is an instructor of the given course.
      */
-    public function restore(User $user, Chapter $chapter): bool
+    protected function isInstructorOfCourse(User $user, Course $course): bool
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Chapter $chapter): bool
-    {
-        //
+        return $course->instructors()->where('users.id', $user->id)->exists();
     }
 }

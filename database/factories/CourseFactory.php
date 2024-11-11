@@ -17,11 +17,13 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(),
-            'period' => $this->faker->numberBetween(1, 3),
-            'estimated_time' => $this->faker->numberBetween(30, 60),
-            'number_of_chapters' => $this->faker->numberBetween(1, 10),
-            'course_activity' => $this->faker->numberBetween(1, 10),
+            'title' => $this->faker->sentence(4),
+            'description' => $this->faker->paragraph(),
+            'start_period' => $this->faker->date(),
+            'end_period' => $this->faker->date('Y-m-d', '+1 year'),
+            'estimated_time' => $this->faker->numberBetween(5, 100),
+            'thumbnail_image' => $this->faker->imageUrl(640, 480, 'education', true, 'Thumbnail'),
+            'banner_image' => $this->faker->imageUrl(1200, 400, 'education', true, 'Banner'),
         ];
     }
 }

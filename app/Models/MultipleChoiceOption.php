@@ -9,6 +9,8 @@ class MultipleChoiceOption extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function multiple_choice_question()
     {
         return $this->belongsTo(MultipleChoiceQuestion::class);

@@ -18,7 +18,6 @@ class AssessmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'chapter_id' => Chapter::factory(),
             'name' => $this->faker->sentence(),
         ];
     }
