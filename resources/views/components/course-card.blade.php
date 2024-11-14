@@ -1,7 +1,7 @@
 @props(['image_src', 'title', 'id', 'link_url', 'text_color' => 'text-white'])
 
-<a href="{{ $link_url }}" class="block">
-    <div class="inline-block min-w-[300px] max-w-[300px] bg-white bg-opacity-55 backdrop-blur-sm rounded-lg shadow-md overflow-hidden p-2">
+<a href="{{ $link_url }}" class="swiper-slide block">
+    <div class="bg-white rounded-lg shadow h-96 overflow-hidden flex flex-col justify-between hover:shadow-lg transition-shadow">
         <img src="{{ asset($image_src) }}" alt="Course Image" class="w-full h-64 object-cover">
         <div class="p-4">
             <h3 class="text-lg font-semibold {{ $text_color }} truncate" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">{{ $title }}</h3>
