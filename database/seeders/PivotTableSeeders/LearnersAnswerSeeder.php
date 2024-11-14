@@ -17,23 +17,19 @@ class LearnersAnswerSeeder extends Seeder
      */
     public function run(): void
     {
-        // Get all AttemptHistories and Question IDs
         $attemptHistories = AttemptHistory::all();
         $allQuestionIds = Question::pluck('id')->toArray();
 
         foreach ($attemptHistories as $attemptHistory) {
-            // Randomly select some question IDs for each attempt history
             $numberOfQuestions = min(rand(3, 9), count($allQuestionIds));
             $someQuestionIds = Arr::random($allQuestionIds, $numberOfQuestions);
 
             foreach ($someQuestionIds as $questionId) {
-                // Retrieve the question instance to determine its type
                 $question = Question::find($questionId);
 
-                // Initialize answer fields with empty strings for both fields
                 $answerData = [
-                    'essay_answer' => '',  // Default to empty
-                    'multiple_choice_answer' => '',  // Default to empty
+                    'essay_answer' => '',
+                    'multiple_choice_answer' => '',
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];

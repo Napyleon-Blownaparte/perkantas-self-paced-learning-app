@@ -1,10 +1,12 @@
 <x-app-layout>
     <section class="hero bg-cover py-16 px-16 bg-customPurple">
         <div class="mx-auto p-16 pt-8 bg-white rounded-lg shadow-md">
-            <a href="{{ Auth::user()->role === 'instructor' ? '/instructor-dashboard' : '/learner-dashboard' }}"
+
+            <a href="{{ Auth::check() ? (Auth::user()->role === 'instructor' ? '/instructor-dashboard' : '/learner-dashboard') : '/' }}"
                 class="mb-4 inline-block text-justify bg-white text-gray-800 font-semibold py-2 px-4 rounded-md hover:bg-gray-200">
                 ← Back
             </a>
+
 
 
             <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ $course->title }}</h1>

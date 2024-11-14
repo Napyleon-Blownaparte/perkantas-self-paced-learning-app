@@ -25,7 +25,7 @@ class StoreMaterialRequest extends FormRequest
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'video' => 'nullable|mimetypes:video/mp4,video/x-m4v|max:10240', // Max size 10MB
-        ];
+            'video' => 'nullable|mimetypes:video/mp4,video/x-m4v|max:10240',
+        ]; 
     }
 }

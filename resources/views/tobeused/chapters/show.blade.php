@@ -35,8 +35,9 @@
 
         <!-- Main Content -->
         <div class="flex-1 p-8 bg-gray-50">
+            @if (Auth::user()->can('update', $course))
             <div class="mb-8 grid grid-cols-2 gap-4">
-                @if (Auth::user()->can('update', $course))
+
                     <div>
                         <a href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/materials/create"
                             class="flex items-center justify-center p-4 bg-green-600 text-white font-semibold rounded-lg shadow-lg hover:bg-green-700">
@@ -59,8 +60,9 @@
                             Add Quiz
                         </a>
                     </div>
-                @endif
+
             </div>
+            @endif
 
             @foreach ($chapter->materials as $material)
                 <div class="mb-12 p-4 bg-white rounded-lg shadow-md">

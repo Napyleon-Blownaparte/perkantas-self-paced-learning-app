@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->nullableMorphs('questionable');
-            $table->foreignId('assessment_id')->constrained('assessments');
+            $table->foreignId('assessment_id')->constrained('assessments')->cascadeOnDelete();
             $table->string('question_text');
 //            $table->boolean('isEssay');
         });

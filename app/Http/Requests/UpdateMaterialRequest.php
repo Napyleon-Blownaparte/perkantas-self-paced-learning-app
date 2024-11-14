@@ -11,7 +11,7 @@ class UpdateMaterialRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateMaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'sometimes|string|max:255',
+            'content' => 'sometimes|string',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'video' => 'sometimes|mimetypes:video/mp4,video/x-m4v|max:10240',
         ];
     }
 }

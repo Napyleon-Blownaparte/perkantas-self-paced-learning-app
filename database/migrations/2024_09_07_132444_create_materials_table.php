@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('chapter_id')->constrained('chapters');
+            $table->foreignId('chapter_id')->constrained('chapters')->cascadeOnDelete();
             $table->string('title');
             $table->string('video')->nullable();
             $table->string('image')->nullable();

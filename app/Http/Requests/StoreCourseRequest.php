@@ -11,7 +11,7 @@ class StoreCourseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -31,4 +31,5 @@ class StoreCourseRequest extends FormRequest
             'banner_image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
+
 }

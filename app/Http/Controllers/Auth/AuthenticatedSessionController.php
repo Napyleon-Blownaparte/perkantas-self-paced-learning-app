@@ -30,10 +30,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (Auth::user()->role == 'instructor') {
-            return redirect(route('instructor-dashboard'));
+            return redirect(route('instructor.instructor-dashboard'));
         }
         else if (Auth::user()->role == 'learner') {
-            return redirect(route('learner-dashboard'));
+            return redirect(route('learner.learner-dashboard'));
         }
 
         return redirect()->intended(route());
