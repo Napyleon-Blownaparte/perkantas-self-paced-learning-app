@@ -39,7 +39,7 @@ class InstructorController extends Controller
     {
         return view('learner-views.instructors.show', [
             'instructor' => $instructor,
-        ])
+        ]);
     }
 
     /**
