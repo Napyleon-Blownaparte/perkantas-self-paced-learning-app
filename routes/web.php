@@ -52,7 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('courses', App\Http\Controllers\Instructor\CourseController::class);
         Route::resource('courses.chapters', App\Http\Controllers\Instructor\ChapterController::class)->shallow();
         Route::resource('chapters.materials', App\Http\Controllers\Instructor\MaterialController::class)->shallow();
-        Route::resource('chapters.assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow();        Route::resource('assessments.multiple-choice-questions', App\Http\Controllers\Instructor\MultipleChoiceQuestionController::class)->shallow();
+        Route::resource('chapters.assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow();
+        Route::resource('assessments.multiple-choice-questions', App\Http\Controllers\Instructor\MultipleChoiceQuestionController::class)->shallow();
         Route::resource('assessments.essay-questions', App\Http\Controllers\Instructor\EssayQuestionController::class)->shallow();
         Route::resource('courses.enrollments', App\Http\Controllers\Instructor\EnrollmentController::class)->shallow();
     });
@@ -68,8 +69,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('instructors', App\Http\Controllers\Learner\InstructorController::class)->shallow()->only(['show']);
         Route::resource('courses.enrollments', App\Http\Controllers\Learner\EnrollmentController::class)->shallow()->only(['store']);
         Route::resource('courses.chapters', App\Http\Controllers\Learner\ChapterController::class)->shallow()->only(['show']);
-        Route::resource('courses.assessments', App\Http\Controllers\Learner\AssessmentController::class)->shallow()->only(['show']);
-        
+        // Route::resource('courses.assessments', App\Http\Controllers\Learner\AssessmentController::class)->shallow()->only(['show']);
+
     });
 });
 

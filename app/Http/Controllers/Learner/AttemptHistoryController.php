@@ -33,10 +33,7 @@ class AttemptHistoryController extends Controller
      */
     public function store(StoreAttempt_HistoryRequest $request, Assessment $assessment)
     {
-        $validatedData = $request->validate([
-            'answers' => 'required|array',
-            'answers.*' => 'nullable|string', // Bisa null untuk jawaban kosong
-        ]);
+        $validatedData = $request->validated();
 
         $attemptHistory = AttemptHistory::create([
             'assessment_id' => $assessment->id,
@@ -63,7 +60,7 @@ class AttemptHistoryController extends Controller
             ]);
         }
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('learner.chapters.show', $assessment->chapter->id);
     }
 
     /**

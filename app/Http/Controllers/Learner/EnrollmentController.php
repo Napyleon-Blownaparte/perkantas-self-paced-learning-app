@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Learner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEnrollmentRequest;
+use App\Models\Course;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnrollmentController extends Controller
 {
@@ -27,9 +30,15 @@ class EnrollmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEnrollmentRequest $request, Course $course)
     {
-        //
+        Enrollment::create([
+            'learner_id' => Auth::user()->learner->id,
+            'course_id' => $course->id,
+            'status' => 'pending',
+        ]);
+
+        return redirect()->route('learner.courses.show', $course->id);
     }
 
     /**

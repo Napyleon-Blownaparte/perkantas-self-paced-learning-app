@@ -116,13 +116,13 @@
 
                         @if (Auth::user()->role === 'learner')
                             <li>
-                                <a href="/learner-dashboard"
+                                <a href="{{ route('learner.learner-dashboard') }}"
                                     class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition"">Learner
                                     Dashboard</a>
                             </li>
                         @elseif (Auth::user()->role === 'instructor')
                             <li>
-                                <a href="/instructor-dashboard"
+                                <a href="{{ route('instructor.instructor-dashboard') }}"
                                     class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition">Instructor
                                     Dashboard</a>
                             </li>
@@ -155,7 +155,7 @@
             dapat berikan.
         </p>
         <div class="flex flex-col mb-8 mt-24 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-            <a href="{{ route('learner-dashboard') }}"
+            <a href="{{ route('learner.learner-dashboard') }}"
                 class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#110a39] hover:bg-white hover:text-black transition-colors">
                 Start learning
                 <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"

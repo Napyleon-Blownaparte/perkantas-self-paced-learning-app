@@ -37,7 +37,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return view('learner-views.courses.show', [
+            'course' => $course,
+        ]);
     }
 
     /**
