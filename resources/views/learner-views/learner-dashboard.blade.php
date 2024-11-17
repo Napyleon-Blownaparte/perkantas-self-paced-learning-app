@@ -40,7 +40,7 @@
                         <div id="progressText" class="absolute inset-0 flex items-center justify-center text-3xl font-semibold">0</div>
                     </div>
                     @if ($finishedCoursesCount != 0)
-                        <a href="#" class="flex items-center rounded mt-6 pl-2 hover:bg-gray-100">
+                        <a href="{{ route('learner.courses.index', ['status' => 'finished']) }}" class="flex items-center rounded mt-6 pl-2 hover:bg-gray-100">
                             <p class="mr-2">More</p>
                             <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M32.0002 53.76C19.9682 53.76 10.2402 44.032 10.2402 32C10.2402 19.968 19.9682 10.24 32.0002 10.24C44.0322 10.24 53.7602 19.968 53.7602 32C53.7602 44.032 44.0322 53.76 32.0002 53.76ZM32.0002 12.8C21.3762 12.8 12.8002 21.376 12.8002 32C12.8002 42.624 21.3762 51.2 32.0002 51.2C42.6242 51.2 51.2002 42.624 51.2002 32C51.2002 21.376 42.6242 12.8 32.0002 12.8Z"
@@ -82,7 +82,7 @@
                     </div>
                     <div class="mt-1 flex justify-end items-center">
                         @if ($acceptedCourses->isNotEmpty())
-                            <a href="#" class="flex items-center rounded pl-2 hover:bg-gray-100">
+                            <a href="{{ route('learner.courses.index', ['status' => 'accepted']) }}" class="flex items-center rounded pl-2 hover:bg-gray-100">
                                 <p class="mr-2">More</p>
                                 <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M32.0002 53.76C19.9682 53.76 10.2402 44.032 10.2402 32C10.2402 19.968 19.9682 10.24 32.0002 10.24C44.0322 10.24 53.7602 19.968 53.7602 32C53.7602 44.032 44.0322 53.76 32.0002 53.76ZM32.0002 12.8C21.3762 12.8 12.8002 21.376 12.8002 32C12.8002 42.624 21.3762 51.2 32.0002 51.2C42.6242 51.2 51.2002 42.624 51.2002 32C51.2002 21.376 42.6242 12.8 32.0002 12.8Z"
@@ -126,7 +126,7 @@
                     </div>
                     <div class="mt-1 flex justify-end items-center">
                         @if ($pendingCourses->isNotEmpty())
-                            <a href="#" class="flex items-center rounded pl-2 hover:bg-gray-100">
+                            <a href="{{ route('learner.courses.index', ['status' => 'pending']) }}" class="flex items-center rounded pl-2 hover:bg-gray-100">
                                 <p class="mr-2">More</p>
                                 <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M32.0002 53.76C19.9682 53.76 10.2402 44.032 10.2402 32C10.2402 19.968 19.9682 10.24 32.0002 10.24C44.0322 10.24 53.7602 19.968 53.7602 32C53.7602 44.032 44.0322 53.76 32.0002 53.76ZM32.0002 12.8C21.3762 12.8 12.8002 21.376 12.8002 32C12.8002 42.624 21.3762 51.2 32.0002 51.2C42.6242 51.2 51.2002 42.624 51.2002 32C51.2002 21.376 42.6242 12.8 32.0002 12.8Z"
@@ -166,7 +166,7 @@
                                             image_src="{{ $course->thumbnail_image }}"
                                             title="{{ $course->title }}"
                                             id="{{ $course->id }}"
-                                            link_url="{{ '/courses/' . $course->id }}"
+                                            link_url="{{ route('learner.courses.show', $course->id) }}"
                                             text_color="text-black"
                                         />
                             @endforeach

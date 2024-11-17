@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
 
                     {{-- START HERE --}}
-                    <form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('instructor.courses.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Title -->
                         <div class="mb-4">

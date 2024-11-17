@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
 
                     {{-- Form untuk membuat pertanyaan pilihan ganda --}}
-                    <form action="{{ route('assessments.multiple-choice-questions.store', $assessment) }}" method="POST">
+                    <form action="{{ route('instructor.assessments.multiple-choice-questions.store', $assessment) }}" method="POST">
                         @csrf
 
                         <!-- Pertanyaan -->

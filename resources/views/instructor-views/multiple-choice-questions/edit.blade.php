@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
 
                     {{-- Form untuk mengedit pertanyaan pilihan ganda --}}
-                    <form action="{{ route('multiple-choice-questions.update', $multiple_choice_question) }}" method="POST">
+                    <form action="{{ route('instructor.multiple-choice-questions.update', $multiple_choice_question) }}" method="POST">
                         @csrf
                         @method('PUT')
 

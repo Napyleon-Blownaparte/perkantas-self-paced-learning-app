@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('chapters.assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow();
         Route::resource('assessments.multiple-choice-questions', App\Http\Controllers\Instructor\MultipleChoiceQuestionController::class)->shallow();
         Route::resource('assessments.essay-questions', App\Http\Controllers\Instructor\EssayQuestionController::class)->shallow();
-        Route::resource('courses.enrollments', App\Http\Controllers\Instructor\EnrollmentController::class)->shallow();
+        Route::resource('enrollments', App\Http\Controllers\Instructor\EnrollmentController::class)->shallow();
     });
 
     Route::group([

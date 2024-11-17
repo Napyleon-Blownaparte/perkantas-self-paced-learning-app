@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
 
                     {{-- START HERE --}}
-                    <form action="{{ route('courses.update', $course->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('instructor.courses.update', $course->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT') <!-- Gunakan PUT method untuk update data -->
 
@@ -86,7 +86,7 @@
                     </form>
 
                     {{-- DELETE BUTTON --}}
-                    <form action="{{ route('courses.destroy', $course) }}" method="POST" class="mt-4">
+                    <form action="{{ route('instructor.courses.destroy', $course) }}" method="POST" class="mt-4">
                         @csrf
                         @method('DELETE')
                         <x-danger-button type="submit">Delete course</x-danger-button>

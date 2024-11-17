@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
 
                     {{-- START HERE --}}
-                    <form action="{{ route('materials.update', $material) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('instructor.materials.update', $material) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         {{--  Title --}}

@@ -1,25 +1,29 @@
 <x-app-layout>
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div id="sidebar" class="fixed w-64 bg-white flex flex-col transition-all duration-300 ease-in-out transform lg:translate-x-0 lg:block inset-0 z-30 overflow-y-auto lg:overflow-visible">
-            <div class="p-4 mb-4 border-b border-gray-200">
-                <a href="{{ route('learner.courses.show', $chapter->course->id) }}">
-                    <h5 class="text-xl font-bold text-blue-gray-900 hover:text-blue-gray-700">
-                        {{ $chapter->course->title }}
-                    </h5>
-                </a>
-            </div>
-            <nav class="flex-1 flex flex-col gap-2 p-2 overflow-y-auto">
-                @foreach ($chapter->course->chapters as $courseChapter)
-                    <a href="{{ route('learner.chapters.show', $courseChapter->id) }}">
-                        <div role="button"
-                            class="flex items-center w-full p-3 leading-tight transition-all rounded-lg text-start hover:bg-blue-gray-100">
-                            <span class="font-medium text-blue-gray-800">{{ $courseChapter->title }}</span>
-                        </div>
-                    </a>
-                @endforeach
-            </nav>
+        <div id="sidebar"
+        class="fixed w-64 shadow-2xl bg-white flex flex-col transition-all duration-300 ease-in-out transform lg:translate-x-0 lg:block inset-0 z-30 overflow-y-auto lg:overflow-visible">
+        <div class="p-4 mb-4 border-b border-gray-200">
+            <a href="{{ route('learner.courses.show', $chapter->course->id) }}">
+                <h5 class="text-xl font-bold text-blue-gray-900 hover:text-blue-gray-700">
+                    {{ $chapter->course->title }}
+                </h5>
+            </a>
         </div>
+        <nav class="flex-1 flex flex-col gap-2 p-2 overflow-y-auto">
+            @foreach ($chapter->course->chapters as $courseChapter)
+                <a href="{{ route('learner.chapters.show', $courseChapter->id) }}">
+                    <div role="button"
+                        class="flex items-center w-full p-3 leading-tight transition-all rounded-lg text-start hover:bg-blue-gray-100">
+                        <span class="font-medium text-blue-gray-800">{{ $courseChapter->title }}</span>
+                    </div>
+                </a>
+                <!-- Divider -->
+                <hr class="border-t border-gray-200 my-2">
+            @endforeach
+        </nav>
+
+    </div>
 
         <!-- Main Content -->
         <div id="main-content" class="flex-1 ml-[16em] transition-all duration-300 ease-in-out overflow-visible">
@@ -46,8 +50,9 @@
                     @endif
                 @endforeach
 
-                <h1 class="font-bold text-[4rem] p-16 pb-8">Chapter Assessment</h1>
+
                 @foreach ($chapter->assessments as $assessment)
+                <h1 class="font-bold text-[4rem] p-16 pb-8">{{ $assessment->name }}</h1>
                     <div class="mx-20 pb-16">
                         <form action="{{ route('learner.assessments.attempt-histories.store', $assessment->id) }}"
                             method="POST">
@@ -84,14 +89,16 @@
                                 </div>
                             @endforeach
 
-                            <div class="mt-12">
+                            <div class="mt-12 mb-12">
                                 <x-primary-button type="submit">Submit Assessment</x-primary-button>
                             </div>
                         </form>
                     </div>
                 @endforeach
             </div>
+            <x-footer></x-footer>
         </div>
+
 
     </div>
 

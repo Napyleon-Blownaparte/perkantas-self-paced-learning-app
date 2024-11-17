@@ -45,7 +45,7 @@ class EssayQuestionController extends Controller
             'question_text' => $validated['question_text'],
         ]);
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $assessment->chapter->id);
     }
 
     /**
@@ -59,10 +59,10 @@ class EssayQuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(EssayQuestionController $essayQuestionController)
+    public function edit(EssayQuestion $essayQuestion)
     {
         return view('instructor-views.essay-questions.edit', [
-            'essay_question' => $essayQuestionController,
+            'essay_question' => $essayQuestion,
         ]);
     }
 
@@ -81,7 +81,7 @@ class EssayQuestionController extends Controller
             'question_text' => $validated['question_text'],
         ]);
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $essayQuestion->question->assessment->chapter->id);
     }
 
     /**
@@ -89,8 +89,9 @@ class EssayQuestionController extends Controller
      */
     public function destroy(EssayQuestion $essayQuestion)
     {
+        $essayQuestion->question()->delete();
         $essayQuestion->delete();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->back();
     }
 }

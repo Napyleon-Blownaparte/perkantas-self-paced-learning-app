@@ -38,11 +38,11 @@ class ChapterController extends Controller
     {
         $validated = $request->validated();
 
-        $course->chapters()->create([
+        $chapter = $course->chapters()->create([
             'title' => $validated['title'],
         ]);
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $chapter->id);
     }
 
     /**
@@ -76,7 +76,7 @@ class ChapterController extends Controller
 
         $chapter->save();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $chapter->id);
     }
 
     /**

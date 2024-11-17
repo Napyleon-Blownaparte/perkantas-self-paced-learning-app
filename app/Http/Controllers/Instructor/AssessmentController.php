@@ -42,7 +42,7 @@ class AssessmentController extends Controller
             'name' => $validated['name'],
         ]);
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $chapter->id);
     }
 
     /**
@@ -76,10 +76,10 @@ class AssessmentController extends Controller
 
         $assessment->save();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $assessment->chapter->id);
     }
 
-    /**
+/**
      * Remove the specified resource from storage.
      */
     public function destroy(Assessment $assessment)

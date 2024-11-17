@@ -27,8 +27,8 @@ class UpdateCourseRequest extends FormRequest
             'start_period' => 'sometimes|date',
             'end_period' => 'sometimes|date|after_or_equal:start_period',
             'estimated_time' => 'sometimes|integer|min:1',
-            'thumbnail_image' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
-            'banner_image' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
+            'thumbnail_image' => 'sometimes|image|mimes:jpg,jpeg,png|max:204800',
+            'banner_image' => 'sometimes|image|mimes:jpg,jpeg,png|max:204800',
         ];
     }
 }

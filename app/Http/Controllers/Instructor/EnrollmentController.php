@@ -14,9 +14,12 @@ class EnrollmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Course $course)
+    public function index()
     {
-        $enrollments = $course->enrollments;
+        $enrollments = request()->user()->instructor->courses->flatMap(function ($course) {
+            return $course->enrollments;
+        });
+
 
         return view('instructor-views.enrollments.index', [
             'enrollments' => $enrollments,

@@ -42,7 +42,7 @@ public function rules()
                 // Jika jenis soal adalah MultipleChoice
                 else if ($question->questionable_type === 'App\Models\MultipleChoiceQuestion') {
                     // Jawaban harus berupa pilihan yang valid dan tidak boleh kosong untuk soal pilihan ganda
-                    $choices = $question->questionable->choices->pluck('id')->toArray(); // Mendapatkan pilihan jawaban yang valid
+                    $choices = $question->questionable->multiple_choice_options->pluck('id')->toArray(); // Mendapatkan pilihan jawaban yang valid
                     $rules["answers.$questionId"] = 'required|in:' . implode(',', $choices);
                 }
             }

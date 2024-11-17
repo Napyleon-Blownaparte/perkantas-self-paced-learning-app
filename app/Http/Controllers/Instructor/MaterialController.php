@@ -17,7 +17,7 @@ class MaterialController extends Controller
     public function index(Chapter $chapter)
     {
         return view('instructor-views.materials.index', [
-            'chapter' => $chapter
+            'chapter' => $chapter,
         ]);
     }
 
@@ -41,8 +41,12 @@ class MaterialController extends Controller
         $video_path = null;
         $image_path = null;
 
-        $video_path = $request->file('video')->store('/materials/videos/', 'public');
-        $image_path = $request->file('image')->store('/materials/images', 'public');
+        if ($request->hasFile('video')) {
+            $video_path = $request->file('video')->store('/materials/videos/', 'public');
+        }
+        if ($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('/materials/images', 'public');
+        }
 
         $chapter->materials()->create([
             'title' => $validated['title'],
@@ -51,7 +55,7 @@ class MaterialController extends Controller
             'content' => $validated['content'],
         ]);
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $chapter->id);
     }
 
     /**
@@ -92,7 +96,7 @@ class MaterialController extends Controller
 
         $material->save();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $material->chapter->id);
     }
 
     /**
@@ -102,6 +106,6 @@ class MaterialController extends Controller
     {
         $material->delete();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $material->chapter->id);
     }
 }

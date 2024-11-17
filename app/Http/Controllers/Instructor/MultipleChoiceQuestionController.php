@@ -68,7 +68,7 @@ class MultipleChoiceQuestionController extends Controller
             'question_text' => $validated['question_text'],
         ]);
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $assessment->chapter);
     }
 
 
@@ -115,7 +115,7 @@ class MultipleChoiceQuestionController extends Controller
             'question_text' => $validated['question_text'],
         ]);
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $multipleChoiceQuestion->question->assessment->chapter->id);
     }
 
 
@@ -124,8 +124,13 @@ class MultipleChoiceQuestionController extends Controller
      */
     public function destroy(MultipleChoiceQuestion $multipleChoiceQuestion)
     {
+        // Delete the associated questions first (optional, as cascade delete should work)
+        $multipleChoiceQuestion->question()->delete();
+
+        // Now delete the MultipleChoiceQuestion
         $multipleChoiceQuestion->delete();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->back();
     }
+
 }

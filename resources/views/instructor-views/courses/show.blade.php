@@ -2,7 +2,7 @@
     <section class="hero bg-cover py-16 px-16 bg-customPurple">
         <div class="mx-auto p-16 pt-8 bg-white rounded-lg shadow-md">
 
-            <a href="{{ Auth::check() ? route('learner.learner-dashboard') : '/' }}"
+            <a href="{{ Auth::check() ? route('instructor.instructor-dashboard') : '/' }}"
                 class="mb-4 inline-block text-justify bg-white text-gray-800 font-semibold py-2 px-4 rounded-md hover:bg-gray-200">
                 ← Back
             </a>
@@ -21,39 +21,21 @@
 
             <div class="flex items-center justify-between mt-6">
 
-                {{-- Change with query --}}
                 @php
-                    $enrollment = null;
-                    $isEnrolled = false;
-                    $enrollmentStatus = null;
-
-                    if (Auth::check()) {
-                        $enrollment = $course->enrollments->firstWhere('learner_id', Auth::user()->id);
-                        $isEnrolled = $enrollment && $enrollment->status !== 'stopped';
-                        $enrollmentStatus = $enrollment ? $enrollment->status : null; // Cek apakah $enrollment null
-                    }
-
                     $enrolledCount = $course->enrollments->count();
                 @endphp
 
-
-
-                @if ($isEnrolled & ($enrollmentStatus === 'accepted'))
-                    <span class="text-green-600 font-semibold">✔ Already Enrolled</span>
-                @elseif ($isEnrolled & ($enrollmentStatus === 'pending'))
-                    <span class="text-orange-600 font-semibold">Waiting to be Accepted</span>
-                @elseif ($isEnrolled & ($enrollmentStatus == 'finished'))
-                    <span class="text-sky-600 font-semibold">You have already finished the course</span>
-                @else
-                    <form action="{{ route('learner.courses.enrollments.store', $course->id) }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="course_id" value="{{ $course->id }}">
-                        <button type="submit"
-                            class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none">
-                            Enroll Now
+                @can('update', $course)
+                    <a href="{{ route('instructor.courses.edit', $course->id) }}">
+                        <button
+                            style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                            class="hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                            Manage Course
                         </button>
-                    </form>
-                @endif
+
+                    </a>
+                @endcan
+
 
                 <span class="text-green-600 font-semibold">{{ $enrolledCount }} people already enrolled</span>
 
@@ -123,28 +105,85 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="chapter-details mt-4 text-gray-600 hidden">
+                                <div class="chapter-details mt-4 text-gray-600 hidden overflow-y-auto max-h-[10em]">
                                     <div class="divide-y divide-gray-300">
-                                        @foreach ($chapter->materials as $material)
-                                            <a href="{{ route('learner.chapters.show', $chapter->id) }}"
-                                                class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
-                                                <span class="text-blue-600 font-semibold">{{ $material->title }}</span>
-                                            </a>
-                                        @endforeach
-                                        @foreach ($chapter->assessments as $assessment)
-                                            <a href="{{ route('learner.chapters.show', $chapter->id) }}"
-                                                class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
-                                                <span
-                                                    class="text-blue-600 font-semibold">{{ $assessment->title }}</span>
-                                            </a>
-                                        @endforeach
-
+                                        @if ($chapter->materials->isEmpty() && $chapter->assessments->isEmpty())
+                                            <p class="text-gray-500">Content chapter tidak ditemukan</p>
+                                        @else
+                                            @foreach ($chapter->materials as $material)
+                                                <a href="{{ route('instructor.chapters.show', $chapter->id) }}"
+                                                    class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
+                                                    <span
+                                                        class="text-blue-600 font-semibold">{{ $material->title }}</span>
+                                                </a>
+                                            @endforeach
+                                            @foreach ($chapter->assessments as $assessment)
+                                                <a href="{{ route('instructor.chapters.show', $chapter->id) }}"
+                                                    class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
+                                                    <span
+                                                        class="text-blue-600 font-semibold">{{ $assessment->title }}</span>
+                                                </a>
+                                            @endforeach
+                                        @endif
                                     </div>
+                                </div>
+
+                                @can('update', $course)
+                                <div class="mt-4">
+                                    <a href="{{ route('instructor.chapters.materials.create', $chapter->id) }}">
+                                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                                            Add Material
+                                        </button>
+                                    </a>
+
+                                    <a href="{{ route('instructor.chapters.assessments.create', $chapter->id) }}">
+                                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                            Add Assessment
+                                        </button>
+                                    </a>
 
                                 </div>
+                                @endcan
+
+
+
                             </div>
                         @endforeach
                     </div>
+
+                    {{-- Add Chapter Button --}}
+                    @can('update', $course)
+                        <a href="{{ route('instructor.courses.chapters.create', $course->id) }}">
+                            <div
+                                class=" border-2 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center">
+                                <div class="m-12">
+                                    <svg class="m-auto my-8" fill="#303030" version="1.1" id="Capa_1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="1.5em" height="1.5em" viewBox="0 0 45.402 45.402" xml:space="preserve">
+                                        <g>
+                                            <path d="M41.267,18.557H26.832V4.134C26.832,1.851,24.99,0,22.707,0c-2.283,0-4.124,1.851-4.124,4.135v14.432H4.141
+                                            c-2.283,0-4.139,1.851-4.138,4.135c-0.001,1.141,0.46,2.187,1.207,2.934c0.748,0.749,1.78,1.222,2.92,1.222h14.453V41.27
+                                            c0,1.142,0.453,2.176,1.201,2.922c0.748,0.748,1.777,1.211,2.919,1.211c2.282,0,4.129-1.851,4.129-4.133V26.857h14.435
+                                            c2.283,0,4.134-1.867,4.133-4.15C45.399,20.425,43.548,18.557,41.267,18.557z" />
+                                        </g>
+                                    </svg>
+
+                                    <!-- Wrapper for icon and text, using flex to align them -->
+                                    <a href="{{ route('instructor.courses.chapters.create', $course->id) }}">
+                                        <button
+                                            style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                            class=" m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                            Add More Chapter
+                                        </button>
+                                    </a>
+                                    <p class="mt-8 text-gray-600">Click the button above to Add Chapter</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    @endcan
+
+
                 </div>
 
 

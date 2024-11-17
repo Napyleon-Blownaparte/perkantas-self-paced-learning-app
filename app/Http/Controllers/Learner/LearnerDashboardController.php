@@ -18,8 +18,9 @@ class LearnerDashboardController extends Controller
         $acceptedCoursesCount = $enrollments->where('status', 'accepted')->count();
         $pendingCoursesCount = $enrollments->where('status', 'pending')->count();
 
-        $acceptedCourseIds = $enrollments->where('status', 'enrolled')->pluck('course_id');
+        $acceptedCourseIds = $enrollments->where('status', 'accepted')->pluck('course_id');
         $acceptedCourses = Course::whereIn('id', $acceptedCourseIds)->get();
+
 
         $pendingCourseIds = $enrollments->where('status', 'pending')->pluck('course_id');
         $pendingCourses = Course::whereIn('id', $pendingCourseIds)->get();

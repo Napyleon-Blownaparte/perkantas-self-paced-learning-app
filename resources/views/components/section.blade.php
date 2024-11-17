@@ -7,13 +7,13 @@
         </div>
         <!-- Image Content -->
         <div class="md:w-1/2 mt-6 md:mt-0">
-            <img src="{{ $imgSrc }}" alt="Header Image" class="w-full mx-auto rounded-lg shadow-lg">
+            <img src="{{ asset('storage/' . $imgSrc) }}" alt="Header Image" class="w-full mx-auto rounded-lg shadow-lg">
         </div>
         <!-- Video Content -->
         @if(isset($videoSrc))
             <div class="md:w-1/2 mt-6 md:mt-0">
                 <video controls class="w-full h-72 mx-auto rounded-lg shadow-lg">
-                    <source src="{{ $videoSrc }}" type="video/mp4">
+                    <source src="{{ asset('storage/' . $videoSrc) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>

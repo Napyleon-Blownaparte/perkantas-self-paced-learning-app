@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use App\Models\CourseInstructor;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -13,12 +14,33 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::all();
+        $status = $request->input('status');
+        $user = $request->user();
+
+        if ($status === 'instructor') {
+            $courses = $user->instructor->courses;
+        } else {
+            // Menampilkan semua kursus jika tidak ada filter
+            $courses = Course::all();
+        }
+
+        $perPage = 8; // Jumlah item per halaman
+        $currentPage = $request->input('page', 1); // Ambil halaman saat ini, default 1
+        $paginatedCourses = $courses->slice(($currentPage - 1) * $perPage, $perPage);
+
+        // Simulasi struktur pagination seperti Laravel
+        $paginatedCourses = new \Illuminate\Pagination\LengthAwarePaginator(
+            $paginatedCourses,
+            $courses->count(),
+            $perPage,
+            $currentPage,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
 
         return view('instructor-views.courses.index', [
-            'courses' => $courses,
+            'courses' => $paginatedCourses,
         ]);
     }
 
@@ -40,7 +62,7 @@ class CourseController extends Controller
         $thumbnail_image_path = $request->file('thumbnail_image')->store('/courses/thumbnail_images', 'public');
         $banner_image_path = $request->file('banner_image')->store('/courses/banner_images', 'public');
 
-        Course::create([
+        $course = Course::create([
             'title' => $validated['title'],
             'description' => $validated['description'],
             'start_period' => $validated['start_period'],
@@ -50,7 +72,12 @@ class CourseController extends Controller
             'banner_image' => $banner_image_path,
         ]);
 
-        return redirect()->route('instructor.instructor-dashboard');
+        CourseInstructor::create([
+            'instructor_id' => $request->user()->instructor->id,
+            'course_id' => $course->id,
+        ]);
+
+        return redirect()->route('instructor.courses.index', ['status' => 'instructor']);
     }
 
     /**
@@ -91,7 +118,7 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.courses.show', $course->id);
     }
 
     /**
@@ -101,6 +128,6 @@ class CourseController extends Controller
     {
         $course->delete();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.courses.show', $course->id);
     }
 }
