@@ -28,8 +28,8 @@ class LearnersAnswerSeeder extends Seeder
                 $question = Question::find($questionId);
 
                 $answerData = [
-                    'essay_answer' => '',
-                    'multiple_choice_answer' => '',
+                    'essay_answer' => NULL,
+                    'multiple_choice_answer' => NULL,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
@@ -55,7 +55,7 @@ class LearnersAnswerSeeder extends Seeder
     private function generateRandomMultipleChoiceAnswer(MultipleChoiceQuestion $question): string
     {
         // Assuming the question has options stored, we can randomly pick one
-        $choices = $question->choices; // Assuming 'choices' holds the options in the model
+        $choices = $question->multiple_choice_options(); // Assuming 'choices' holds the options in the model
         return Arr::random($choices);
     }
 
