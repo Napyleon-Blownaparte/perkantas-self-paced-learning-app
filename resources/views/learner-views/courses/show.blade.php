@@ -226,6 +226,16 @@
             </div>
         </div>
     </section>
+    @if (session('success'))
+        <x-success-modal id="enroll-success-modal" title="Enrollment Successful"
+            content="{{ session('success') }}" />
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                toggleModal('enroll-success-modal');
+            });
+        </script>
+    @endif
+
     <script>
         function toggleDetails(button) {
             const details = button.closest('.py-4').querySelector('.chapter-details');

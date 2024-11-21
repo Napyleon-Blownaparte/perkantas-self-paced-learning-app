@@ -302,7 +302,7 @@
                                         image_src="{{ $course->thumbnail_image }}"
                                         title="{{ $course->title }}"
                                         id="{{ $course->id }}"
-                                        link_url="{{ '/courses/' . $course->id }}"
+                                        link_url="{{ (Auth::check() && request()->user()->role === 'instructor') ? route('instructor.courses.show', $course->id) : route('learner.courses.show', $course->id) }}"
                                         text_color="text-black"
                                     />
                         @endforeach

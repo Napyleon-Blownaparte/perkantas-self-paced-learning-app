@@ -60,7 +60,7 @@ class AttemptHistoryController extends Controller
             ]);
         }
 
-        return redirect()->route('learner.chapters.show', $assessment->chapter->id);
+        return redirect()->route('learner.chapters.show', $assessment->chapter->id)->with('success', 'You have successfully submitted the assessment');
     }
 
     /**
