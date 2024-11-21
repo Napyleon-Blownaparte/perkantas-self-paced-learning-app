@@ -1,4 +1,4 @@
-<nav class="bg-white w-16 p-4 md:flex flex-col items-center justify-between shadow-lg fixed top-0 z-10 h-screen hidden">
+<nav class="max-sm:hidden bg-white w-16 p-4 md:flex flex-col items-center justify-between shadow-lg fixed top-0 z-10 h-screen hidden">
     <!-- Menu Icons -->
     <div class="flex flex-col space-y-6 justify-center flex-grow">
         <a href="{{ route('learner.courses.index') }}" class="relative group p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-200 rounded-lg">
