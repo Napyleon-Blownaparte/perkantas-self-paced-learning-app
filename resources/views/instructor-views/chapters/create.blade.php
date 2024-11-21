@@ -21,8 +21,13 @@
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
 
-                        <x-primary-button type="submit">Create chapter</x-primary-button>
-                    </form>
+                        <button
+                        type="submit"
+                        style="background-color: #251F4F; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                        class="hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-900 flex items-center justify-center gap-2">
+                        Create Chapter
+                    </button>                    
+                </form>
 
                     {{-- END HERE --}}
 

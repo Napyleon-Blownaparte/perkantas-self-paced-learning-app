@@ -68,8 +68,12 @@
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                             <x-input-error :messages="$errors->get('banner_image')" class="mt-2" />
                         </div>
-
-                        <x-primary-button type="submit">Create course</x-primary-button>
+                        <button
+                            type="submit"
+                            style="background-color: #251F4F; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                            class="hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-900 flex items-center justify-center gap-2">
+                            Create Course
+                        </button>
                     </form>
 
                     {{-- END HERE --}}
