@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="flex h-screen">
+    <div>
         <!-- Main Content -->
-        <div class="flex-1 ml-6 mt-6 mr-6">
+        <div class="grid grid-cols-1 ml-6 mt-6 mr-6">
             <a href="{{ route('profile.edit') }}">
                 <div class="flex justify-between items-center mb-8 cursor-pointer">
                     <!-- Logo -->
@@ -121,8 +121,6 @@
                     </div>
                 </a>
 
-
-
                 <!-- Add Courses -->
                 <a href="{{ route('instructor.courses.create') }}"
                     class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col items-center justify-center space-y-4 hover:bg-gray-100 transition-colors group">
@@ -154,67 +152,68 @@
                     </div>
                 </a>
             </div>
+
+            <!-- Course and Book Sections -->
+            <div class="grid grid-cols-1 gap-6 py-6">
+                <!-- Courses Section -->
+                <div style="background-image: url('{{ asset('images/pattern-background3.png') }}');" class="bg-black p-6 rounded grid md:grid-cols-3 grid-flow-row grid-rows-1">
+                    <div class="flex items-center">
+                        <h2 class="text-5xl md:text-7xl text-white font-bold md:mb-4 mb-10">Course</h2>
+                    </div>
+                    <div class="flex space-x-4 overflow-x-auto col-span-2">
+                        @foreach ($courses as $course)
+                            <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                                <img src="{{ $course->thumbnail_image }}" alt="Course Image" class="w-full rounded">
+                                <h3 class="mt-4 text-white text-2xl font-bold max-w-md">{{ $course->title }}</h3>
+                                <p class="mt-2 text-white text-lg font-semibold">
+                                    Est. {{ $course->estimated_time }} Hour(s)</p>
+                                <div class= "grid grid-cols-1 gap-6">
+                                    <a href="{{ route('instructor.courses.show', $course->id) }}">
+                                        <button
+                                            class="mt-4 bg-gray-500 text-white px-5 py-3 border-2 border-white">Manage
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <!-- Books Section -->
+                <div style="background-image: url('{{ asset('images/pattern-background3.png') }}');" class="bg-cover bg-center p-6 rounded grid md:grid-cols-3 grid-flow-row grid-rows-1">
+                    <div class="flex items-center">
+                        <h2 class="text-5xl md:text-7xl text-white font-bold md:mb-4 mb-10">Books</h2>
+                    </div>
+                    <div class="flex space-x-4 overflow-x-auto col-span-2">
+                        <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                            <img src="https://via.placeholder.com/360x640" alt="Course Image" class="w-full rounded">
+                            <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan Hidup
+                                dalam Yesus</h3>
+                            <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
+                        </div>
+                        <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                            <img src="https://via.placeholder.com/360x640" alt="Course Image" class="w-full rounded">
+                            <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan Hidup
+                                dalam Yesus</h3>
+                            <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
+                        </div>
+                        <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                            <img src="https://via.placeholder.com/360x640" alt="Course Image" class="w-full rounded">
+                            <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan Hidup
+                                dalam Yesus</h3>
+                            <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
+                        </div>
+                        <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
+                            <img src="https://via.placeholder.com/360x640" alt="Course Image" class="w-full rounded">
+                            <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan Hidup
+                                dalam Yesus</h3>
+                            <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        
+        <x-footer></x-footer>
     </div>
-    <!-- Course and Book Sections -->
-    <section class="p-6">
-        <div class="grid grid-cols-1 gap-6">
-            <!-- Courses Section -->
-            <div class="bg-black p-6 rounded grid grid-cols-2 grid-flow-col">
-                <div class="flex items-center">
-                    <h2 class="text-7xl text-white font-bold mb-4">Course</h2>
-                </div>
-                <div class="flex space-x-4 overflow-x-auto">
-                    @foreach ($courses as $course)
-                        <x-course-card image_src="{{ $course->thumbnail_image }}" title="{{ $course->title }}"
-                            id="{{ $course->id }}" link_url="{{ '/courses/' . $course->id }}"
-                            text_color="text-black" />
-                    @endforeach
-
-                </div>
-            </div>
-
-            <!-- Books Section -->
-            <div class="bg-black p-6 rounded grid grid-cols-2 grid-flow-col">
-                <div class="flex items-center">
-                    <h2 class="text-7xl text-white font-bold mb-4">Books</h2>
-                </div>
-                <div class="flex space-x-4 overflow-x-auto">
-                    <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
-                        <img src="https://via.placeholder.com/360x640" alt="Course Image"
-                            class="w-full rounded">
-                        <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan
-                            Hidup
-                            dalam Yesus</h3>
-                        <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
-                    </div>
-                    <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
-                        <img src="https://via.placeholder.com/360x640" alt="Course Image"
-                            class="w-full rounded">
-                        <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan
-                            Hidup
-                            dalam Yesus</h3>
-                        <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
-                    </div>
-                    <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
-                        <img src="https://via.placeholder.com/360x640" alt="Course Image"
-                            class="w-full rounded">
-                        <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan
-                            Hidup
-                            dalam Yesus</h3>
-                        <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
-                    </div>
-                    <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
-                        <img src="https://via.placeholder.com/360x640" alt="Course Image"
-                            class="w-full rounded">
-                        <h3 class="mt-4 text-white text-2xl font-bold max-w-md">Agama, Hidup Bermakna, dan
-                            Hidup
-                            dalam Yesus</h3>
-                        <button class="mt-4 bg-blue-800 text-white px-5 py-3">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <x-footer></x-footer>
+    
 </x-app-layout>
