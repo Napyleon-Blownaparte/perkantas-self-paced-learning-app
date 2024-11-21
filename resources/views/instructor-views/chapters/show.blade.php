@@ -25,8 +25,8 @@
             <div>
                 <a href="{{ route('instructor.courses.chapters.create', $chapter->course->id) }}">
                     <button
-                        style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                        class="m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                        style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                        class="m-auto bg-green-600 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
                         + Add More Chapters
                     </button>
                 </a>
@@ -75,8 +75,8 @@
 
                                     <a href="{{ route('instructor.chapters.materials.create', $chapter->id) }}">
                                         <button
-                                            style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                            class="m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                            style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                            class="m-auto bg-green-600 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
                                             Add More Material
                                         </button>
                                     </a>
@@ -95,8 +95,15 @@
                     <div class="mx-20">
                         <a href="{{ route('instructor.assessments.edit', $assessment) }}" class="">
                             <button
-                                style="background-color: #f0ad4e; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                class=" font-extrabold mb-8 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                            
+                                style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                class=" font-extrabold mb-8 bg-orange-500 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-300 flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="30" height="30" viewBox="0 0 30 30">
+                                    <path fill="white"
+                                        d="M 22.828125 3 C 22.316375 3 21.804562 3.1954375 21.414062 3.5859375 L 19 6 L 24 11 L 26.414062 8.5859375 C 27.195062 7.8049375 27.195062 6.5388125 26.414062 5.7578125 L 24.242188 3.5859375 C 23.851688 3.1954375 23.339875 3 22.828125 3 z M 17 8 L 5.2597656 19.740234 C 5.2597656 19.740234 6.1775313 19.658 6.5195312 20 C 6.8615312 20.342 6.58 22.58 7 23 C 7.42 23.42 9.6438906 23.124359 9.9628906 23.443359 C 10.281891 23.762359 10.259766 24.740234 10.259766 24.740234 L 22 13 L 17 8 z M 4 23 L 3.0566406 25.671875 A 1 1 0 0 0 3 26 A 1 1 0 0 0 4 27 A 1 1 0 0 0 4.328125 26.943359 A 1 1 0 0 0 4.3378906 26.939453 L 4.3632812 26.931641 A 1 1 0 0 0 4.3691406 26.927734 L 7 26 L 5.5 24.5 L 4 23 z">
+                                    </path>
+                                </svg>
                                 <p>Edit Assessment</p>
                             </button>
                         </a>
@@ -112,8 +119,8 @@
                                                 <a
                                                     href="{{ route('instructor.multiple-choice-questions.edit', $question->questionable_id) }}">
                                                     <button
-                                                        style="background-color: #f0ad4e; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                                        class="m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                                        style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                                        class="m-auto bg-orange-500 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-300 flex items-center justify-center gap-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                             width="30" height="30" viewBox="0 0 30 30">
                                                             <path fill="white"
@@ -128,8 +135,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button
-                                                        style="background-color: #FF0000; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                                        class="m-auto hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 flex items-center justify-center gap-2">
+                                                        style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                                        class="m-auto bg-red-600 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 flex items-center justify-center gap-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                             width="30" height="30" viewBox="0 0 24 24">
                                                             <path fill="white"
@@ -144,8 +151,8 @@
                                                 <a
                                                     href="{{ route('instructor.essay-questions.edit', $question->questionable_id) }}">
                                                     <button
-                                                        style="background-color: #f0ad4e; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                                        class="m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                                        style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                                        class="m-auto bg-orange-500 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-300 flex items-center justify-center gap-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                             width="30" height="30" viewBox="0 0 30 30">
                                                             <path fill="white"
@@ -160,8 +167,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button
-                                                        style="background-color: #FF0000; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                                        class="m-auto hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 flex items-center justify-center gap-2">
+                                                        style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                                        class="m-auto bg-red-600 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 flex items-center justify-center gap-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                             width="30" height="30" viewBox="0 0 24 24">
                                                             <path fill="white"
@@ -204,15 +211,15 @@
 
                     </div>
                     @can('update', $chapter->course)
-                        <div class="flex space-x-4"> <!-- Menambahkan space antar kartu -->
+                        <div class="flex  space-x-8"> <!-- Menambahkan space antar kartu -->
                             <!-- Div untuk Multiple Choice Question -->
                             <div class="relative py-2 w-1/2">
                                 <a
                                     href="{{ route('instructor.assessments.multiple-choice-questions.create', $assessment->id) }}">
                                     <div
-                                        class="h-full m-24 my-12 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
+                                        class="h-full ml-24 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
                                         <div class="m-12">
-                                            <svg class="m-auto my-8" fill="#303030" version="1.1" id="Capa_1"
+                                            <svg class="m-auto my-4" fill="#303030" version="1.1" id="Capa_1"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="1.5em" height="1.5em"
                                                 viewBox="0 0 45.402 45.402" xml:space="preserve">
@@ -223,11 +230,11 @@
                                             </svg>
 
                                             <button
-                                                style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                                class="m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                                style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                                class="m-auto bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
                                                 Add More Multiple Choice Question
                                             </button>
-                                            <p class="mt-8 text-gray-600">Click the button above to Add Multiple Choice
+                                            <p class="mt-4 text-gray-600">Click the button above to Add Multiple Choice
                                                 Question</p>
                                         </div>
                                     </div>
@@ -238,9 +245,9 @@
                             <div class="relative py-2 w-1/2">
                                 <a href="{{ route('instructor.assessments.essay-questions.create', $assessment->id) }}">
                                     <div
-                                        class="h-full m-24 my-12 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
+                                        class="h-full mr-24 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
                                         <div class="m-12">
-                                            <svg class="m-auto my-8" fill="#303030" version="1.1" id="Capa_1"
+                                            <svg class="m-auto my-4" fill="#303030" version="1.1" id="Capa_1"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="1.5em" height="1.5em"
                                                 viewBox="0 0 45.402 45.402" xml:space="preserve">
@@ -251,11 +258,11 @@
                                             </svg>
 
                                             <button
-                                                style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                                class="m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                                style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                                class="m-auto bg-green-600 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
                                                 Add More Essay Question
                                             </button>
-                                            <p class="mt-8 text-gray-600">Click the button above to Add Essay Question</p>
+                                            <p class="mt-4 text-gray-600">Click the button above to Add Essay Question</p>
                                         </div>
                                     </div>
                                 </a>
@@ -268,7 +275,7 @@
                     <div class="relative py-2">
                         <a href="{{ route('instructor.chapters.assessments.create', $chapter->id) }}">
                             <div
-                                class="m-24 my-12 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
+                                class="m-24 my-4 mb-20 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
                                 <div class="m-12">
                                     <svg class="m-auto my-8" fill="#303030" version="1.1" id="Capa_1"
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -281,8 +288,8 @@
 
                                     <a href="{{ route('instructor.chapters.assessments.create', $chapter->id) }}">
                                         <button
-                                            style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                            class="m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                            style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                            class="m-auto bg-green-600 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
                                             Add More Assessments
                                         </button>
                                     </a>

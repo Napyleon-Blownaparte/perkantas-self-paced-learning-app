@@ -28,8 +28,8 @@
                 @can('update', $course)
                     <a href="{{ route('instructor.courses.edit', $course->id) }}">
                         <button
-                            style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                            class="hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                            style="background-color: #251F4F; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                            class="hover:bg-green-950 focus:outline-none focus:ring-2 focus:ring-green-900">
                             Manage Course
                         </button>
 
@@ -114,14 +114,14 @@
                                                 <a href="{{ route('instructor.chapters.show', $chapter->id) }}"
                                                     class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
                                                     <span
-                                                        class="text-blue-600 font-semibold">{{ $material->title }}</span>
+                                                        class="text-gray-600 font-semibold">{{ $material->title }}</span>
                                                 </a>
                                             @endforeach
                                             @foreach ($chapter->assessments as $assessment)
                                                 <a href="{{ route('instructor.chapters.show', $chapter->id) }}"
                                                     class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
                                                     <span
-                                                        class="text-blue-600 font-semibold">{{ $assessment->title }}</span>
+                                                        class="text-gray-600 font-semibold">{{ $assessment->title }}</span>
                                                 </a>
                                             @endforeach
                                         @endif
@@ -137,7 +137,7 @@
                                     </a>
 
                                     <a href="{{ route('instructor.chapters.assessments.create', $chapter->id) }}">
-                                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
                                             Add Assessment
                                         </button>
                                     </a>
@@ -171,8 +171,8 @@
                                     <!-- Wrapper for icon and text, using flex to align them -->
                                     <a href="{{ route('instructor.courses.chapters.create', $course->id) }}">
                                         <button
-                                            style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                            class=" m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                            style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                            class=" m-auto bg-green-600 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
                                             Add More Chapter
                                         </button>
                                     </a>
