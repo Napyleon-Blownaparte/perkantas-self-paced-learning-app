@@ -1,8 +1,6 @@
 <x-app-layout>
-    <!-- Sidebar -->
-    <x-learner-sidebar></x-learner-sidebar>
     <!-- Main Content -->
-    <div class="flex-1 md:ml-16">
+    <div class="flex-1 mr-6 ml-6 mt-6">
         <div class="px-6 pb-16">
             <!-- Header Section -->
             <section class="px-4 md:px-16 pb-4 pt-16">

@@ -1,5 +1,4 @@
 <x-app-layout>
-    <x-instructor-sidebar></x-instructor-sidebar>
     <div class="flex-1 p-8 ml-16 mb-8">
         <h1 class="text-4xl font-bold mb-4">Manage Courses</h1>
 

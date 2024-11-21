@@ -1,23 +1,13 @@
 <x-app-layout>
     <div class="flex h-screen">
 
-        <x-instructor-sidebar></x-instructor-sidebar>
-
         <!-- Main Content -->
-        <div class="flex-1 p-6 ml-16">
+        <div class="flex-1 ml-6 mt-6 mr-6">
             <a href="{{ route('profile.edit') }}">
                 <div class="flex justify-between items-center mb-8 cursor-pointer">
                     <!-- Logo -->
                     <div>
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20">
-                    </div>
-
-                    <!-- Profile Icon with White Background and Shadow -->
-                    <div
-                        class="h-32 bg-white p-2 pl-4 pr-4 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-gray-200 transition-colors duration-200">
-                        <img src="{{ asset('images/profilePicture.jpg') }}" alt="Profile"
-                            class="w-12 h-12 object-cover rounded-full mb-2">
-                        <p class="text-gray-700 font-semibold">{{ Auth::user()->name }}</p>
                     </div>
                 </div>
             </a>
@@ -30,19 +20,18 @@
                         <h2 class="text-xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Welcome, John Doe</h2>
                         <p class="text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">What do you want to do today?</p>
                     </div>
-                    <img src="{{ asset('images/avatar.png') }}" alt="Avatar" class="h-36 object-contain absolute right-4 top-1/3 transform -translate-y-1/2 z-0"> <!-- Set z-index for image -->
                 </div>
             </div>
 
             <!-- Instrcutor Overview -->
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-6 w-3/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
 
                 <!-- Manage Course -->
                 <a href="{{ route('instructor.courses.index', ['status' => 'instructor']) }}">
-                <div class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col space-y-4 relative">
+                <div class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md xl:px-16 lg:px-12 md:px-1 sm:px-16 px-4 py-10 flex flex-col space-y-4 relative">
                     <div class="flex flex-row items-center justify-between w-full mb-4 p-4 rounded-lg bg-white bg-opacity-50 backdrop-blur-sm">
                         <div class="flex justify-center items-center">
-                            <h3 class="text-lg font-semibold mr-2">Manage Courses</h3>
+                            <h3 class="text-2xl font-bold mr-2">Manage Courses</h3>
                             <svg width="40" height="40" viewBox="0 0 64 61" fill="none">
                                 <path d="M57.75 28.3086C58.625 28.3086 59.4375 28.4648 60.1875 28.7773C60.9375 29.0898 61.6042 29.5273 62.1875 30.0898C62.7708 30.6523 63.2083 31.3086 63.5 32.0586C63.7917 32.8086 63.9583 33.6211 64 34.4961C64 35.3086 63.8438 36.1003 63.5312 36.8711C63.2188 37.6419 62.7708 38.319 62.1875 38.9023L39.7812 61.3711L28 64.3086L30.9375 52.5273L53.3438 30.0898C53.9271 29.5065 54.6042 29.069 55.375 28.7773C56.1458 28.4857 56.9375 28.3294 57.75 28.3086ZM59.3438 36.0898C59.7812 35.6523 60 35.1211 60 34.4961C60 33.8503 59.7917 33.3294 59.375 32.9336C58.9583 32.5378 58.4167 32.3294 57.75 32.3086C57.4583 32.3086 57.1771 32.3503 56.9062 32.4336C56.6354 32.5169 56.3958 32.6732 56.1875 32.9023L34.5625 54.5898L33.5 58.8086L37.7188 57.7461L59.3438 36.0898ZM20 28.3086H16V24.3086H20V28.3086ZM48 28.3086H24V24.3086H48V28.3086ZM16 36.3086H20V40.3086H16V36.3086ZM20 16.3086H16V12.3086H20V16.3086ZM48 16.3086H24V12.3086H48V16.3086ZM12 52.3086H25.8438L24.8438 56.3086H8V0.308594H56V23.5273C54.6042 23.7357 53.2708 24.194 52 24.9023V4.30859H12V52.3086ZM24 36.3086H40.0625L36.0625 40.3086H24V36.3086Z" fill="#333333"/>
                             </svg>
@@ -68,10 +57,10 @@
 
                 <!-- Manage Enrollment -->
                 <a href="{{ route('instructor.enrollments.index') }}">
-                <div class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col space-y-4 relative">
+                <div class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md xl:px-16 lg:px-12 md:px-1 sm:px-16 px-4 py-10 flex flex-col space-y-4 relative">
                     <div class="flex flex-row items-center justify-between w-full mb-4 p-4 rounded-lg bg-white bg-opacity-50 backdrop-blur-sm">
-                        <div class="flex justify-center items-center">
-                            <h3 class="text-lg font-semibold mr-2">Manage Enrollment</h3>
+                        <div class="flex justify-start items-center">
+                            <h3 class="text-2xl font-bold mr-2">Manage Enrollment</h3>
                             <svg width="40" height="40" viewBox="0 0 64 61" fill="none">
                                 <path d="M55 49.6875C56.375 50.375 57.6146 51.2188 58.7188 52.2188C59.8229 53.2188 60.7604 54.3333 61.5312 55.5625C62.3021 56.7917 62.9062 58.125 63.3438 59.5625C63.7812 61 64 62.4792 64 64H60C60 62.3542 59.6875 60.8021 59.0625 59.3438C58.4375 57.8854 57.5833 56.6146 56.5 55.5312C55.4167 54.4479 54.1354 53.5833 52.6562 52.9375C51.1771 52.2917 49.625 51.9792 48 52C46.3333 52 44.7812 52.3125 43.3438 52.9375C41.9062 53.5625 40.6354 54.4167 39.5312 55.5C38.4271 56.5833 37.5625 57.8646 36.9375 59.3438C36.3125 60.8229 36 62.375 36 64H32C32 62.4792 32.2083 61 32.625 59.5625C33.0417 58.125 33.6458 56.7917 34.4375 55.5625C35.2292 54.3333 36.1771 53.2188 37.2812 52.2188C38.3854 51.2188 39.625 50.375 41 49.6875C39.4375 48.5625 38.2188 47.1562 37.3438 45.4688C36.4688 43.7812 36.0208 41.9583 36 40C36 38.3542 36.3125 36.8021 36.9375 35.3438C37.5625 33.8854 38.4167 32.6146 39.5 31.5312C40.5833 30.4479 41.8542 29.5833 43.3125 28.9375C44.7708 28.2917 46.3333 27.9792 48 28C49.6458 28 51.1979 28.3125 52.6562 28.9375C54.1146 29.5625 55.3854 30.4167 56.4688 31.5C57.5521 32.5833 58.4167 33.8646 59.0625 35.3438C59.7083 36.8229 60.0208 38.375 60 40C60 41.9583 59.5625 43.7812 58.6875 45.4688C57.8125 47.1562 56.5833 48.5625 55 49.6875ZM48 48C49.1042 48 50.1354 47.7917 51.0938 47.375C52.0521 46.9583 52.9062 46.3854 53.6562 45.6562C54.4062 44.9271 54.9792 44.0833 55.375 43.125C55.7708 42.1667 55.9792 41.125 56 40C56 38.8958 55.7917 37.8646 55.375 36.9062C54.9583 35.9479 54.3854 35.0938 53.6562 34.3438C52.9271 33.5938 52.0833 33.0208 51.125 32.625C50.1667 32.2292 49.125 32.0208 48 32C46.8958 32 45.8646 32.2083 44.9062 32.625C43.9479 33.0417 43.0938 33.6146 42.3438 34.3438C41.5938 35.0729 41.0208 35.9167 40.625 36.875C40.2292 37.8333 40.0208 38.875 40 40C40 41.1042 40.2083 42.1354 40.625 43.0938C41.0417 44.0521 41.6146 44.9062 42.3438 45.6562C43.0729 46.4062 43.9167 46.9792 44.875 47.375C45.8333 47.7708 46.875 47.9792 48 48ZM32 50.5C31.3333 51.2708 30.7292 52.0729 30.1875 52.9062C29.6458 53.7396 29.1667 54.6354 28.75 55.5938C27.6458 54.4479 26.3125 53.5625 24.75 52.9375C23.1875 52.3125 21.6042 52 20 52H8V12H4V56H28.5938C28.3021 56.6458 28.0625 57.3021 27.875 57.9688C27.6875 58.6354 27.5312 59.3125 27.4062 60H0V8H8V4H20C21.8333 4 23.5938 4.28125 25.2812 4.84375C26.9688 5.40625 28.5417 6.25 30 7.375C31.4375 6.25 33 5.40625 34.6875 4.84375C36.375 4.28125 38.1458 4 40 4H52V8H60V28C58.7917 26.8125 57.4583 25.8229 56 25.0312V12H52V23.5312C51.3333 23.3438 50.6667 23.2083 50 23.125C49.3333 23.0417 48.6667 23 48 23V8H40C38.5417 8 37.125 8.25 35.75 8.75C34.375 9.25 33.125 9.98958 32 10.9688V50.5ZM28 50.0938V10.9688C26.875 10.0104 25.625 9.28125 24.25 8.78125C22.875 8.28125 21.4583 8.02083 20 8H12V48H20C21.3958 48 22.7708 48.1771 24.125 48.5312C25.4792 48.8854 26.7708 49.4062 28 50.0938Z" fill="#333333"/>
                             </svg>
@@ -191,9 +180,7 @@
             </div>
         </div>
 </section>
-
-            <x-footer/>
-
+<x-footer/>
         </div>
     </div>
 </x-app-layout>
