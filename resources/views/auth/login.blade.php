@@ -10,17 +10,17 @@
 
 <body class="h-screen bg-orange-50">
 
-    <div class="flex flex-col md:flex-row h-full">
+    <div class="flex md:flex-row h-full">
 
         <!--background png image responsive atas/bawah di layar kecil, kiri/kanan di layar besar-->
-        <div class="w-full md:w-1/2 md:flex items-center justify-center bg-orange-50 h-1/2 md:h-full hidden md:block">
+        <div class="w-full md:w-1/2 md:flex items-center justify-center bg-orange-50 h-1/2 md:h-full hidden">
             <img src="{{ asset('images/loginImage.png') }}" alt="Login Image" class="w-full h-auto object-cover">
         </div>
 
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!--form login-->
-        <form action="{{ route('login') }}" method="POST" class="w-full md:w-1/2 flex items-center justify-center bg-orange-50 h-1/2 md:h-full">
+        <form action="{{ route('login') }}" method="POST" class="w-full md:w-1/2 flex items-center justify-center bg-orange-50 h-full">
             @csrf <!-- Token CSRF untuk keamanan -->
             <div class="w-full max-w-md p-8">
                 <h2 class="text-4xl font-bold text-center mb-6">Login</h2>

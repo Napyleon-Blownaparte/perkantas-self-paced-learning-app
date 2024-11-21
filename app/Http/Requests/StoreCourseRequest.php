@@ -11,7 +11,7 @@ class StoreCourseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,8 +27,9 @@ class StoreCourseRequest extends FormRequest
             'start_period' => 'required|date',
             'end_period' => 'required|date|after_or_equal:start_period',
             'estimated_time' => 'required|integer|min:1',
-            'thumbnail_image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'banner_image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'thumbnail_image' => 'required|image|mimes:jpg,jpeg,png|max:204800',
+            'banner_image' => 'required|image|mimes:jpg,jpeg,png|max:204800',
         ];
     }
+
 }

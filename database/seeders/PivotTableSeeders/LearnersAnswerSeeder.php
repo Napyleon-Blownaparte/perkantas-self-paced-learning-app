@@ -17,23 +17,19 @@ class LearnersAnswerSeeder extends Seeder
      */
     public function run(): void
     {
-        // Get all AttemptHistories and Question IDs
         $attemptHistories = AttemptHistory::all();
         $allQuestionIds = Question::pluck('id')->toArray();
 
         foreach ($attemptHistories as $attemptHistory) {
-            // Randomly select some question IDs for each attempt history
             $numberOfQuestions = min(rand(3, 9), count($allQuestionIds));
             $someQuestionIds = Arr::random($allQuestionIds, $numberOfQuestions);
 
             foreach ($someQuestionIds as $questionId) {
-                // Retrieve the question instance to determine its type
                 $question = Question::find($questionId);
 
-                // Initialize answer fields with empty strings for both fields
                 $answerData = [
-                    'essay_answer' => '',  // Default to empty
-                    'multiple_choice_answer' => '',  // Default to empty
+                    'essay_answer' => NULL,
+                    'multiple_choice_answer' => NULL,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
@@ -59,7 +55,7 @@ class LearnersAnswerSeeder extends Seeder
     private function generateRandomMultipleChoiceAnswer(MultipleChoiceQuestion $question): string
     {
         // Assuming the question has options stored, we can randomly pick one
-        $choices = $question->choices; // Assuming 'choices' holds the options in the model
+        $choices = $question->multiple_choice_options(); // Assuming 'choices' holds the options in the model
         return Arr::random($choices);
     }
 

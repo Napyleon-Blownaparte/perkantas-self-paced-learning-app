@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('multiple_choice_questions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-//            $table->foreignId('question_id')->constrained('questions');
             $table->integer('option_count');
         });
     }

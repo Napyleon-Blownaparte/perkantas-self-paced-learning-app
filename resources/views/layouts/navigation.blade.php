@@ -9,16 +9,16 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
                     @if(Auth::check())
                         @if(Auth::user()->role == 'learner')
-                            <x-nav-link :href="route('learner-dashboard')" :active="request()->routeIs('dashboard')">
+                            <x-nav-link :href="route('learner.learner-dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Learner Dashboard') }}
                             </x-nav-link>
                         @elseif (Auth::user()->role == 'instructor')
-                            <x-nav-link :href="route('instructor-dashboard')" :active="request()->routeIs('dashboard')">
+                            <x-nav-link :href="route('instructor.instructor-dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Instructor Dashboard') }}
                             </x-nav-link>
                         @endif

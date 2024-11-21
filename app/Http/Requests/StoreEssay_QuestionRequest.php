@@ -11,7 +11,7 @@ class StoreEssay_QuestionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreEssay_QuestionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'question_text' => 'required|string|max:255',
+            'answer_key' => 'required|string|max:255'
         ];
     }
 }

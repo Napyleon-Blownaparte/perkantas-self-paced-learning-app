@@ -7,35 +7,13 @@
                 <img src="{{ asset('images/Logo White No Bg.png') }}" class="h-8" alt="Perkantas Logo" />
             </a>
             <div class="flex md:order-2">
-                <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
-                    aria-expanded="false" class="md:hidden text-gray-100 hover:bg-gray-700 rounded-lg text-sm p-2.5 me-1">
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                    <span class="sr-only">Search</span>
-                </button>
-                <div class="relative hidden md:block">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                        <span class="sr-only">Search icon</span>
-                    </div>
-                    <input type="text" id="search-navbar"
-                        class="block w-full p-2 ps-10 text-sm text-gray-100 border border-gray-100 rounded-lg bg-gray-50 bg-transparent"
-                        placeholder="Search...">
-                </div>
 
                 <!-- Jika pengguna terotentikasi -->
                 @auth
                     <div x-data="{ open: false }" class="relative inline-block text-left">
-                        <div>
+                        <div class="mr-4">
                             <button type="button"
-                                class="inline-flex justify-center w-full ml-3 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                                class="inline-flex justify-center w-full mr-3 rounded-md border border-gray-300 shadow-sm px-1 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                                 aria-expanded="true" aria-haspopup="true" @click="open = !open">
                                 {{ Auth::user()->name }}
                                 <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -67,17 +45,37 @@
                     </div>
 
                 @endauth
+
+                <!-- Jika pengguna tidak terotentikasi -->
                 @guest
-                    <div class="border border-gray-100 rounded-lg ml-5">
+                    <div class="flex items-center">
                         <a href="{{ route('login') }}"
-                            class="block text-center mt-[0.3em] text-white rounded hover:text-[#e3e3e3c8] px-7 transition">Log
-                            In</a>
+                        class="block text-white hover:text-[#e3e3e3c8] border border-gray-100 rounded-lg mr-4 px-4 py-1.5 font-medium hover:bg-gray-100 dark:text-white hover:text-black transition-colors">Log In</a>
                     </div>
                 @endguest
 
-
-
-                <!-- Jika pengguna tidak terotentikasi -->
+                <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
+                    aria-expanded="false" class="md:hidden text-gray-100 hover:bg-gray-700 rounded-lg text-sm p-2.5 me-1">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                    <span class="sr-only">Search</span>
+                </button>
+                <div class="relative hidden md:block">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 poin  ter-events-none">
+                        <svg class="w-4 h-4 text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                        <span class="sr-only">Search icon</span>
+                    </div>
+                    <input type="text" id="search-navbar"
+                        class="block w-full p-2 ps-10 text-sm text-gray-100 border border-gray-100 rounded-lg bg-gray-50 bg-transparent"
+                        placeholder="Search...">
+                </div>
 
 
 
@@ -107,8 +105,7 @@
                         class="block w-full p-2 ps-10 text-sm text-gray-100 border border-gray-300 rounded-lg bg-gray-50 bg-transparent"
                         placeholder="Search...">
                 </div>
-                <ul
-                    class="flex flex-col p-2 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+                <ul class="flex flex-col p-2 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                     <li>
                         <a href="#"
                             class="block py-2 px-3 bg-gray-100 text-black rounded md:bg-transparent md:text-[#e3e3e3c8] md:p-0"
@@ -119,13 +116,13 @@
 
                         @if (Auth::user()->role === 'learner')
                             <li>
-                                <a href="/learner-dashboard"
+                                <a href="{{ route('learner.learner-dashboard') }}"
                                     class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition"">Learner
                                     Dashboard</a>
                             </li>
                         @elseif (Auth::user()->role === 'instructor')
                             <li>
-                                <a href="/instructor-dashboard"
+                                <a href="{{ route('instructor.instructor-dashboard') }}"
                                     class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition">Instructor
                                     Dashboard</a>
                             </li>
@@ -158,7 +155,7 @@
             dapat berikan.
         </p>
         <div class="flex flex-col mb-8 mt-24 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-            <a href="{{ route('learner-dashboard') }}"
+            <a href="{{ route('learner.learner-dashboard') }}"
                 class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#110a39] hover:bg-white hover:text-black transition-colors">
                 Start learning
                 <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -169,7 +166,7 @@
                 </svg>
             </a>
             <a href="#book"
-                class=" text-gray-100 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white hover:text-black transition-colors">
+                class=" text-gray-100 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg border border-gray-100 hover:bg-gray-100 dark:text-white hover:text-black transition-colors">
                 <svg class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -180,217 +177,238 @@
             </a>
         </div>
     </section>
-    <section class="news bg-white py-8 px-4 md:px-16" id="change-point">
-        <div
-            class="news-container bg-customPurple flex items-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="#ffffff">
-                <rect x="1" y="1" width="18" height="18" rx="2" ry="2" fill="none"
-                    stroke="#ffffff" stroke-width="1.5" />
-                <rect x="3" y="3" width="14" height="4" fill="none" stroke="#ffffff" stroke-width="1.5" />
-                <rect x="3" y="8" width="10" height="4" fill="none" stroke="#ffffff" stroke-width="1.5" />
-                <rect x="3" y="13" width="12" height="4" fill="none" stroke="#ffffff" stroke-width="1.5" />
-            </svg>
-            <h1 class="px-2">News</h1>
-        </div>
-        {{-- https://flowbite.com/docs/components/carousel/ --}}
-        <div id="default-carousel" class="relative w-full " data-carousel="slide">
-            <div class="flex overflow-hidden rounded-lg md:h-96 items-center">
-                <!-- Item 1 -->
-                <div class="duration-700 ease-in-out m-auto" data-carousel-item>
-                    <a href="#"
-                        class="flex h-96 md:h-auto md:max-h-96 flex-col items-center bg-white border  border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl lg:max-w-3xl hover:bg-gray-100 transition-colors">
-                        <img class="w-full h-48 md:w-48 object-cover md:object-cover rounded-t-lg md:rounded-none md:rounded-s-lg"
-                            src="https://placehold.co/600x400" alt="">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 line-clamp-2">Noteworthy
-                                technology acquisitions 2021</h5>
-                            <p class="mb-3 font-normal text-gray-700 line-clamp-3">
-                                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-                                chronological order.
-                                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-                                chronological order.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                <!-- Item 2 -->
-                <div class="hidden duration-700 ease-in-out m-auto" data-carousel-item>
-                    <a href="#"
-                        class="flex h-96 md:h-auto md:max-h-96 flex-col items-center bg-white border  border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl lg:max-w-3xl hover:bg-gray-100 transition-colors">
-                        <img class="w-full h-48 md:w-48 object-cover md:object-cover rounded-t-lg md:rounded-none md:rounded-s-lg"
-                            src="https://placehold.co/600" alt="">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 line-clamp-2">Noteworthy
-                                technology acquisitions 2021</h5>
-                            <p class="mb-3 font-normal text-gray-700 line-clamp-3">
-                                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                xxxxxxxxxxxxxxxxxxxxxx
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Slider controls -->
-            <button type="button"
-                class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group"
-                data-carousel-prev>
-                <span
-                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 1 1 5l4 4" />
+    <section class="news bg-gray-100 py-16 md:px-16" id="change-point">
+        <div class="max-w-7xl mx-auto">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg relative">
+                <div
+                    class="news-container bg-customPurple flex items-center justify-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl absolute inset-x-0 -top-12 mx-auto w-max">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="#ffffff">
+                        <rect x="1" y="1" width="18" height="18" rx="2" ry="2" fill="none"
+                            stroke="#ffffff" stroke-width="1.5" />
+                        <rect x="3" y="3" width="14" height="4" fill="none" stroke="#ffffff" stroke-width="1.5" />
+                        <rect x="3" y="8" width="10" height="4" fill="none" stroke="#ffffff" stroke-width="1.5" />
+                        <rect x="3" y="13" width="12" height="4" fill="none" stroke="#ffffff" stroke-width="1.5" />
                     </svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button"
-                class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-next>
-                <span
-                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 9 4-4-4-4" />
-                    </svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
-    </section>
-    <section class="course px-4 md:px-16 pb-8 pt-24" id="course">
-        <div
-            class="course-container bg-customPurple flex items-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                <path d="M2 9l8-6 8 6-8 6-8-6z" />
-                <path d="M10 15v4" />
-                <path d="M6 19h8" />
-            </svg>
-            <h1 class="px-2">Courses</h1>
-        </div>
-
-        <div class="w-full relative">
-
-            <div class="swiper multiple-slide-carousel swiper-container relative">
-                <div class="swiper-wrapper mb-16 pb-16">
-                    @foreach ($courses as $course)
-                        <div class="swiper-slide">
-                            <div class="flex-none min-h-98"> <!-- Increase min-width for wider cards -->
-                                <x-course-card
-                                    image_src="{{ $course->thumbnail_image }}"
-                                    title="{{ $course->title }}"
-                                    id="{{ $course->id }}"
-                                    link_url="{{ '/courses/' . $course->id }}"
-                                    text_color="text-black"
-                                />
-                            </div>
-                        </div>
-                    @endforeach
+                    <h1 class="px-2">News Selection</h1>
                 </div>
-
-                <div class="absolute flex justify-center items-center m-auto left-0 right-0 w-fit bottom-12">
-                    <button id="slider-button-left"
-                        class="swiper-button-prevs z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full  hover:bg-customPurple !-translate-x-16"
-                        data-carousel-prev>
-                        <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg"
-                            width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor" stroke-width="1.6"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                    <button id="slider-button-right"
-                        class="swiper-button-nexts z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full hover:bg-customPurple !translate-x-16"
-                        data-carousel-next>
-                        <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg"
-                            width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor" stroke-width="1.6"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="book pb-8 pt-24 px-4 md:px-16" id="book">
-        <div
-            class="book-container bg-customPurple flex items-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl">
-            <svg class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M6 2H18C19.1 2 20 2.9 20 4V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V4C4 2.9 4.9 2 6 2ZM6 4V20H18V4H6ZM8 6H16V8H8V6ZM8 10H16V12H8V10Z">
-                </path>
-            </svg>
-            <h1>Books</h1>
-        </div>
-        <div class="w-full relative">
-
-            <div class="swiper multiple-slide-carousel swiper-container relative">
-                <div class="swiper-wrapper mb-16 pb-16">
-                    <div class="swiper-slide">
-                        <div class="bg-customPurple rounded-lg shadow h-96 overflow-hidden flex flex-col justify-between">
-                            <img class="rounded-t-lg object-cover w-full h-60" src="https://placehold.co/600"
-                                alt="" />
-                            <div class="p-5 flex-grow overflow-hidden">
-                                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-100 line-clamp-2">
-                                    Buku 1
-                                </h5>
-                            </div>
-                            <div class="p-5 flex justify-between space-x-4">
-                                <a href="#"
-                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-100 hover:text-gray-900 rounded-lg hover:bg-gray-100 outline-white border transition-colors">
-                                    More Info
+                {{-- https://flowbite.com/docs/components/carousel/ --}}
+                <div id="default-carousel" class="relative w-full " data-carousel="slide">
+                    <div class="flex overflow-hidden md:h-96 items-center">
+                         <!-- Item 1 -->
+                        <div class="duration-700 ease-in-out m-auto flex flex-col md:flex-row py-12 md:py-0" data-carousel-item>
+                            <img class="w-full md:min-w-96 md:max-w-96 max-h-72 h-full object-cover md:object-cover rounded-lg"
+                                    src="https://placehold.co/600x600" alt="">
+                            <div class="flex flex-col justify-center p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 line-clamp-2">Noteworthy
+                                    technology acquisitions 2021</h5>
+                                <p class="mb-3 font-normal text-gray-700 line-clamp-3">
+                                    Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
+                                    chronological order.
+                                    Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
+                                    chronological order.
+                                </p>
+                                <a href=""
+                                    class="inline-flex self-start justify-center items-center mt-2 py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#110a39] hover:bg-white hover:text-black transition-colors">
+                                    Read more
+                                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
                                 </a>
-
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                            <span class="text-2xl font-semibold text-indigo-600">Slide 2 </span>
+                        <!-- Item 2 -->
+                        <div class="duration-700 ease-in-out m-auto flex flex-col md:flex-row hidden py-12 md:py-0" data-carousel-item>
+                            <img class="w-full md:min-w-96 md:max-w-96 max-h-72 h-full object-cover md:object-cover rounded-lg"
+                                    src="https://placehold.co/600x400" alt="">
+                            <div class="flex flex-col justify-center p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 line-clamp-2">Noteworthy
+                                    technology acquisitions 2021 sauihiahhiusshausssssssssssssssss ssssssssssssssssss    </h5>
+                                <p class="mb-3 font-normal text-gray-700 line-clamp-3">
+                                    Lajfas calknsc la lnaslk nlkan fklnein laljjlwaklns nfgekq3a l fln kl lfna kf
+                                    af ajsnlkf nkqkana fwn jsk faljnklan skfk nwakk wnksanalf knaskn kfniw nwisn mja knwk najl sjlf oawnf nals la
+                                    as ans olknf nawln aiwinijwinasl as akwkkanoidvpeiwnv ew nksjneioncoincwe jofn enkcnqoen conajcanicunenw justify-between qef
+                                    encwoenvnwinvwoi wnweoivnownono
+                                </p>
+                                <a href=""
+                                    class="inline-flex self-start justify-center items-center mt-2 py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#110a39] hover:bg-white hover:text-black transition-colors">
+                                    Read more
+                                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                            <span class="text-2xl font-semibold text-indigo-600">Slide 3 </span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                            <span class="text-2xl font-semibold text-indigo-600">Slide 4 </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute flex justify-center items-center m-auto left-0 right-0 w-fit bottom-12">
-                    <button id="slider-button-left"
-                        class="swiper-button-prevs z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full  hover:bg-customPurple !-translate-x-16"
+
+
+                    <!-- Slider controls -->
+                    <button type="button"
+                        class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group"
                         data-carousel-prev>
-                        <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg"
-                            width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor" stroke-width="1.6"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                        <span
+                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-transparent border border-customPurple group-hover:bg-customPurple transition-colors">
+                            <svg class="w-4 h-4 text-customPurple group-hover:text-gray-100  rtl:rotate-180 transition-colors" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 1 1 5l4 4" />
+                            </svg>
+                            <span class="sr-only">Previous</span>
+                        </span>
                     </button>
-                    <button id="slider-button-right"
-                        class="swiper-button-nexts z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full hover:bg-customPurple !translate-x-16"
+                    <button type="button"
+                        class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                         data-carousel-next>
-                        <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg"
-                            width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor" stroke-width="1.6"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                        <span
+                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-transparent border border-customPurple group-hover:bg-customPurple transition-colors">
+                            <svg class="w-4 h-4 text-customPurple group-hover:text-gray-100 rtl:rotate-180 transition-colors" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="sr-only">Next</span>
+                        </span>
                     </button>
                 </div>
             </div>
         </div>
+
+
+
+    </section>
+
+    <section class="bg-gray-100 py-16 md:px-16" id="course">
+        <div class="max-w-7xl mx-auto">
+            <div class="p-4 md:px-8 md:pt-8 md:pb-0 bg-white  shadow sm:rounded-lg relative">
+                <div
+                class="course-container bg-customPurple flex items-center justify-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl absolute inset-x-0 -top-12 mx-auto w-max">
+                <svg width="25" height="25" viewBox="0 0 64 61" fill="#ffffff">
+                    <path
+                        d="M55 45.9961C56.375 46.6836 57.6146 47.5273 58.7188 48.5273C59.8229 49.5273 60.7604 50.6419 61.5312 51.8711C62.3021 53.1003 62.9062 54.4336 63.3438 55.8711C63.7812 57.3086 64 58.7878 64 60.3086H60C60 58.6628 59.6875 57.1107 59.0625 55.6523C58.4375 54.194 57.5833 52.9232 56.5 51.8398C55.4167 50.7565 54.1354 49.8919 52.6562 49.2461C51.1771 48.6003 49.625 48.2878 48 48.3086C46.3333 48.3086 44.7812 48.6211 43.3438 49.2461C41.9062 49.8711 40.6354 50.7253 39.5312 51.8086C38.4271 52.8919 37.5625 54.1732 36.9375 55.6523C36.3125 57.1315 36 58.6836 36 60.3086H32C32 58.7878 32.2083 57.3086 32.625 55.8711C33.0417 54.4336 33.6458 53.1003 34.4375 51.8711C35.2292 50.6419 36.1771 49.5273 37.2812 48.5273C38.3854 47.5273 39.625 46.6836 41 45.9961C39.4375 44.8711 38.2188 43.4648 37.3438 41.7773C36.4688 40.0898 36.0208 38.2669 36 36.3086C36 34.6628 36.3125 33.1107 36.9375 31.6523C37.5625 30.194 38.4167 28.9232 39.5 27.8398C40.5833 26.7565 41.8542 25.8919 43.3125 25.2461C44.7708 24.6003 46.3333 24.2878 48 24.3086C49.6458 24.3086 51.1979 24.6211 52.6562 25.2461C54.1146 25.8711 55.3854 26.7253 56.4688 27.8086C57.5521 28.8919 58.4167 30.1732 59.0625 31.6523C59.7083 33.1315 60.0208 34.6836 60 36.3086C60 38.2669 59.5625 40.0898 58.6875 41.7773C57.8125 43.4648 56.5833 44.8711 55 45.9961ZM48 44.3086C49.1042 44.3086 50.1354 44.1003 51.0938 43.6836C52.0521 43.2669 52.9062 42.694 53.6562 41.9648C54.4062 41.2357 54.9792 40.3919 55.375 39.4336C55.7708 38.4753 55.9792 37.4336 56 36.3086C56 35.2044 55.7917 34.1732 55.375 33.2148C54.9583 32.2565 54.3854 31.4023 53.6562 30.6523C52.9271 29.9023 52.0833 29.3294 51.125 28.9336C50.1667 28.5378 49.125 28.3294 48 28.3086C46.8958 28.3086 45.8646 28.5169 44.9062 28.9336C43.9479 29.3503 43.0938 29.9232 42.3438 30.6523C41.5938 31.3815 41.0208 32.2253 40.625 33.1836C40.2292 34.1419 40.0208 35.1836 40 36.3086C40 37.4128 40.2083 38.444 40.625 39.4023C41.0417 40.3607 41.6146 41.2148 42.3438 41.9648C43.0729 42.7148 43.9167 43.2878 44.875 43.6836C45.8333 44.0794 46.875 44.2878 48 44.3086ZM32 46.8086C31.3333 47.5794 30.7292 48.3815 30.1875 49.2148C29.6458 50.0482 29.1667 50.944 28.75 51.9023C27.6458 50.7565 26.3125 49.8711 24.75 49.2461C23.1875 48.6211 21.6042 48.3086 20 48.3086H8V8.30859H4V52.3086H28.5938C28.3021 52.9544 28.0625 53.6107 27.875 54.2773C27.6875 54.944 27.5312 55.6211 27.4062 56.3086H0V4.30859H8V0.308594H20C21.8333 0.308594 23.5938 0.589844 25.2812 1.15234C26.9688 1.71484 28.5417 2.55859 30 3.68359C31.4375 2.55859 33 1.71484 34.6875 1.15234C36.375 0.589844 38.1458 0.308594 40 0.308594H52V4.30859H60V24.3086C58.7917 23.1211 57.4583 22.1315 56 21.3398V8.30859H52V19.8398C51.3333 19.6523 50.6667 19.5169 50 19.4336C49.3333 19.3503 48.6667 19.3086 48 19.3086V4.30859H40C38.5417 4.30859 37.125 4.55859 35.75 5.05859C34.375 5.55859 33.125 6.29818 32 7.27734V46.8086ZM28 46.4023V7.27734C26.875 6.31901 25.625 5.58984 24.25 5.08984C22.875 4.58984 21.4583 4.32943 20 4.30859H12V44.3086H20C21.3958 44.3086 22.7708 44.4857 24.125 44.8398C25.4792 45.194 26.7708 45.7148 28 46.4023Z"
+                        />
+                </svg>
+                <h1 class="px-2">Course Recommendation</h1>
+            </div>
+
+            <div class="w-full relative mt-12">
+                <div class="swiper multiple-slide-carousel swiper-container relative">
+                    <div class="swiper-wrapper mb-16 pb-16">
+                        @foreach ($courses as $course)
+                            <x-course-card
+                                        image_src="{{ $course->thumbnail_image }}"
+                                        title="{{ $course->title }}"
+                                        id="{{ $course->id }}"
+                                        link_url="{{ '/courses/' . $course->id }}"
+                                        text_color="text-black"
+                                    />
+                        @endforeach
+                    </div>
+
+                    <div class="absolute flex justify-center items-center m-auto left-0 right-0 w-fit bottom-12">
+                        <button id="slider-button-left"
+                            class="swiper-button-prevs z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full  hover:bg-customPurple !-translate-x-16"
+                            data-carousel-prev>
+                            <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <button id="slider-button-right"
+                            class="swiper-button-nexts z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full hover:bg-customPurple !translate-x-16"
+                            data-carousel-next>
+                            <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="book bg-gray-100 py-16 md:px-16" id="book">
+        <div class="max-w-7xl mx-auto">
+            <div class="p-4 md:px-8 md:pt-8 md:pb-0 bg-white shadow sm:rounded-lg relative">
+                <div
+                    class="book-container bg-customPurple flex items-center justify-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl absolute inset-x-0 -top-12 mx-auto w-max">
+                    <svg class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 2H18C19.1 2 20 2.9 20 4V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V4C4 2.9 4.9 2 6 2ZM6 4V20H18V4H6ZM8 6H16V8H8V6ZM8 10H16V12H8V10Z">
+                        </path>
+                    </svg>
+                    <h1>Book Collections</h1>
+                </div>
+                <div class="w-full relative mt-12">
+
+                    <div class="swiper multiple-slide-carousel swiper-container relative">
+                        <div class="swiper-wrapper mb-16 pb-16">
+                            <div class="swiper-slide">
+                                <div class="bg-customPurple rounded-lg shadow h-96 overflow-hidden flex flex-col justify-between">
+                                    <img class="rounded-t-lg object-cover w-full h-60" src="https://placehold.co/600"
+                                        alt="" />
+                                    <div class="p-5 flex-grow overflow-hidden">
+                                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-100 line-clamp-2">
+                                            Buku 1
+                                        </h5>
+                                    </div>
+                                    <div class="p-5 flex justify-between space-x-4">
+                                        <a href="#"
+                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-100 hover:text-gray-900 rounded-lg hover:bg-gray-100 outline-white border transition-colors">
+                                            Read now
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
+                                    <span class="text-2xl font-semibold text-indigo-600">Slide 2 </span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
+                                    <span class="text-2xl font-semibold text-indigo-600">Slide 3 </span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
+                                    <span class="text-2xl font-semibold text-indigo-600">Slide 4 </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute flex justify-center items-center m-auto left-0 right-0 w-fit bottom-12">
+                            <button id="slider-button-left"
+                                class="swiper-button-prevs z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full  hover:bg-customPurple !-translate-x-16"
+                                data-carousel-prev>
+                                <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg"
+                                    width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <button id="slider-button-right"
+                                class="swiper-button-nexts z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full hover:bg-customPurple !translate-x-16"
+                                data-carousel-next>
+                                <svg class="h-5 w-5 text-customPurple group-hover:text-white" xmlns="http://www.w3.org/2000/svg"
+                                    width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
     <footer class="bg-customPurple">
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">

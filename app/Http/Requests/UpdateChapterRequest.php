@@ -8,14 +8,13 @@ class UpdateChapterRequest extends FormRequest
 {
     public function authorize()
     {
-        return true; // Atur sesuai kebutuhan otorisasi Anda
+        return true;
     }
 
     public function rules()
     {
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'title' => 'sometimes|string|max:255',
         ];
     }
 }

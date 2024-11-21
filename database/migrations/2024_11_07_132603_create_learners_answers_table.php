@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('learners_answers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('attempt_history_id')->constrained('attempt_histories');
-            $table->foreignId('question_id')->constrained('questions');
-            $table->string('essay_answer');
-            $table->integer('multiple_choice_answer');
+            $table->foreignId('attempt_history_id')->constrained('attempt_histories')->cascadeOnDelete();
+            $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
+            $table->string('essay_answer')->nullable();
+            $table->integer('multiple_choice_answer')->nullable();
         });
     }
 
