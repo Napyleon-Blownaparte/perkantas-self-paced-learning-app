@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SectionReverse extends Component
+class Section extends Component
 {
     /**
      * Create a new component instance.
@@ -16,7 +16,7 @@ class SectionReverse extends Component
     public $imgSrc;
     public $videoSrc;
 
-    public function __construct($title, $content, $imgSrc=null,$videoSrc = null)
+    public function __construct($title, $content, $imgSrc=null,$videoSrc=null)
     {
         //
         $this->title = $title;
@@ -31,6 +31,6 @@ class SectionReverse extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.section-reverse');
+        return view('components.section');
     }
 }

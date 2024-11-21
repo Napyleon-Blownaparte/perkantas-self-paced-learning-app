@@ -144,7 +144,7 @@
             } else {
                 mainContent.classList.add('ml-[16em]'); // Add left margin when sidebar is shown
                 toggleSidebarButton.classList.add(
-                'left-[16em]'); // Move the button to the right when sidebar is shown
+                    'left-[16em]'); // Move the button to the right when sidebar is shown
                 toggleSidebarButton.classList.remove('left-0'); // Make sure the button goes back to the right
             }
         });
