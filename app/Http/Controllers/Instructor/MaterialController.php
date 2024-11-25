@@ -55,7 +55,7 @@ class MaterialController extends Controller
             'content' => $validated['content'],
         ]);
 
-        return redirect()->route('instructor.chapters.show', $chapter->id);
+        return redirect()->route('instructor.chapters.show', $chapter->id)->with('success', 'You have successfully created the material');
     }
 
     /**
@@ -96,7 +96,7 @@ class MaterialController extends Controller
 
         $material->save();
 
-        return redirect()->route('instructor.chapters.show', $material->chapter->id);
+        return redirect()->route('instructor.chapters.show', $material->chapter->id)->with('success', 'You have successfully edited the material');
     }
 
     /**

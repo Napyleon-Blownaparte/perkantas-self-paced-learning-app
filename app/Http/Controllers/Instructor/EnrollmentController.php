@@ -66,7 +66,7 @@ class EnrollmentController extends Controller
         $enrollment->status = $request->input('status');
         $enrollment->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'You have successfully updated the enrollment status');
     }
 
     /**

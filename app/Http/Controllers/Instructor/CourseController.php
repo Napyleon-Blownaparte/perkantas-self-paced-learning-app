@@ -77,7 +77,7 @@ class CourseController extends Controller
             'course_id' => $course->id,
         ]);
 
-        return redirect()->route('instructor.courses.index', ['status' => 'instructor']);
+        return redirect()->route('instructor.courses.index', ['status' => 'instructor'])->with('success', 'You have successfully created the course');
     }
 
     /**
@@ -118,7 +118,7 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect()->route('instructor.courses.show', $course->id);
+        return redirect()->route('instructor.courses.show', $course->id)->with('success', 'You have successfully edited the course');
     }
 
     /**

@@ -43,7 +43,7 @@
 
                             <div class="flex flex-col items-center">
                                 <!-- INPUT BACKEND DISINI (insert number of courses)-->
-                                <h2 class="text-5xl font-bold">15</h2>
+                                <h2 class="text-5xl font-bold">{{ $courses->count() }}</h2>
                                 <h2 class="text-xl font-bold">Courses</h2>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
 
                             <div class="flex flex-col items-center">
                                 <!-- INPUT BACKEND DISINI (insert number of students)-->
-                                <h2 class="text-5xl font-bold">100</h2>
+                                <h2 class="text-5xl font-bold">{{ $courses->pluck('learners')->count() }}</h2>
                                 <h2 class="text-xl font-bold">Students</h2>
                             </div>
                         </div>
@@ -212,8 +212,8 @@
                 </div>
             </div>
         </div>
-        
+
         <x-footer></x-footer>
     </div>
-    
+
 </x-app-layout>
