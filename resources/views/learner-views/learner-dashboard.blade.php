@@ -276,9 +276,9 @@
         <section class="p-6">
             <div class="grid grid-cols-1 gap-6">
                 <!-- Courses Section -->
-                <div class="bg-black p-6 rounded grid grid-cols-3 grid-flow-col">
+                <div style="background-image: url('{{ asset('images/pattern-background3.png') }}');" class="bg-black p-6 rounded grid md:grid-cols-3 grid-flow-row grid-rows-1">
                     <div class="flex items-center">
-                        <h2 class="text-7xl text-white font-bold mb-4">Course</h2>
+                        <h2 class="text-5xl md:text-7xl text-white font-bold md:mb-4 mb-10">Course</h2>
                     </div>
                     <div class="flex space-x-4 overflow-x-auto col-span-2">
                         @foreach ($courses as $course)
@@ -298,9 +298,9 @@
                     </div>
                 </div>
                 <!-- Books Section -->
-                <div class="bg-black p-6 rounded grid grid-cols-3 grid-flow-col">
+                <div style="background-image: url('{{ asset('images/pattern-background3.png') }}');" class="bg-cover bg-center p-6 rounded grid md:grid-cols-3 grid-flow-row grid-rows-1">
                     <div class="flex items-center">
-                        <h2 class="text-7xl text-white font-bold mb-4">Books</h2>
+                        <h2 class="text-5xl md:text-7xl text-white font-bold md:mb-4 mb-10">Books</h2>
                     </div>
                     <div class="flex space-x-4 overflow-x-auto col-span-2">
                         <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
@@ -331,9 +331,9 @@
                 </div>
 
                 <!--Recommendation -->
-                <div class="bg-black p-6 rounded grid grid-cols-3 grid-flow-col">
+                <div style="background-image: url('{{ asset('images/pattern-background3.png') }}');" class="bg-black p-6 rounded grid md:grid-cols-3 grid-flow-row grid-rows-1"">
                     <div class="flex items-center">
-                        <h2 class="text-7xl text-white font-bold mb-4">Course You've Might Like</h2>
+                        <h2 class="text-5xl md:text-7xl text-white font-bold md:mb-4 mb-10">Courses You Might Like</h2>
                     </div>
                     <div class="flex space-x-4 overflow-x-auto col-span-2">
                         @foreach ($courses as $course)
