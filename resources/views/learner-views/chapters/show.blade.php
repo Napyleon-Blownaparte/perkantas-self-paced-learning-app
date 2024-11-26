@@ -115,11 +115,11 @@
             });
         </script>
     @elseif (session('success'))
-        <x-success-modal id="assessment-submit-success-modal" title="Submit Success"
+        <x-success-modal id="success-modal" title="Success"
             content="{{ session('success') }}" />
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function() {
-                toggleModal('assessment-submit-success-modal');
+                toggleModal('success-modal');
             });
         </script>
     @endif

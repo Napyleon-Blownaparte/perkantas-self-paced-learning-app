@@ -42,7 +42,7 @@ class AssessmentController extends Controller
             'name' => $validated['name'],
         ]);
 
-        return redirect()->route('instructor.chapters.show', $chapter->id);
+        return redirect()->route('instructor.chapters.show', $chapter->id)->with('success', 'You have successfully created the assessment');
     }
 
     /**
@@ -76,7 +76,7 @@ class AssessmentController extends Controller
 
         $assessment->save();
 
-        return redirect()->route('instructor.chapters.show', $assessment->chapter->id);
+        return redirect()->route('instructor.chapters.show', $assessment->chapter->id)->with('You have successfully edited the assessment');
     }
 
 /**
