@@ -57,8 +57,8 @@
                             <a
                                 href="{{ route('instructor.courses.create') }}">
                                 <button
-                                    style="background-color: #38a169; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                                    class="m-auto hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                                    style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                                    class="m-auto bg-green-600 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
                                     Add More Course
                                 </button>
                             </a>

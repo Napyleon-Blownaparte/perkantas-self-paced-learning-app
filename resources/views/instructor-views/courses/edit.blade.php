@@ -82,15 +82,25 @@
                             @endif
                         </div>
 
-                        <x-primary-button type="submit">Update chapter</x-primary-button>
-                    </form>
+                        <button
+                        type="submit"
+                        style="background-color: #251F4F; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                        class="hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-900 flex items-center justify-center gap-2">
+                        Update Course
+                    </button>                           
+                </form>
 
                     {{-- DELETE BUTTON --}}
                     <form action="{{ route('instructor.courses.destroy', $course) }}" method="POST" class="mt-4">
                         @csrf
                         @method('DELETE')
-                        <x-danger-button type="submit">Delete course</x-danger-button>
-                    </form>
+                        <button
+                        type="submit"
+                        style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                        class="bg-red-600 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center justify-center gap-2">
+                        Delete Course
+                    </button>                           
+                </form>
 
                     {{-- END HERE --}}
 

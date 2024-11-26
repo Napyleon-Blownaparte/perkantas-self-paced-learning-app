@@ -125,19 +125,45 @@
                                 </div>
                                 <div class="chapter-details mt-4 text-gray-600 hidden">
                                     <div class="divide-y divide-gray-300">
-                                        @foreach ($chapter->materials as $material)
-                                            <a href="{{ route('learner.chapters.show', $chapter->id) }}"
-                                                class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
-                                                <span class="text-blue-600 font-semibold">{{ $material->title }}</span>
-                                            </a>
-                                        @endforeach
-                                        @foreach ($chapter->assessments as $assessment)
-                                            <a href="{{ route('learner.chapters.show', $chapter->id) }}"
-                                                class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
-                                                <span
-                                                    class="text-blue-600 font-semibold">{{ $assessment->title }}</span>
-                                            </a>
-                                        @endforeach
+                                        @if (Auth::check())
+                                            @php
+
+                                                // Ambil enrollment user untuk course terkait
+                                                $userEnrollment = App\Models\Enrollment::where(
+                                                    'learner_id',
+                                                    request()->user()->learner->id,
+                                                )
+                                                    ->where('course_id', $course->id)
+                                                    ->first();
+                                            @endphp
+
+                                            @if ($userEnrollment && in_array($userEnrollment->status, ['accepted', 'finished']))
+                                                @foreach ($chapter->materials as $material)
+                                                    <a href="{{ route('learner.chapters.show', $chapter->id) }}"
+                                                        class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
+                                                        <span
+                                                            class="text-blue-600 font-semibold">{{ $material->title }}</span>
+                                                    </a>
+                                                @endforeach
+
+                                                @foreach ($chapter->assessments as $assessment)
+                                                    <a href="{{ route('learner.chapters.show', $chapter->id) }}"
+                                                        class="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-300 ease-in-out">
+                                                        <span
+                                                            class="text-blue-600 font-semibold">{{ $assessment->title }}</span>
+                                                    </a>
+                                                @endforeach
+                                            @else
+                                                <p class="text-red-500 font-bold">Tidak dapat mengakses course</p>
+                                            @endif
+                                        @else
+                                            <p class="text-red-500 font-bold">Harap login untuk mengakses materi dan
+                                                assessment.</p>
+                                        @endif
+
+
+
+
 
                                     </div>
 
@@ -226,6 +252,16 @@
             </div>
         </div>
     </section>
+    @if (session('success'))
+        <x-success-modal id="enroll-success-modal" title="Enrollment Successful"
+            content="{{ session('success') }}" />
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                toggleModal('enroll-success-modal');
+            });
+        </script>
+    @endif
+
     <script>
         function toggleDetails(button) {
             const details = button.closest('.py-4').querySelector('.chapter-details');

@@ -6,11 +6,14 @@
             <p class="mt-4 text-gray-700">{{ $content }}</p>
         </div>
         <!-- Image Content -->
-        <div class="md:w-1/2 mt-6 md:mt-0">
-            <img src="{{ asset('storage/' . $imgSrc) }}" alt="Header Image" class="w-full mx-auto rounded-lg shadow-lg">
-        </div>
+        @if (!empty($imgSrc))
+            <div class="md:w-1/2 mt-6 md:mt-0">
+                <img src="{{ asset('storage/' . $imgSrc) }}" alt="Header Image"
+                    class="w-full mx-auto rounded-lg shadow-lg">
+            </div>
+        @endif
         <!-- Video Content -->
-        @if(isset($videoSrc))
+        @if (!empty($videoSrc))
             <div class="md:w-1/2 mt-6 md:mt-0">
                 <video controls class="w-full h-72 mx-auto rounded-lg shadow-lg">
                     <source src="{{ asset('storage/' . $videoSrc) }}" type="video/mp4">
@@ -18,5 +21,6 @@
                 </video>
             </div>
         @endif
+
     </div>
 </section>
