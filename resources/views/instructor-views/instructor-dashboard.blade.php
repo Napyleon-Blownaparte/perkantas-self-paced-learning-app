@@ -14,7 +14,7 @@
             <!-- Header Section -->
             <div class="flex justify-between items-center mb-6">
                 <!-- Welcome Section -->
-                <div class="flex items-center bg-blue-950 text-white rounded-lg p-6 w-4/5 lg:w-2/5 relative">
+                <div class="flex items-center bg-blue-950 text-white rounded-lg p-6 w-4/5 relative">
                     <div class="ml-2 relative z-10"> <!-- Set z-index for text container -->
                         <h2 class="text-xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Welcome, John Doe</h2>
                         <p class="text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">What do you want to do
