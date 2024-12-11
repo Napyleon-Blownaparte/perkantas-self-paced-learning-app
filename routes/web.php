@@ -74,6 +74,19 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+Route::get('books/create', function () {
+    return view('instructor-views.books.create');
+})->name('books.create');
+Route::get('books/index', function () {
+    return view('instructor-views.books.index');
+})->name('books.create');
+Route::get('books/show', function () {
+    return view('instructor-views.books.show');
+})->name('books.create');
+Route::get('books/read', function () {
+    return view('instructor-views.books.read');
+})->name('books.create');
+
 
 
 
