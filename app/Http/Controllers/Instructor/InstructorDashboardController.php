@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class InstructorDashboardController extends Controller
 {
@@ -11,6 +12,7 @@ class InstructorDashboardController extends Controller
     {
         $user = request()->user();
         $courses = $user->instructor->courses;
+        $books = Book::inRandomOrder()->take(8)->get();
         $learnersCount = $courses->sum(function($course) {
             return $course->learners()->count();
         });
@@ -18,7 +20,8 @@ class InstructorDashboardController extends Controller
         return view('instructor-views.instructor-dashboard', [
             'user' => $user,
             'courses' => $courses,
-            'learnersCount' => $learnersCount
+            'learnersCount' => $learnersCount,
+            'books' => $books,
         ]);
     }
 }
