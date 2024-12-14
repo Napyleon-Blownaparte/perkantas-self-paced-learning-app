@@ -3,20 +3,19 @@
         <h1 class="text-4xl font-bold mb-4">Manage Books</h1>
     
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <!-- Looping backend -->
-            <x-book-card image_src="https://via.placeholder.com/360x640" title="PlaceHolder Title" link_url="#"/>
-            <x-book-card image_src="https://via.placeholder.com/360x640" title="PlaceHolder Title" link_url="#"/>
-            <x-book-card image_src="https://via.placeholder.com/360x640" title="PlaceHolder Title" link_url="#"/>
-            <x-book-card image_src="https://via.placeholder.com/360x640" title="PlaceHolder Title" link_url="#"/>
-            <x-book-card image_src="https://via.placeholder.com/360x640" title="PlaceHolder Title" link_url="#"/>
-            <x-book-card image_src="https://via.placeholder.com/360x640" title="PlaceHolder Title" link_url="#"/>
-            <x-book-card image_src="https://via.placeholder.com/360x640" title="PlaceHolder Title" link_url="#"/>
+            @forelse ($books as $book)
+                <x-book-card 
+                    image_src="{{ $book->book_cover ?? 'https://via.placeholder.com/360x640' }}" 
+                    title="{{ $book->book_title }}" 
+                    link_url="{{ route('instructor.books.show', $book)}}"/>
+            @empty
+                <p>No books available. Please add some!</p>
+            @endforelse
         </div>
     </div>
 
     <div class="relative py-2">
-        <!-- Tambah link ke create.blade.php -->
-        <a href="#">
+        <a href="{{ route('instructor.books.create') }}">
             <div
                 class="m-24 my-12 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
                 <div class="m-12">
@@ -30,15 +29,11 @@
                         </g>
                     </svg>
 
-                    <!-- Tambah link ke create.blade.php -->
-                    <a
-                        href="#">
-                        <button
-                            style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
-                            class="m-auto bg-green-600 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
-                            Add More Books
-                        </button>
-                    </a>
+                    <button
+                        style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
+                        class="m-auto bg-green-600 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 flex items-center justify-center gap-2">
+                        Add More Books
+                    </button>
                     <p class="mt-8 text-gray-600">Click the button above to Add Books</p>
                 </div>
             </div>
@@ -53,5 +48,5 @@
             toggleModal('success-modal');
         });
     </script>
-@endif
+    @endif
 </x-app-layout>

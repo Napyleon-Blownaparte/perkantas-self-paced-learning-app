@@ -1,6 +1,6 @@
 @props([ 'title', 'image_src', 'link_url', 'text_color' => 'text-black'])
 
-<a href="{{ $link_url }}" class="block">
+<a href="{{$link_url}}" class="block">
     <div class="inline-block bg-white bg-opacity-55 backdrop-blur-sm rounded-lg shadow-md overflow-hidden p-2">
         <img src="{{ $image_src }}" alt="Book cover" class="object-cover w-[360px] h-[640px]">
         <div class="p-4">

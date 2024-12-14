@@ -10,29 +10,28 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    {{-- START HERE --}}
-                    <form>
+                    <form method="POST" action="{{ route('instructor.books.store') }}" enctype="multipart/form-data">
                         @csrf
                         <!-- Title -->
                         <div class="mb-4">
-                            <x-input-label for="title" :value="__('Title')" class="block text-gray-700" />
-                            <x-text-input id="title" type="text" name="title" :value="old('title')" autofocus
+                            <x-input-label for="book_title" :value="__('Title')" class="block text-gray-700" />
+                            <x-text-input id="book_title" type="text" name="book_title" :value="old('book_title')" autofocus
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
-                            <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('book_title')" class="mt-2" />
                         </div>
 
                         <!-- Description -->
                         <div class="mb-4">
-                            <x-input-label for="description" :value="__('Description')" class="block text-gray-700" />
-                            <x-text-input id="description" type="text" name="description" :value="old('description')" autofocus
-                                class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
-                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            <x-input-label for="descriptions" :value="__('Description')" class="block text-gray-700" />
+                            <textarea id="descriptions" name="descriptions" 
+                                class="mt-1 block w-full p-2 border border-gray-300 rounded-md">{{ old('descriptions') }}</textarea>
+                            <x-input-error :messages="$errors->get('descriptions')" class="mt-2" />
                         </div>
 
                         <!-- Author -->
                         <div class="mb-4">
                             <x-input-label for="author" :value="__('Author')" class="block text-gray-700" />
-                            <x-text-input id="author" type="text" name="author" :value="old('description')" autofocus
+                            <x-text-input id="author" type="text" name="author" :value="old('author')" autofocus
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                             <x-input-error :messages="$errors->get('author')" class="mt-2" />
                         </div>
@@ -60,8 +59,6 @@
                             Upload Book
                         </button>
                     </form>
-
-                    {{-- END HERE --}}
 
                 </div>
             </div>
