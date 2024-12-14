@@ -2,29 +2,28 @@
     <div>
         <!-- Main Content -->
         <div class="grid grid-cols-1 ml-6 mt-6 mr-6">
-            <a href="{{ route('profile.edit') }}">
+            {{--<a href="{{ route('profile.edit') }}">
                 <div class="flex justify-between items-center mb-8 cursor-pointer">
                     <!-- Logo -->
                     <div>
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-20">
                     </div>
                 </div>
-            </a>
-
+            </a> --}}
             <!-- Header Section -->
-            <div class="flex justify-between items-center mb-6">
-                <!-- Welcome Section -->
-                <div class="flex items-center bg-blue-950 text-white rounded-lg p-6 w-4/5 lg:w-2/5 relative">
-                    <div class="ml-2 relative z-10"> <!-- Set z-index for text container -->
-                        <h2 class="text-xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Welcome, John Doe</h2>
-                        <p class="text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">What do you want to do
-                            today?</p>
+            <section class="bg-gradient-to-r from-green-300 to-pink-200">
+                <div class="flex justify-between items-center mb-6">
+                    <!-- Welcome Section -->
+                    <div class="flex items-center text-white rounded-lg p-6 w-4/5 lg:w-2/5 relative">
+                        <div class="ml-2 relative z-10"> <!-- Set z-index for text container -->
+                            <h2 class="text-xl text-black">Welcome, John Doe</h2>
+                            <p class="text-2xl text-black">What do you want to do
+                                today?</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
             <!-- Instrcutor Overview -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full px-16">
 
                 <!-- Manage Course -->
                 <a href="{{ route('instructor.courses.index', ['status' => 'instructor']) }}">
@@ -152,7 +151,7 @@
                     </div>
                 </a>
             </div>
-
+</section>
             <!-- Course and Book Sections -->
             <div class="grid grid-cols-1 gap-6 py-6">
                 <!-- Courses Section -->
@@ -211,7 +210,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </di>
 
         <x-footer></x-footer>
     </div>
