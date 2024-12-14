@@ -17,7 +17,10 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'book_title' => $this->faker->sentence(4),
+            'created_at' => $this->faker->date('Y-m-d', '+1 year'),
+            'pdf_link' => $this->faker->imageUrl,
+            'book_cover' => $this->faker->imageUrl(640, 480, 'education', true, 'Thumbnail'),
         ];
     }
 }
