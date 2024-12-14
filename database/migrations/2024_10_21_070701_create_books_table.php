@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('book_title');
             $table->string('book_cover')->nullable();
             $table->string('pdf_link');
+            $table->string('author')->nullable();
+            $table->string('descriptions')->nullable();
         });
     }
 

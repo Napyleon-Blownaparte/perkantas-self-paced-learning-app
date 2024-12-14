@@ -21,6 +21,8 @@ class BookFactory extends Factory
             'created_at' => $this->faker->date('Y-m-d', '+1 year'),
             'pdf_link' => $this->faker->imageUrl,
             'book_cover' => $this->faker->imageUrl(640, 480, 'education', true, 'Thumbnail'),
+            'author' => $this->faker->name(),
+            'descriptions' => $this->faker->paragraph(),
         ];
     }
 }
