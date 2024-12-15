@@ -279,10 +279,13 @@
     </section> --}}
 
    
-    <section class="p-6">
+    <section class="p-6" id="course">
         <div class="grid grid-cols-1 gap-6">
             <x-carousel-course :courses="$courses" title="Course You've might like"/>
-            <x-carousel-book :books="$books"/>
+            <div id="book">
+                <x-carousel-book :books="$books"/>
+            </div>
+            
         </div>
     </section>
     <x-footer></x-footer>
