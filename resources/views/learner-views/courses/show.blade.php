@@ -181,7 +181,7 @@
     </section>
     <section class="p-6">
         <div class="grid grid-cols-1 gap-6">
-            <x-carousel-course :courses="$randomCourses" title="Course You've might like" />
+            <x-carousel-course :courses="$randomCourses" title="Course You might like" />
         </div>
     </section>
     <x-footer/>

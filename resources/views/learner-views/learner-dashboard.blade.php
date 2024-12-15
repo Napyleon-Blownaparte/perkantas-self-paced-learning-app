@@ -180,7 +180,7 @@
                 <x-carousel-book :books="$books" />
 
                 <!--Recommendation -->
-                <x-carousel-course :courses="$randomCourses" title="Courses You've might like"/>
+                <x-carousel-course :courses="$randomCourses" title="Courses You might like"/>
 
         </section>
         <x-footer />
