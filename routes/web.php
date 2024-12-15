@@ -21,8 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index']);
 Route::get('/home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
 Route::get('/books/{id}', [App\Http\Controllers\BookController::class, 'show'])->name('books-show');
-Route::get('course/classwork', function (){
-    return view('instructor-views.classwork.index');
+Route::get('course/assessments', function (){
+    return view('instructor-views.classwork.index-assessment');
+});
+Route::get('course/learner-attempts', function (){
+    return view('instructor-views.classwork.index-attempts');
+});
+Route::get('course/assessment-attempts', function (){
+    return view('instructor-views.classwork.index-students');
 });
 Route::get('course/attempt', function (){
     return view('instructor-views.classwork.show');
