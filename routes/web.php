@@ -24,6 +24,9 @@ Route::get('/books/{id}', [App\Http\Controllers\BookController::class, 'show'])-
 Route::get('course/classwork', function (){
     return view('instructor-views.classwork.index');
 });
+Route::get('course/attempt', function (){
+    return view('instructor-views.classwork.show');
+});
 // Route::group([
 //     'prefix' => 'learner',
 //     'middleware' => 'learnerMiddleware',
