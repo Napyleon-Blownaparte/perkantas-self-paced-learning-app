@@ -24,10 +24,9 @@
                         <!-- Video -->
                         <div class="mb-4">
                             <label for="video" class="block text-gray-700">Video</label>
-                            <input id="video" type="file" name="video" value="{{ old('video') }}"
-                                accept="video/mp4,video/x-m4v"
+                            <input id="video" type="url" name="video" value="{{ old('video') }}"
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                            <x-input-error :messages="$errors->get('video')" class="mt-2" />
+                            <!-- <x-input-error :messages="$errors->get('video')" class="mt-2" /> -->
                         </div>
 
                         {{-- Image --}}
