@@ -17,6 +17,8 @@
                     @elseif (Auth::user()->role == 'instructor')
                         <a href="{{route('instructor.books.show',$book->id)}}"><button class="mt-4 bg-blue-800 text-white px-5 py-3 rounded-lg">Read Now</button></a>
                     @endif
+                @else
+                    <a href= "{{route('books-show',$book->id)}}"><button class="mt-4 bg-blue-800 text-white px-5 py-3 rounded-lg">Learn More</button></a> 
                 @endif
             </div>
          @endforeach
