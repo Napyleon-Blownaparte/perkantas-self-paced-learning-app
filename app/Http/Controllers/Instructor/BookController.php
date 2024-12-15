@@ -12,10 +12,27 @@ class BookController extends Controller
     /**
      * Display a listing of the books.
      */
-    public function index()
+    public function index(Request $request)
     {
         $books = Book::all();
-        return view('instructor-views.books.index', compact('books'));
+
+        $perPage = 8; // Jumlah item per halaman
+        $currentPage = $request->input('page', 1); // Ambil halaman saat ini, default 1
+        $paginatedBooks = $books->slice(($currentPage - 1) * $perPage, $perPage);
+
+        // Simulasi struktur pagination seperti Laravel
+        $paginatedBooks = new \Illuminate\Pagination\LengthAwarePaginator(
+            $paginatedBooks,
+            $books->count(),
+            $perPage,
+            $currentPage,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
+        
+    
+        return view('instructor-views.books.index', [
+            'books' => $paginatedBooks,
+        ]);
     }
 
     /**

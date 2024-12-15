@@ -39,6 +39,10 @@
                 @endforeach
             </div>
 
+            <p class="text-black mt-8">
+                {{ $courses->appends(request()->query())->onEachSide(5)->links() }}
+            </p>
+            
             <div class="relative py-2">
                 <a href="{{ route('instructor.courses.create') }}">
                     <div
@@ -67,10 +71,8 @@
                     </div>
                 </a>
             </div>
-            <p class="text-black mt-8">
-                {{ $courses->appends(request()->query())->onEachSide(5)->links() }}
-            </p>
 
+            
         @endif
 
     </div>
