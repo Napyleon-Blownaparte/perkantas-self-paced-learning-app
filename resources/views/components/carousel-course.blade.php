@@ -1,6 +1,6 @@
-<div class="bg-black p-6 rounded grid grid-cols-3 grid-flow-col">
+<div class="bg-black p-6 rounded grid md:grid-cols-3 grid-flow-row grid-rows-1">
     <div class="flex items-center">
-        <h2 class="text-6xl text-white font-bold mb-4 mr-4">{{ $title }}</h2>
+        <h2 class="text-5xl md:text-7xl text-white font-bold md:mb-4 mb-10 mr-4">{{ $title }}</h2>
     </div>
     <div class="flex space-x-4 overflow-x-auto col-span-2">
         @foreach ($courses as $course)
