@@ -86,10 +86,12 @@
                                 <div class="flex justify-between items-center">
                                     <h4 class="font-semibold text-gray-800 flex-1">{{ $chapter->title }}</h4>
                                     <div class="flex space-x-2 ml-4">
-                                        <a href="{{ route('instructor.chapters.edit', $chapter->id) }}" 
-                                            class="text-gray-800 bg-gray-100 hover:bg-gray-300 font-semibold flex items-center px-4 py-2 rounded-lg transition-colors duration-300 ease-in-out">
-                                            Edit
-                                        </a>
+                                        @can('update', $course)
+                                            <a href="{{ route('instructor.chapters.edit', $chapter->id) }}" 
+                                                class="text-gray-800 bg-gray-100 hover:bg-gray-300 font-semibold flex items-center px-4 py-2 rounded-lg transition-colors duration-300 ease-in-out">
+                                                Edit
+                                            </a>
+                                        @endcan
                                         <button
                                             class="toggle-btn text-gray-800 bg-gray-100 hover:bg-gray-300 font-semibold flex items-center px-4 py-2 rounded-lg transition-colors duration-300 ease-in-out"
                                             onclick="toggleDetails(this)">
