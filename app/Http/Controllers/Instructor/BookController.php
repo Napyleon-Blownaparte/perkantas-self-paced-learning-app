@@ -43,7 +43,7 @@ class BookController extends Controller
 
         Book::create($validated);
 
-        return redirect()->route('instructor-views.books.index')->with('success', 'Book created successfully.');
+        return redirect()->route('instructor.books.index')->with('success', 'Book created successfully.');
     }
 
     /**

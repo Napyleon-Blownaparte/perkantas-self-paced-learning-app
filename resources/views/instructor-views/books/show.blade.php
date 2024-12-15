@@ -16,7 +16,7 @@
                     <!-- Title -->
                     <tr>
                         <td class="font-semibold text-gray-700 py-2 w-32">Title:</td>
-                        <td class="text-gray-900 py-2">{{$book->title}}</td>
+                        <td class="text-gray-900 py-2">{{$book->book_title}}</td>
                     </tr>
                     <!-- Author -->
                     <tr>

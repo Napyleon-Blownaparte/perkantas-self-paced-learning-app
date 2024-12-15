@@ -33,6 +33,9 @@
                             <x-nav-link :href="route('instructor.enrollments.index')" :active="request()->routeIs('instructor.enrollments.index')">
                                 {{ __('Manage Enrollment') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('instructor.books.index')" :active="request()->routeIs('instructor.books.index')">
+                                {{ __('Books') }}
+                            </x-nav-link>
                         @endif
                     @endif
                 </div>
@@ -115,6 +118,9 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('instructor.enrollments.index')" :active="request()->routeIs('instructor.enrollments.index')">
                         {{ __('Manage Enrollment') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('instructor.books.index')" :active="request()->routeIs('instructor.books.index')">
+                        {{ __('Books') }}
                     </x-responsive-nav-link>
                 @endif
             @endif
