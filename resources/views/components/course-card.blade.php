@@ -16,6 +16,7 @@
         <img src="{{ asset('storage/' . $image_src) }}" alt="Course Image" class="w-full h-64 object-cover">
 
         <div class="p-4">
+            <h3 class="text-lg font-semibold mb-6">{{ $title }}</h3>  
             <button class="w-full px-4 py-2 rounded" style="{{ $statusColors[$status] }}">
                 {{ $status }}
             </button>

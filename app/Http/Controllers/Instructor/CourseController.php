@@ -59,8 +59,13 @@ class CourseController extends Controller
     {
         $validated = $request->validated();
 
-        $thumbnail_image_path = $request->file('thumbnail_image')->store('/courses/thumbnail_images', 'public');
-        $banner_image_path = $request->file('banner_image')->store('/courses/banner_images', 'public');
+        $thumbnail_image_path = $request->hasFile('thumbnail_image')
+        ? $request->file('thumbnail_image')->store('/courses/thumbnail_images', 'public')
+        : 'images/placeholder.svg'; 
+
+        $banner_image_path = $request->hasFile('banner_image')
+        ? $request->file('banner_image')->store('/courses/banner_images', 'public')
+        : 'images/placeholder.svg';
 
         $course = Course::create([
             'title' => $validated['title'],

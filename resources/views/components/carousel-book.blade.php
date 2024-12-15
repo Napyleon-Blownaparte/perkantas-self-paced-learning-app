@@ -8,7 +8,7 @@
     <div class="flex space-x-4 overflow-x-auto col-span-2">
         @foreach ($books as $book)
             <div class="min-w-96 bg-gray-500 p-4 rounded shadow-md">
-                <img src="{{$book->book_cover}}" alt="Course Image" class="rounded min-h-[400px] object-cover w-full">
+                <img src="{{ asset('storage/'.$book->book_cover) }}" alt="Course Image" class="rounded min-h-[400px] object-cover w-full">
                 <h3 class="mt-4 text-white text-2xl font-bold max-w-md">{{$book->book_title}}</h3>
                 
                 <a href="{{route('instructor.books.show',$book->id)}}"><button class="mt-4 bg-blue-800 text-white px-5 py-3">Read Now</button></a>
