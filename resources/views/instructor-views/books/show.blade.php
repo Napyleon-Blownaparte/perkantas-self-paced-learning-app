@@ -7,9 +7,8 @@
 
     <div class="flex-1 p-8 ml-16 mb-8 flex">
         <div class="flex-none">
-            <img src="https://via.placeholder.com/360x640" alt="Book cover" class="object-cover w-[360px] h-[640px] rounded">
+            <img src={{asset('storage/'.$book->book_cover)}} alt="Book cover" class="object-cover w-[360px] h-[640px] rounded">
         </div>
-
         <div class="ml-8 flex-1">
             <table class="min-w-full table-fixed">
                 <tbody>

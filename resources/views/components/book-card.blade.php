@@ -2,7 +2,7 @@
 
 <a href="{{$link_url}}" class="block">
     <div class="inline-block bg-white bg-opacity-55 backdrop-blur-sm rounded-lg shadow-md overflow-hidden p-2">
-        <img src="{{ $image_src }}" alt="Book cover" class="object-cover w-[360px] h-[640px]">
+        <img src="{{ asset('storage/'.$image_src) }}" alt="Book cover" class="object-cover w-[360px] h-[640px]">
         <div class="p-4">
             <h3 class="text-lg font-semibold {{ $text_color }} mb-2">{{ $title }}</h3>
 
