@@ -11,7 +11,13 @@
                 <img src="{{ asset('storage/'.$book->book_cover) }}" alt="Course Image" class="object-cover w-[360px] h-[640px]">
                 <h3 class="mt-4 text-white text-2xl font-bold max-w-md">{{$book->book_title}}</h3>
                 
-                <a href="{{route('instructor.books.show',$book->id)}}"><button class="mt-4 bg-blue-800 text-white px-5 py-3">Read Now</button></a>
+                @if(Auth::check())
+                    @if(Auth::user()->role == 'learner')
+                        <a href="{{route('learner.books.show',$book->id)}}"><button class="mt-4 bg-blue-800 text-white px-5 py-3 rounded-lg">Read Now</button></a>
+                    @elseif (Auth::user()->role == 'instructor')
+                        <a href="{{route('instructor.books.show',$book->id)}}"><button class="mt-4 bg-blue-800 text-white px-5 py-3 rounded-lg">Read Now</button></a>
+                    @endif
+                @endif
             </div>
          @endforeach
     </div>

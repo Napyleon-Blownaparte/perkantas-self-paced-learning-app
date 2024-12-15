@@ -12,10 +12,9 @@
                 <div class= "grid grid-cols-2 gap-6">
                     <a href="{{ route('learner.courses.show', $course->id) }}">
                         <button
-                            class="mt-4 bg-gray-500 text-white px-5 py-3 border-2 border-white">Learn
+                            class="mt-4 bg-blue-800 text-white px-5 py-3 rounded-lg">Learn
                             More</button>
                     </a>
-                    <button class="mt-4 bg-blue-800 text-white px-5 py-3">Enroll</button>
                 </div>
             </div>
         @endforeach

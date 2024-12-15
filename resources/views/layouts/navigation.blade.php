@@ -20,6 +20,9 @@
                             <x-nav-link :href="route('learner.courses.index')" :active="request()->routeIs('learner.courses.index')">
                                 {{ __('My Courses') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('learner.books.index')" :active="request()->routeIs('learner.books.index')">
+                                {{ __('Book Collection') }}
+                            </x-nav-link>
                         @elseif (Auth::user()->role == 'instructor')
                             <x-nav-link :href="route('instructor.instructor-dashboard')" :active="request()->routeIs('instructor.instructor-dashboard')">
                                 {{ __('Instructor Dashboard') }}
@@ -105,6 +108,9 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('learner.courses.index')" :active="request()->routeIs('learner.courses.index')">
                         {{ __('My Courses') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('learner.books.index')" :active="request()->routeIs('learner.books.index')">
+                        {{ __('Book Collection') }}
                     </x-responsive-nav-link>
                 @elseif (Auth::user()->role == 'instructor')
                     <x-responsive-nav-link :href="route('instructor.instructor-dashboard')" :active="request()->routeIs('instructor.instructor-dashboard')">
