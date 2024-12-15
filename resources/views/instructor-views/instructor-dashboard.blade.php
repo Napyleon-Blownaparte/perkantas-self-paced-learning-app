@@ -100,7 +100,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 px-16">
 
                     <!-- Add books -->
-                    <a href="#"
+                    <a href="{{route('instructor.books.create')}}"
                         class="bg-white bg-cover bg-no-repeat bg-center bg-fit rounded-lg shadow-md p-6 flex flex-col items-center justify-center space-y-4 hover:bg-gray-100 transition-colors group">
                         <div
                             class="flex items-center justify-center p-4 rounded-lg bg-white backdrop-blur-sm transition-colors group-hover:bg-gray-100">
