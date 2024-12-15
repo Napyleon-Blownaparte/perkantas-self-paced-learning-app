@@ -21,7 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index']);
 Route::get('/home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
 Route::get('/books/{id}', [App\Http\Controllers\BookController::class, 'show'])->name('books-show');
-
+Route::get('course/classwork', function (){
+    return view('instructor-views.classwork.index');
+});
+Route::get('course/attempt', function (){
+    return view('instructor-views.classwork.show');
+});
 // Route::group([
 //     'prefix' => 'learner',
 //     'middleware' => 'learnerMiddleware',
@@ -67,6 +72,8 @@ Route::group(['middleware' => 'auth'], function () {
             'destroy' => 'books.destroy',
         ])->shallow();
         Route::get('books/{id}/read', [App\Http\Controllers\Instructor\BookController::class, 'read'])->name('books.read');
+
+        Route::resource('courses.assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow();
     });
 
     Route::group([
@@ -86,8 +93,20 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+// Route::get('attempt-history/index', function() {
+//     return view ('instructor-views.attempt-history.index')
+// })->name('attempt-history.index');
+
+// Route::get('attempt-history/show', function() {
+//     return view ('instructor-views.attempt-history.show')
+// })->name('attempt-history.show');
 
 
+Route::get('attempt-history/show', function () {
+    return view('instructor-views.attempt-history.show');
+})->name('attempt-history.show');
+
+// <input type='text' value='{{$keyAnswer}}' disabled:"True">
 // Route::get('books/create', function () {
 //     return view('instructor-views.books.create');
 // })->name('books.create');
