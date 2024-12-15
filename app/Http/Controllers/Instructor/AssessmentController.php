@@ -16,7 +16,7 @@ class AssessmentController extends Controller
      */
     public function index(Chapter $chapter)
     {
-        return view('instructor-views.chapters.index', [
+        return view('instructor-views.assessments.index', [
             'chapter' => $chapter,
         ]);
     }

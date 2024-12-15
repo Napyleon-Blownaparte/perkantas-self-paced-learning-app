@@ -67,6 +67,8 @@ Route::group(['middleware' => 'auth'], function () {
             'destroy' => 'books.destroy',
         ])->shallow();
         Route::get('books/{id}/read', [App\Http\Controllers\Instructor\BookController::class, 'read'])->name('books.read');
+
+        Route::resource('courses.assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow();
     });
 
     Route::group([
