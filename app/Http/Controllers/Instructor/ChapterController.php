@@ -76,7 +76,7 @@ class ChapterController extends Controller
 
         $chapter->save();
 
-        return redirect()->route('instructor.chapters.show', $chapter->id)->with('success', 'You have successfully edited the chapter');
+        return redirect()->route('instructor.courses.show', $chapter->course_id)->with('success', 'You have successfully edited the chapter');
     }
 
     /**
@@ -86,6 +86,6 @@ class ChapterController extends Controller
     {
         $chapter->delete();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.courses.show', $chapter->course_id)->with('success', 'You have successfully deleted the chapter');
     }
 }

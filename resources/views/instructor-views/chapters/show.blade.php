@@ -46,14 +46,18 @@
                     </svg>
                 </button>
                 @foreach ($chapter->materials as $index => $material)
-                    @if ($index % 2 == 0)
-                        <x-section class="px-20" title="{{ $material->title }}" content="{{ $material->content }}"
-                            imgSrc="{{ $material->image }}" videoSrc="{{ $material->video }}" />
-                    @else
-                        <x-section-reverse class="px-20" title="{{ $material->title }}"
-                            content="{{ $material->content }}" imgSrc="{{ $material->image }}"
-                            videoSrc="{{ $material->video }}" />
-                    @endif
+                    <a href="{{ route('instructor.materials.edit', $material->id) }}" 
+                    class="block transition transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    title="Click to edit this material">
+                        @if ($index % 2 == 0)
+                            <x-section class="px-20" title="{{ $material->title }}" content="{{ $material->content }}"
+                                imgSrc="{{ $material->image }}" videoSrc="{{ $material->video }}" />
+                        @else
+                            <x-section-reverse class="px-20" title="{{ $material->title }}"
+                                content="{{ $material->content }}" imgSrc="{{ $material->image }}"
+                                videoSrc="{{ $material->video }}" />
+                        @endif
+                    </a>
                 @endforeach
                 @can('update', $chapter->course)
                     <div class="">

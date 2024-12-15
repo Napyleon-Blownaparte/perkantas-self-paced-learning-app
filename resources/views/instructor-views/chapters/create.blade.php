@@ -17,6 +17,7 @@
                         <div class="mb-4">
                             <x-input-label for="title" :value="__('Title')" class="block text-gray-700" />
                             <x-text-input id="title" type="text" name="title" :value="old('title')" autofocus
+                                placeholder="Enter a descriptive title, e.g., 'The Parable of the Good Samaritan'"
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
