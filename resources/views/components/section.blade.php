@@ -15,10 +15,21 @@
         <!-- Video Content -->
         @if (!empty($videoSrc))
             <div class="md:w-1/2 mt-6 md:mt-0">
-                <video controls class="w-full h-72 mx-auto rounded-lg shadow-lg">
-                    <source src="{{$videoSrc}}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                @php
+                    // Extract the video ID from the YouTube URL
+                    preg_match('/(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=|v\/)([a-zA-Z0-9_-]{11})/', $videoSrc, $matches);
+                    $videoId = $matches[1] ?? null;
+                @endphp
+
+                @if ($videoId)
+                    <object width="100%" height="400" 
+                        data="https://www.youtube.com/embed/{{ $videoId }}" 
+                        type="text/html">
+                        <p>Your browser does not support embedded videos. <a href="{{ $videoSrc }}" target="_blank" rel="noopener noreferrer">Watch the video here.</a></p>
+                    </object>
+                @else
+                    <p class="text-red-500">Invalid YouTube URL</p>
+                @endif
             </div>
         @endif
 

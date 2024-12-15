@@ -26,17 +26,10 @@
                         <!-- Video -->
                         <div class="mb-4">
                             <label for="video" class="block text-gray-700">Video</label>
-                            <input id="video" type="file" name="video" accept="video/mp4,video/x-m4v"
+                            <input id="video" type="url" name="video" value="{{ old('video', $material->video) }}" 
                                 placeholder="e.g., https://www.youtube.com/watch?v=example" 
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                             <x-input-error :messages="$errors->get('video')" class="mt-2" />
-                            @if ($material->video)
-                                <video class="mt-2 w-full" controls>
-                                    <source src="{{ asset('storage/' . $material->video) }}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            @endif
-
                         </div>
 
                         {{-- Image --}}
