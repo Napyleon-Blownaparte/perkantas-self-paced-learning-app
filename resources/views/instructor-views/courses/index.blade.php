@@ -28,7 +28,7 @@
                 <p class="text-slate-500 text-center translate-y-[6em]">Pencarian tidak ditemukan :(</p>
             </div>
         @else
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <!-- Grid container untuk kartu -->
                 @foreach ($courses as $course)
                     <div class="flex-none mb-12">
@@ -42,8 +42,8 @@
             <div class="relative py-2">
                 <a href="{{ route('instructor.courses.create') }}">
                     <div
-                        class="m-24 my-12 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
-                        <div class="m-12">
+                        class="m-12 my-6 md:m-24 md:my-12 border-4 border-dotted rounded-xl border-gray-400 text-center flex flex-col justify-center items-center py-10">
+                        <div class="m-2 md:m-6">
                             <svg class="m-auto my-8" fill="#303030" version="1.1" id="Capa_1"
                                 xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="1.5em" height="1.5em"

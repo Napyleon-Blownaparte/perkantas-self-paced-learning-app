@@ -1,6 +1,6 @@
 @props(['books'])
 
-<div class="bg-black p-6 rounded grid grid-cols-3 grid-flow-col">
+<div class="bg-black p-6 rounded grid md:grid-cols-3 grid-flow-row grid-rows-1">
     <div class="flex items-center">
         <h2 class="text-7xl text-white font-bold mb-4">Books</h2>
     </div>
