@@ -12,7 +12,7 @@
 
             @if ($classwork_url)
                 <a href="{{ $classwork_url }}" class="flex justify-end">
-                    <button class="bg-white text-black border-2 rounded-md px-4 py-2 hover:bg-gray-300 w-full">Classwork</button>
+                    <button class="bg-white text-black border-2 rounded-md px-4 py-2 hover:bg-gray-300 w-full">Assessments</button>
                 </a>
             @endif
         </div>

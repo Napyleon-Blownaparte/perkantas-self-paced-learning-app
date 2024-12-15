@@ -32,7 +32,7 @@
                 <!-- Grid container untuk kartu -->
                 @foreach ($courses as $course)
                 @php
-                    $classworkUrl = auth()->user()->can('edit', $course)
+                    $classworkUrl = auth()->user()->can('update', $course)
                         ? route('instructor.courses.assessments.index', $course->id)
                         : null;
                 @endphp
