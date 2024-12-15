@@ -72,7 +72,16 @@
         </div>
 
         <!-- Sign Up Button -->
-        <div class="flex items-center justify-center">
+        <div class="mt-4 flex items-center justify-between">
+            <div class="text-center">
+                <a
+                    href="{{ route('login') }}"
+                    class="bg-gray-500 text-white rounded-md px-4 py-2 hover:bg-gray-600 inline-block"
+                >
+                    Back
+                </a>
+            </div>
+            
             <button
                 type="submit"
                 id="signup-btn"

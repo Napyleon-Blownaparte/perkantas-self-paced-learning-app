@@ -20,30 +20,28 @@ class StoreAttempt_HistoryRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-public function rules()
+    public function rules()
     {
-        // Mendapatkan semua pertanyaan yang terlibat dalam ujian
-        $questionIds = array_keys($this->input('answers', [])); // Mendapatkan semua ID pertanyaan dari jawaban
+        // Mendapatkan semua ID pertanyaan terkait dengan assessment yang sedang dikerjakan
+        $questionIds = $this->route('assessment')->questions->pluck('id')->toArray();
 
         $rules = [
             'answers' => 'required|array', // 'answers' harus berupa array
         ];
 
-        // Menambahkan aturan untuk setiap pertanyaan dalam 'answers'
+        // Menambahkan aturan validasi untuk setiap pertanyaan
         foreach ($questionIds as $questionId) {
             $question = Question::find($questionId);
 
             if ($question) {
                 // Jika jenis soal adalah Essay
                 if ($question->questionable_type === 'App\Models\EssayQuestion') {
-                    // Jawaban harus berupa string yang tidak boleh kosong untuk soal essay
-                    $rules["answers.$questionId"] = 'required|string';
+                    $rules["answers.$questionId"] = 'required|string'; // Jawaban wajib untuk essay
                 }
-                // Jika jenis soal adalah MultipleChoice
-                else if ($question->questionable_type === 'App\Models\MultipleChoiceQuestion') {
-                    // Jawaban harus berupa pilihan yang valid dan tidak boleh kosong untuk soal pilihan ganda
-                    $choices = $question->questionable->multiple_choice_options->pluck('id')->toArray(); // Mendapatkan pilihan jawaban yang valid
-                    $rules["answers.$questionId"] = 'required|in:' . implode(',', $choices);
+                // Jika jenis soal adalah Multiple Choice
+                elseif ($question->questionable_type === 'App\Models\MultipleChoiceQuestion') {
+                    $choices = $question->questionable->multiple_choice_options->pluck('id')->toArray();
+                    $rules["answers.$questionId"] = 'required|in:' . implode(',', $choices); // Harus salah satu dari opsi
                 }
             }
         }
@@ -51,7 +49,7 @@ public function rules()
         return $rules;
     }
 
-        /**
+    /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
@@ -62,10 +60,9 @@ public function rules()
             'answers.required' => 'Jawaban harus diisi.',
             'answers.array' => 'Jawaban harus berupa array.',
             'answers.*.required' => 'Jawaban untuk setiap pertanyaan harus diisi.',
-            'answers.*.string' => 'Jawaban harus berupa teks.',
-            'answers.*.in' => 'Jawaban yang dipilih tidak valid.',
+            'answers.*.string' => 'Jawaban harus berupa teks untuk soal essay.',
+            'answers.*.in' => 'Jawaban yang dipilih tidak valid untuk soal pilihan ganda.',
         ];
     }
+
 }
-
-

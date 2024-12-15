@@ -14,13 +14,15 @@ class SectionReverse extends Component
     public $title;
     public $content;
     public $imgSrc;
+    public $videoSrc;
 
-    public function __construct($title, $content, $imgSrc)
+    public function __construct($title, $content, $imgSrc=null,$videoSrc = null)
     {
         //
         $this->title = $title;
         $this->content = $content;
         $this->imgSrc = $imgSrc;
+        $this->videoSrc = $videoSrc;
     }
 
 

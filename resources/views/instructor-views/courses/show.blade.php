@@ -129,20 +129,22 @@
                                 </div>
 
                                 @can('update', $course)
-                                <div class="mt-4">
-                                    <a href="{{ route('instructor.chapters.materials.create', $chapter->id) }}">
-                                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
-                                            Add Material
-                                        </button>
-                                    </a>
+                                    <div class="mt-4">
+                                        <a href="{{ route('instructor.chapters.materials.create', $chapter->id) }}">
+                                            <button
+                                                class="bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                                                Add Material
+                                            </button>
+                                        </a>
 
-                                    <a href="{{ route('instructor.chapters.assessments.create', $chapter->id) }}">
-                                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
-                                            Add Assessment
-                                        </button>
-                                    </a>
+                                        <a href="{{ route('instructor.chapters.assessments.create', $chapter->id) }}">
+                                            <button
+                                                class="bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                                                Add Assessment
+                                            </button>
+                                        </a>
 
-                                </div>
+                                    </div>
                                 @endcan
 
 
@@ -161,10 +163,11 @@
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         width="1.5em" height="1.5em" viewBox="0 0 45.402 45.402" xml:space="preserve">
                                         <g>
-                                            <path d="M41.267,18.557H26.832V4.134C26.832,1.851,24.99,0,22.707,0c-2.283,0-4.124,1.851-4.124,4.135v14.432H4.141
-                                            c-2.283,0-4.139,1.851-4.138,4.135c-0.001,1.141,0.46,2.187,1.207,2.934c0.748,0.749,1.78,1.222,2.92,1.222h14.453V41.27
-                                            c0,1.142,0.453,2.176,1.201,2.922c0.748,0.748,1.777,1.211,2.919,1.211c2.282,0,4.129-1.851,4.129-4.133V26.857h14.435
-                                            c2.283,0,4.134-1.867,4.133-4.15C45.399,20.425,43.548,18.557,41.267,18.557z" />
+                                            <path
+                                                d="M41.267,18.557H26.832V4.134C26.832,1.851,24.99,0,22.707,0c-2.283,0-4.124,1.851-4.124,4.135v14.432H4.141
+                                                        c-2.283,0-4.139,1.851-4.138,4.135c-0.001,1.141,0.46,2.187,1.207,2.934c0.748,0.749,1.78,1.222,2.92,1.222h14.453V41.27
+                                                        c0,1.142,0.453,2.176,1.201,2.922c0.748,0.748,1.777,1.211,2.919,1.211c2.282,0,4.129-1.851,4.129-4.133V26.857h14.435
+                                                        c2.283,0,4.134-1.867,4.133-4.15C45.399,20.425,43.548,18.557,41.267,18.557z" />
                                         </g>
                                     </svg>
 
@@ -191,80 +194,14 @@
 
         </div>
     </section>
-    <section class="course px-4 md:px-16 pb-8 pt-24" id="course">
-        <div
-            class="course-container bg-customPurple flex items-center border border-solid border-gray-700 p-4 rounded-md my-6 text-gray-100 font-bold text-xl">
-            <h1 class="px-2">Course Recommendation</h1>
-        </div>
-
-        <div class="w-full relative">
-            <div class="swiper multiple-slide-carousel swiper-container relative">
-                <div class="swiper-wrapper mb-16 pb-16">
-                    <div class="swiper-slide">
-                        <div
-                            class="bg-customPurple rounded-lg shadow h-96 overflow-hidden flex flex-col justify-between">
-                            <img class="rounded-t-lg object-cover w-full h-48" src="https://placehold.co/600"
-                                alt="" />
-                            <div class="p-5 flex-grow overflow-hidden">
-                                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-100 line-clamp-2">
-                                    Noteworthy technology acquisitions 2021 that happened over the past year, many
-                                    notable deals were made
-                                </h5>
-                                <p class="mb-3 font-normal text-gray-200">Est. Hours</p>
-                            </div>
-                            <div class="p-5 flex justify-between space-x-4">
-                                <a href="#"
-                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-100 hover:text-gray-900 rounded-lg hover:bg-gray-100 outline-white border transition-colors">
-                                    Learn more
-                                </a>
-                                <a href="#"
-                                    class="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition-colors">
-                                    Enroll
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                            <span class="text-2xl font-semibold text-indigo-600">Slide 2 </span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                            <span class="text-2xl font-semibold text-indigo-600">Slide 3 </span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center">
-                            <span class="text-2xl font-semibold text-indigo-600">Slide 4 </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute flex justify-center items-center m-auto left-0 right-0 w-fit bottom-12">
-                    <button id="slider-button-left"
-                        class="swiper-button-prevs z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full  hover:bg-customPurple !-translate-x-16"
-                        data-carousel-prev>
-                        <svg class="h-5 w-5 text-customPurple group-hover:text-white"
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                            fill="none">
-                            <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor"
-                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                    <button id="slider-button-right"
-                        class="swiper-button-nexts z-10 group !p-2 flex justify-center items-center border border-solid border-customPurple !w-12 !h-12 transition-all duration-500 rounded-full hover:bg-customPurple !translate-x-16"
-                        data-carousel-next>
-                        <svg class="h-5 w-5 text-customPurple group-hover:text-white"
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                            fill="none">
-                            <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor"
-                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+    @if (session('success'))
+        <x-success-modal id="success-modal" title="Success" content="{{ session('success') }}" />
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function() {
+                toggleModal('success-modal');
+            });
+        </script>
+    @endif
     <script>
         function toggleDetails(button) {
             const details = button.closest('.py-4').querySelector('.chapter-details');

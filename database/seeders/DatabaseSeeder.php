@@ -18,6 +18,8 @@ use Database\Seeders\PivotTableSeeders\AttemptHistorySeeder;
 use Database\Seeders\PivotTableSeeders\CourseInstructorSeeder;
 use Database\Seeders\PivotTableSeeders\EnrollmentSeeder;
 use Database\Seeders\PivotTableSeeders\LearnersAnswerSeeder;
+use Database\Seeders\IndependentTableSeeders\BookSeeder;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -38,7 +40,7 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
 
 
-
+            BookSeeder::class,
 
             EnrollmentSeeder::class,
             CourseInstructorSeeder::class,

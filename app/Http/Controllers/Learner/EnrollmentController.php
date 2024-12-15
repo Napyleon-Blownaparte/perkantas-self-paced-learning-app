@@ -38,7 +38,7 @@ class EnrollmentController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->route('learner.courses.show', $course->id);
+        return redirect()->route('learner.courses.show', $course->id)->with('success', 'You have successfully enrolled in the course');;
     }
 
     /**

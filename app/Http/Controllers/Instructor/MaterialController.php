@@ -41,8 +41,8 @@ class MaterialController extends Controller
         $video_path = null;
         $image_path = null;
 
-        if ($request->hasFile('video')) {
-            $video_path = $request->file('video')->store('/materials/videos/', 'public');
+        if ($request->has('video')) {
+            $video_path = $validated['video'];
         }
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('/materials/images', 'public');
@@ -55,7 +55,7 @@ class MaterialController extends Controller
             'content' => $validated['content'],
         ]);
 
-        return redirect()->route('instructor.chapters.show', $chapter->id);
+        return redirect()->route('instructor.chapters.show', $chapter->id)->with('success', 'You have successfully created the material');
     }
 
     /**
@@ -96,7 +96,7 @@ class MaterialController extends Controller
 
         $material->save();
 
-        return redirect()->route('instructor.chapters.show', $material->chapter->id);
+        return redirect()->route('instructor.chapters.show', $material->chapter->id)->with('success', 'You have successfully edited the material');
     }
 
     /**

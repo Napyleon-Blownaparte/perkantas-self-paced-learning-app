@@ -68,7 +68,7 @@ class MultipleChoiceQuestionController extends Controller
             'question_text' => $validated['question_text'],
         ]);
 
-        return redirect()->route('instructor.chapters.show', $assessment->chapter);
+        return redirect()->route('instructor.chapters.show', $assessment->chapter)->with('success', 'You have successfully created the multiple choice question');
     }
 
 
@@ -115,7 +115,7 @@ class MultipleChoiceQuestionController extends Controller
             'question_text' => $validated['question_text'],
         ]);
 
-        return redirect()->route('instructor.chapters.show', $multipleChoiceQuestion->question->assessment->chapter->id);
+        return redirect()->route('instructor.chapters.show', $multipleChoiceQuestion->question->assessment->chapter->id)->with('success', 'You have successfully edited the multiple choice question');
     }
 
 

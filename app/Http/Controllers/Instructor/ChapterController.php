@@ -42,7 +42,7 @@ class ChapterController extends Controller
             'title' => $validated['title'],
         ]);
 
-        return redirect()->route('instructor.chapters.show', $chapter->id);
+        return redirect()->route('instructor.chapters.show', $chapter->id)->with('success', 'You have successfully created the chapter');
     }
 
     /**
@@ -76,7 +76,7 @@ class ChapterController extends Controller
 
         $chapter->save();
 
-        return redirect()->route('instructor.chapters.show', $chapter->id);
+        return redirect()->route('instructor.chapters.show', $chapter->id)->with('success', 'You have successfully edited the chapter');
     }
 
     /**

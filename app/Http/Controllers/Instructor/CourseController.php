@@ -59,8 +59,13 @@ class CourseController extends Controller
     {
         $validated = $request->validated();
 
-        $thumbnail_image_path = $request->file('thumbnail_image')->store('/courses/thumbnail_images', 'public');
-        $banner_image_path = $request->file('banner_image')->store('/courses/banner_images', 'public');
+        $thumbnail_image_path = $request->hasFile('thumbnail_image')
+        ? $request->file('thumbnail_image')->store('/courses/thumbnail_images', 'public')
+        : 'images/placeholder.svg'; 
+
+        $banner_image_path = $request->hasFile('banner_image')
+        ? $request->file('banner_image')->store('/courses/banner_images', 'public')
+        : 'images/placeholder.svg';
 
         $course = Course::create([
             'title' => $validated['title'],
@@ -77,7 +82,7 @@ class CourseController extends Controller
             'course_id' => $course->id,
         ]);
 
-        return redirect()->route('instructor.courses.index', ['status' => 'instructor']);
+        return redirect()->route('instructor.courses.index', ['status' => 'instructor'])->with('success', 'You have successfully created the course');
     }
 
     /**
@@ -118,7 +123,7 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect()->route('instructor.courses.show', $course->id);
+        return redirect()->route('instructor.courses.show', $course->id)->with('success', 'You have successfully edited the course');
     }
 
     /**

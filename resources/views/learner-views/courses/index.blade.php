@@ -1,5 +1,4 @@
 <x-app-layout>
-    <x-learner-sidebar></x-learner-sidebar>
     <div class="flex-1 p-8 ml-16 mb-8">
         <h1 class="text-4xl font-bold mb-4">Courses Available</h1>
 
@@ -19,6 +18,7 @@
             </div>
         @endauth
 
+        
         @if ($courses->isEmpty())
             <div class=" mb-64">
                 <svg class="svg-icon text-slate-400 m-auto translate-y-20" width="200" height="200"
@@ -30,13 +30,18 @@
                 <p class="text-slate-500 text-center translate-y-[6em]">Pencarian tidak ditemukan :(</p>
             </div>
         @else
+           
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <!-- Grid container untuk kartu -->
+                 {{-- @php
+                        dd($courses)
+                    @endphp --}}
                 @foreach ($courses as $course)
                     <div class="flex-none mb-12">
                         <x-course-card image_src="{{ $course->thumbnail_image }}"
                             title="{{ $course->title }}" id="{{ $course->id }}"
-                            link_url="{{ route('learner.courses.show', $course->id) }}" text_color="text-black" />
+                            link_url="{{ route('learner.courses.show', $course->id) }}" 
+                            text_color="text-black" :status="$statusMap[$course->id]" />
                     </div>
                 @endforeach
             </div>

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index']);
 Route::get('/home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
+Route::get('/books/{id}', [App\Http\Controllers\BookController::class, 'show'])->name('books-show');
 
 // Route::group([
 //     'prefix' => 'learner',
@@ -56,6 +57,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('assessments.multiple-choice-questions', App\Http\Controllers\Instructor\MultipleChoiceQuestionController::class)->shallow();
         Route::resource('assessments.essay-questions', App\Http\Controllers\Instructor\EssayQuestionController::class)->shallow();
         Route::resource('enrollments', App\Http\Controllers\Instructor\EnrollmentController::class)->shallow();
+        Route::resource('books', App\Http\Controllers\Instructor\BookController::class)->names([
+            'index' => 'books.index',
+            'create' => 'books.create',
+            'store' => 'books.store',
+            'show' => 'books.show',
+            'edit' => 'books.edit',
+            'update' => 'books.update',
+            'destroy' => 'books.destroy',
+        ])->shallow();
+        Route::get('books/{id}/read', [App\Http\Controllers\Instructor\BookController::class, 'read'])->name('books.read');
     });
 
     Route::group([
@@ -69,10 +80,30 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('instructors', App\Http\Controllers\Learner\InstructorController::class)->shallow()->only(['show']);
         Route::resource('courses.enrollments', App\Http\Controllers\Learner\EnrollmentController::class)->shallow()->only(['store']);
         Route::resource('courses.chapters', App\Http\Controllers\Learner\ChapterController::class)->shallow()->only(['show']);
+        Route::resource('books', App\Http\Controllers\Learner\BookController::class)->shallow()->only(['show','index']);
+        Route::get('books/{id}/read', [App\Http\Controllers\Instructor\BookController::class, 'read'])->name('books.read');
         // Route::resource('courses.assessments', App\Http\Controllers\Learner\AssessmentController::class)->shallow()->only(['show']);
-
     });
 });
+
+
+
+// Route::get('books/create', function () {
+//     return view('instructor-views.books.create');
+// })->name('books.create');
+// Route::get('books/index', function () {
+//     return view('instructor-views.books.index');
+// })->name('books.create');
+// Route::get('books/show', function () {
+//     return view('instructor-views.books.show');
+// })->name('books.create');
+// Route::get('books/read', [BookController::class, 'read'] {
+//     return view('instructor-views.books.read');
+// })->name('instructor.books.read');
+// use App\Http\Controllers\Instructors\BookController;
+
+// Route::get('/instructor/books/{id}/read', [BookController::class, 'read'])->name('instructor.books.read');
+
 
 
 
