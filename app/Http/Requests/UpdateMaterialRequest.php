@@ -25,7 +25,7 @@ class UpdateMaterialRequest extends FormRequest
             'title' => 'sometimes|string|max:255',
             'content' => 'sometimes|string',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:204800',
-            'video' => 'sometimes|mimetypes:video/mp4,video/x-m4v|max:1024000',
+            'video' => 'sometimes|string',
         ];
     }
 }

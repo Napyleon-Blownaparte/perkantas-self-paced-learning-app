@@ -41,8 +41,8 @@ class MaterialController extends Controller
         $video_path = null;
         $image_path = null;
 
-        if ($request->hasFile('video')) {
-            $video_path = $request->file('video')->store('/materials/videos/', 'public');
+        if ($request->has('video')) {
+            $video_path = $validated['video'];
         }
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('/materials/images', 'public');
