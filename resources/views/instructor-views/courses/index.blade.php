@@ -33,7 +33,8 @@
                 @foreach ($courses as $course)
                     <div class="flex-none mb-12">
                         <x-course-card-instructor image_src="{{ $course->thumbnail_image }}" title="{{ $course->title }}"
-                            id="{{ $course->id }}" link_url="{{ route('instructor.courses.show', $course->id) }}"
+                            id="{{ $course->id }}" link_url="{{ route('instructor.courses.show', $course->id) }}" 
+                            classwork_url="#"
                             text_color="text-black" />
                     </div>
                 @endforeach
