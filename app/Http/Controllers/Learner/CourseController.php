@@ -37,9 +37,9 @@ class CourseController extends Controller
              // Jika status tidak diberikan, ambil semua courses di tabel
              $courses = Course::all();
          }
-        $statusMap = $courses->mapWithKeys(function ($course) use ($enrollments) {
+            $statusMap = $courses->mapWithKeys(function ($course) use ($enrollments) {
             // Check if there's an enrollment for the course
-            $enrollment = $enrollments->firstWhere('course_id', $course->id);
+            $enrollment = $enrollments->reverse()->firstWhere('course_id', $course->id);
 
             $status = match ($enrollment?->status) {
                 'accepted' => 'Accepted',

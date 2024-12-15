@@ -24,7 +24,7 @@ class BookRequest extends FormRequest
             'author' => 'nullable|string|max:255',
             'descriptions' => 'nullable|string',
             'cover_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'pdf_file' => 'nullable|mimes:pdf|max:10000',
+            'pdf_file' => 'required|mimes:pdf|max:2048',
         ];
     }
 }

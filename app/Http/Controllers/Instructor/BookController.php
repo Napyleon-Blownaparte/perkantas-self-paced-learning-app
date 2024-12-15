@@ -50,9 +50,9 @@ class BookController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->hasFile('cover_image')) {
-            $validated['book_cover'] = $request->file('cover_image')->store('book_covers', 'public');
-        }
+        $validated['book_cover'] = $request->hasFile('cover_image')
+        ? $request->file('cover_image')->store('book_covers', 'public')
+        : 'images/placeholder.svg';
 
         if ($request->hasFile('pdf_file')) {
             $validated['pdf_link'] = $request->file('pdf_file')->store('books', 'public');

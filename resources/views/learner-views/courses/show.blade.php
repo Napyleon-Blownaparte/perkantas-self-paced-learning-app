@@ -28,7 +28,7 @@
                     $enrollmentStatus = null;
 
                     if (Auth::check()) {
-                        $enrollment = $course->enrollments->firstWhere('learner_id', Auth::user()->id);
+                        $enrollment = $course->enrollments->reverse()->firstWhere('learner_id', Auth::user()->id);
                         $isEnrolled = $enrollment && $enrollment->status !== 'stopped';
                         $enrollmentStatus = $enrollment ? $enrollment->status : null; // Cek apakah $enrollment null
                     }
@@ -134,6 +134,7 @@
                                                     request()->user()->learner->id,
                                                 )
                                                     ->where('course_id', $course->id)
+                                                    ->latest()
                                                     ->first();
                                             @endphp
 
