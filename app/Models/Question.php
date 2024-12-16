@@ -26,4 +26,9 @@ class Question extends Model
         return $this->belongsTo(Assessment::class);
     }
 
+    public function learners_answer()
+    {
+        return $this->hasMany(LearnersAnswer::class, 'question_id');
+    }
+
 }
