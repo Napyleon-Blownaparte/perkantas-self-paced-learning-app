@@ -43,7 +43,9 @@ class AttemptHistoryController extends Controller
      */
     public function show(AttemptHistory $attemptHistory)
     {
-        //
+        return view('instructor-views.attempt-histories.show', [
+            'attempt_history' => $attemptHistory
+        ]);
     }
 
     /**

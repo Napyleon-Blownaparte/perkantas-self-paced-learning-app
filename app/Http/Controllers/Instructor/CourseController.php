@@ -133,6 +133,6 @@ class CourseController extends Controller
     {
         $course->delete();
 
-        return redirect()->route('instructor.courses.show', $course->id);
+        return redirect()->route('instructor.courses.index');
     }
 }
