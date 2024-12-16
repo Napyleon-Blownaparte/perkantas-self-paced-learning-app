@@ -33,7 +33,7 @@
                 @foreach ($courses as $course)
                 @php
                     $classworkUrl = auth()->user()->can('update', $course)
-                        ? route('instructor.courses.assessments.index', $course->id)
+                        ? route('instructor.courses.chapters.index', $course->id)
                         : null;
                 @endphp
 
