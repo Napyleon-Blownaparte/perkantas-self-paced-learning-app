@@ -88,7 +88,9 @@ Route::group(['middleware' => 'auth'], function () {
         ])->shallow();
         Route::get('books/{id}/read', [App\Http\Controllers\Instructor\BookController::class, 'read'])->name('books.read');
 
-        Route::resource('courses.assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow();
+        Route::resource('assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow()->only('show');
+
+        Route::resource('enrollments.assessments.attempt-histories', App\Http\Controllers\Instructor\AttemptHistoryController::class)->shallow()->only(['index', 'show']);
     });
 
     Route::group([
