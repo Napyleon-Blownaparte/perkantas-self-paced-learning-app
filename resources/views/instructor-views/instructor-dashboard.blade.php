@@ -165,9 +165,7 @@
                                         Est. {{ $course->estimated_time }} Hour(s)</p>
                                     <div class= "grid grid-cols-1 gap-6">
                                         <a href="{{ route('instructor.courses.show', $course->id) }}">
-                                            <button
-                                                class="mt-4 bg-gray-500 text-white px-5 py-3 border-2 border-white">Manage
-                                            </button>
+                                            <button class="mt-4 bg-blue-800 text-white px-5 py-3 rounded-lg">Manage</button>
                                         </a>
                                     </div>
                                 </div>

@@ -24,6 +24,7 @@
                                 name="name"
                                 :value="old('name', $assessment->name)"
                                 autofocus
+                                placeholder="Enter a descriptive title, e.g., 'Christian Theology Knowledge Check'"
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                             />
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
