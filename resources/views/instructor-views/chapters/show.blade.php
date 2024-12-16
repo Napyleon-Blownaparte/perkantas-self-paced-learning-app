@@ -22,6 +22,7 @@
                     <hr class="border-t border-gray-200 my-2">
                 @endforeach
             </nav>
+            @can('update', $chapter->course)
             <div>
                 <a href="{{ route('instructor.courses.chapters.create', $chapter->course->id) }}">
                     <button
@@ -31,6 +32,7 @@
                     </button>
                 </a>
             </div>
+            @endcan
         </div>
 
 
@@ -93,6 +95,7 @@
                 @foreach ($chapter->assessments as $assessment)
                     <h1 class="font-bold text-[4rem] p-16 pb-4">{{ $assessment->name }}</h1>
                     <div class="mx-20">
+                        @can('update', $chapter->course)
                         <a href="{{ route('instructor.assessments.edit', $assessment) }}" class="">
                             <button
                                 style="color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; border: none; cursor: pointer;"
@@ -106,6 +109,8 @@
                                 <p>Edit Assessment</p>
                             </button>
                         </a>
+                        @endcan
+
 
                         {{-- Iterasi pertanyaan dalam assessment --}}
                         @foreach ($assessment->questions as $question)
