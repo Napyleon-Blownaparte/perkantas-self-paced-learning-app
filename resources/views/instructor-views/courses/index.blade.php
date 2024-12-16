@@ -1,13 +1,14 @@
 <x-app-layout>
-    <div class="flex-1 p-8 ml-16 mb-8">
-        <h1 class="text-4xl font-bold mb-4">Manage Courses</h1>
+    <div class="p-4 sm:p-6 md:p-8">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Manage Courses</h1>
 
         <!-- Filter dropdown -->
         @auth
-            <div class="mb-4 flex items-center">
-                <label for="enrollment-status" class="mr-2 text-lg font-medium">Filter by Enrollment Status:</label>
+            <div class="mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <label for="enrollment-status" class="text-lg font-medium">Filter by Enrollment Status:</label>
                 <form method="GET" action="{{ url()->current() }}">
-                    <select name="status" id="instruction-status" class="border rounded px-3 py-2 w-64"
+                    <select name="status" id="instruction-status"
+                        class="border border-gray-300 rounded px-3 py-2 w-full sm:w-64 focus:ring focus:ring-blue-200"
                         onchange="this.form.submit()">
                         <option value="">All Courses</option>
                         <option value="instructor" {{ request('status') === 'instructor' ? 'selected' : '' }}>Courses I'm
@@ -28,8 +29,7 @@
                 <p class="text-slate-500 text-center translate-y-[6em]">Pencarian tidak ditemukan :(</p>
             </div>
         @else
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Grid container untuk kartu -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($courses as $course)
                 @php
                     $classworkUrl = auth()->user()->can('update', $course)
