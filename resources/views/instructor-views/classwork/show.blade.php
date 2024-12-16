@@ -14,7 +14,7 @@
         answer_2="maybe this"
         answer_3="its this!"
         answer_4="bukan ini"
-        key_index=2
+        key_index=0
         learner_answer=3
         ></x-learner-answer-multi>
 

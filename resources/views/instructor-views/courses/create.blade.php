@@ -17,6 +17,7 @@
                         <div class="mb-4">
                             <x-input-label for="title" :value="__('Title')" class="block text-gray-700" />
                             <x-text-input id="title" type="text" name="title" :value="old('title')" autofocus
+                                placeholder="Enter a descriptive title, e.g., 'Introduction to Christianity'"
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
@@ -25,6 +26,7 @@
                         <div class="mb-4">
                             <x-input-label for="description" :value="__('Description')" class="block text-gray-700" />
                             <x-text-input id="description" type="text" name="description" :value="old('description')" autofocus
+                                placeholder="Provide a brief description of the course" 
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
@@ -47,8 +49,9 @@
 
                         <!-- Estimated Time -->
                         <div class="mb-4">
-                            <x-input-label for="estimated_time" :value="__('Estimated Time')" class="block text-gray-700" />
+                            <x-input-label for="estimated_time" :value="__('Estimated Time (hours)')" class="block text-gray-700" />
                             <input type="number" id="estimated_time" name="estimated_time" value="{{ old('estimated_time') }}" autofocus
+                                placeholder="Enter the estimated time in hours, e.g., 10"
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                             <x-input-error :messages="$errors->get('estimated_time')" class="mt-2" />
                         </div>
@@ -58,6 +61,7 @@
                             <x-input-label for="thumbnail_image" :value="__('Thumbnail Image')" class="block text-gray-700" />
                             <input type="file" id="thumbnail_image" name="thumbnail_image" accept="image/*"
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                            <p class="text-sm text-gray-500">Upload Image (Max: 2MB)</p>
                             <x-input-error :messages="$errors->get('thumbnail_image')" class="mt-2" />
                         </div>
 
@@ -66,6 +70,7 @@
                             <x-input-label for="banner_image" :value="__('Banner Image')" class="block text-gray-700" />
                             <input type="file" id="banner_image" name="banner_image" accept="image/*"
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                            <p class="text-sm text-gray-500">Upload Image (Max: 2MB)</p>
                             <x-input-error :messages="$errors->get('banner_image')" class="mt-2" />
                         </div>
                         <button

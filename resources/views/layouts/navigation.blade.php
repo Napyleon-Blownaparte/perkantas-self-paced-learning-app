@@ -107,17 +107,17 @@
                         {{ __('Dashboard') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('learner.courses.index')" :active="request()->routeIs('learner.courses.index')">
-                        {{ __('My Courses') }}
+                        {{ __('Courses') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('learner.books.index')" :active="request()->routeIs('learner.books.index')">
-                        {{ __('Book Collection') }}
+                        {{ __('Book Collections') }}
                     </x-responsive-nav-link>
                 @elseif (Auth::user()->role == 'instructor')
                     <x-responsive-nav-link :href="route('instructor.instructor-dashboard')" :active="request()->routeIs('instructor.instructor-dashboard')">
                         {{ __('Instructor Dashboard') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('instructor.courses.index')" :active="request()->routeIs('instructor.courses.index')">
-                        {{ __('Manage Courses') }}
+                        {{ __('Courses') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('instructor.courses.create')" :active="request()->routeIs('instructor.courses.create')">
                         {{ __('Create Course') }}

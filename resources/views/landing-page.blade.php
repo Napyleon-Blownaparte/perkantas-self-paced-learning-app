@@ -230,7 +230,7 @@
                                     Lajfas calknsc la lnaslk nlkan fklnein laljjlwaklns nfgekq3a l fln kl lfna kf
                                     af ajsnlkf nkqkana fwn jsk faljnklan skfk nwakk wnksanalf knaskn kfniw nwisn mja knwk najl sjlf oawnf nals la
                                     as ans olknf nawln aiwinijwinasl as akwkkanoidvpeiwnv ew nksjneioncoincwe jofn enkcnqoen conajcanicunenw justify-between qef
-                                    encwoenvnwinvwoi wnweoivnownono 
+                                    encwoenvnwinvwoi wnweoivnownono
                                 </p>
                                 <a href=""
                                     class="inline-flex self-start justify-center items-center mt-2 py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#110a39] hover:bg-white hover:text-black transition-colors">
@@ -278,14 +278,14 @@
         </div>
     </section> --}}
 
-   
+
     <section class="p-6" id="course">
         <div class="grid grid-cols-1 gap-6">
             <x-carousel-course :courses="$courses" title="Course You've might like"/>
             <div id="book">
                 <x-carousel-book :books="$books"/>
             </div>
-            
+
         </div>
     </section>
     <x-footer></x-footer>

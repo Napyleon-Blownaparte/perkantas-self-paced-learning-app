@@ -21,12 +21,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index']);
 Route::get('/home', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('home');
 Route::get('/books/{id}', [App\Http\Controllers\BookController::class, 'show'])->name('books-show');
-Route::get('course/classwork', function (){
-    return view('instructor-views.classwork.index');
+Route::get('course/assessments', function (){
+    return view('instructor-views.classwork.index-assessment');
+});
+Route::get('course/learner-attempts', function (){
+    return view('instructor-views.classwork.index-attempts');
+});
+Route::get('course/assessment-attempts', function (){
+    return view('instructor-views.classwork.index-students');
 });
 Route::get('course/attempt', function (){
     return view('instructor-views.classwork.show');
 });
+
+Route::group([
+    'prefix' => 'learner',
+    'as' => 'learner.'
+], function () {
+    // Resource untuk courses tanpa middleware
+    Route::resource('courses', App\Http\Controllers\Learner\CourseController::class)->only(['index', 'show']);
+});
+
 // Route::group([
 //     'prefix' => 'learner',
 //     'middleware' => 'learnerMiddleware',
@@ -73,7 +88,9 @@ Route::group(['middleware' => 'auth'], function () {
         ])->shallow();
         Route::get('books/{id}/read', [App\Http\Controllers\Instructor\BookController::class, 'read'])->name('books.read');
 
-        Route::resource('courses.assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow();
+        Route::resource('assessments', App\Http\Controllers\Instructor\AssessmentController::class)->shallow()->only('show');
+
+        Route::resource('enrollments.assessments.attempt-histories', App\Http\Controllers\Instructor\AttemptHistoryController::class)->shallow()->only(['index', 'show']);
     });
 
     Route::group([
@@ -82,7 +99,6 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'learner.'
     ], function () {
         Route::get('learner-dashboard', [App\Http\Controllers\Learner\LearnerDashboardController::class, 'index'])->name('learner-dashboard');
-        Route::resource('courses', App\Http\Controllers\Learner\CourseController::class)->shallow()->only(['index', 'show']);
         Route::resource('assessments.attempt-histories', App\Http\Controllers\Learner\AttemptHistoryController::class)->shallow()->only('index', 'store');
         Route::resource('instructors', App\Http\Controllers\Learner\InstructorController::class)->shallow()->only(['show']);
         Route::resource('courses.enrollments', App\Http\Controllers\Learner\EnrollmentController::class)->shallow()->only(['store']);

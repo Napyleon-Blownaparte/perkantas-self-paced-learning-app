@@ -132,11 +132,11 @@
                         @endif
                     @endauth
                     <li>
-                        <a href="#course"
+                        <a href="{{ route('learner.courses.index') }}"
                             class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition">Course</a>
                     </li>
                     <li>
-                        <a href="#book"
+                        <a href="{{ route('learner.books.index') }}"
                             class="block py-2 px-3 text-white rounded hover:text-[#e3e3e3c8] md:p-0 transition">Books</a>
                     </li>
                 </ul>
