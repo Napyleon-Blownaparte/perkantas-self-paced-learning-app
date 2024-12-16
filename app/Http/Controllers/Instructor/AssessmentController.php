@@ -76,7 +76,7 @@ class AssessmentController extends Controller
 
         $assessment->save();
 
-        return redirect()->route('instructor.chapters.show', $assessment->chapter->id)->with('You have successfully edited the assessment');
+        return redirect()->route('instructor.chapters.show', $assessment->chapter->id)->with('success','You have successfully edited the assessment');
     }
 
 /**
@@ -86,6 +86,6 @@ class AssessmentController extends Controller
     {
         $assessment->delete();
 
-        return redirect()->route('instructor.instructor-dashboard');
+        return redirect()->route('instructor.chapters.show', $assessment->chapter->id)->with('success','You have successfully deleted the assessment');
     }
 }
