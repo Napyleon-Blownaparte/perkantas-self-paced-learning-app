@@ -45,7 +45,7 @@ class EssayQuestionController extends Controller
             'question_text' => $validated['question_text'],
         ]);
 
-        return redirect()->route('instructor.chapters.show', $assessment->chapter->id)->with('You have successfully created the essay question');
+        return redirect()->route('instructor.chapters.show', $assessment->chapter->id)->with('success', 'You have successfully created the essay question');
     }
 
     /**
