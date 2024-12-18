@@ -130,7 +130,7 @@ class MultipleChoiceQuestionController extends Controller
         // Now delete the MultipleChoiceQuestion
         $multipleChoiceQuestion->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','You have successfully deleted the multiple choice question');
     }
 
 }

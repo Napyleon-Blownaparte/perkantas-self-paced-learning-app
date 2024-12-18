@@ -81,7 +81,7 @@ class EssayQuestionController extends Controller
             'question_text' => $validated['question_text'],
         ]);
 
-        return redirect()->route('instructor.chapters.show', $essayQuestion->question->assessment->chapter->id)->with('You have successfully edited the essay question');
+        return redirect()->route('instructor.chapters.show', $essayQuestion->question->assessment->chapter->id)->with('success','You have successfully edited the essay question');
     }
 
     /**
@@ -92,6 +92,6 @@ class EssayQuestionController extends Controller
         $essayQuestion->question()->delete();
         $essayQuestion->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','You have successfully deleted the essay question');
     }
 }
