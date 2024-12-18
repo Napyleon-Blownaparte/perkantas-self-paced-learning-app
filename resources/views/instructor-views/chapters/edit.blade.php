@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Chapter') }}
+            {{ __('Edit Chapter') }}
         </h2>
     </x-slot>
 
@@ -23,7 +23,7 @@
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
 
-                        <x-primary-button type="submit">Create chapter</x-primary-button>
+                        <x-primary-button type="submit">Edit chapter</x-primary-button>
                     </form>
 
                     {{-- DELETE BUTTON --}}

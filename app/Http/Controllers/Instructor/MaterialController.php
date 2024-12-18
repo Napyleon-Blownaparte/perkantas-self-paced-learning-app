@@ -106,6 +106,6 @@ class MaterialController extends Controller
     {
         $material->delete();
 
-        return redirect()->route('instructor.chapters.show', $material->chapter->id);
+        return redirect()->route('instructor.chapters.show', $material->chapter->id)->with('success', 'You have successfully deleted the material');
     }
 }

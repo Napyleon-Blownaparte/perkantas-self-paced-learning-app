@@ -1,16 +1,16 @@
 <x-app-layout>
-    <section class="hero bg-cover py-16 px-16 bg-customPurple">
-        <div class="mx-auto p-16 pt-8 bg-white rounded-lg shadow-md">
+    <section class="hero bg-cover py-16 px-8 sm:px-12 md:px-16 bg-customPurple">
+        <div class="mx-auto p-8 sm:p-12 md:p-16 bg-white rounded-lg shadow-md">
 
             <a href="{{ Auth::check() ? route('learner.learner-dashboard') : '/' }}"
                 class="mb-4 inline-block text-justify bg-white text-gray-800 font-semibold py-2 px-4 rounded-md hover:bg-gray-200">
                 ← Back
             </a>
 
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ $course->title }}</h1>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">{{ $course->title }}</h1>
             <p class="text-gray-600 mb-4 md:w-[60%] break-words">{{ $course->description }}</p>
 
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">
+            <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
                 Instructor:
                 <span>
                     {{ $course->instructors->map(fn($instructor) => $instructor->user->name)->implode(', ') }}
@@ -81,14 +81,11 @@
                 </div>
             </div>
         </div>
-        <div class="mx-auto my-8 p-8 bg-white rounded-lg shadow-md">
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-
-
-                <div class="md:col-span-5 p-6 bg-gray-50 rounded-lg shadow-inner">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">What You'll Learn</h3>
-                    <ul class="list-disc ml-6 text-gray-600">
+        <div class="mx-auto my-8 p-6 sm:p-8 bg-white rounded-lg shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+                <div class="md:col-span-5 p-4 sm:p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">What You'll Learn</h3>
+                    <ul class="list-disc ml-4 sm:ml-6 text-gray-600">
                         @foreach ($course->courseOutcomes as $courseOutcome)
                             <li>{{ $courseOutcome->outcome }}</li>
                         @endforeach
@@ -96,8 +93,8 @@
                     </ul>
                 </div>
 
-                <div class="md:col-span-7 p-6 bg-gray-50 rounded-lg shadow-inner">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Chapters</h3>
+                <div class="md:col-span-7 p-4 sm:p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Chapters</h3>
                     <div class="divide-y divide-gray-300">
                         @foreach ($course->chapters as $chapter)
                             <div class="py-4">
