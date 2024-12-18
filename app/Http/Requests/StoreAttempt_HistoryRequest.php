@@ -40,8 +40,8 @@ class StoreAttempt_HistoryRequest extends FormRequest
                 }
                 // Jika jenis soal adalah Multiple Choice
                 elseif ($question->questionable_type === 'App\Models\MultipleChoiceQuestion') {
-                    $choices = $question->questionable->multiple_choice_options->pluck('id')->toArray();
-                    $rules["answers.$questionId"] = 'required|in:' . implode(',', $choices); // Harus salah satu dari opsi
+                    $choicesCount = $question->questionable->multiple_choice_options->count();
+                    $rules["answers.$questionId"] = 'required|in:' . implode(',', range(1, $choicesCount)); // Harus salah satu dari opsi 1, 2, 3, dst
                 }
             }
         }

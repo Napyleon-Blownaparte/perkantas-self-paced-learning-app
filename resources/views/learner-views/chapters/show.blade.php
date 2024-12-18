@@ -69,15 +69,16 @@
 
                                     {{-- Pertanyaan Multiple Choice --}}
                                     @if ($question->questionable_type === 'App\Models\MultipleChoiceQuestion')
-                                        @foreach ($question->questionable->multiple_choice_options as $option)
-                                            <div class="flex items-center mb-3">
-                                                <input type="radio" name="answers[{{ $question->id }}]"
-                                                    id="option_{{ $option->id }}" value="{{ $option->id }}"
-                                                    class="mr-2 text-blue-600 border-gray-300 focus:ring-blue-500 focus:ring-2 required">
-                                                <label for="option_{{ $option->id }}"
-                                                    class="cursor-pointer text-gray-700">{{ $option->option_text }}</label>
-                                            </div>
-                                        @endforeach
+                                    @foreach ($question->questionable->multiple_choice_options as $index => $option)
+                                    <div class="flex items-center mb-3">
+                                        <input type="radio" name="answers[{{ $question->id }}]"
+                                            id="option_{{ $option->id }}" value="{{ $index + 1 }}" {{ old('answers.' . $question->id) == $index + 1 ? 'checked' : '' }}
+                                            class="mr-2 text-blue-600 border-gray-300 focus:ring-blue-500 focus:ring-2 required">
+                                        <label for="option_{{ $option->id }}"
+                                            class="cursor-pointer text-gray-700">{{ $option->option_text }}</label>
+                                    </div>
+                                @endforeach
+
                                         @error('answers.' . $question->id)
                                             <x-input-error :messages="$message" class="mt-2" />
                                         @enderror

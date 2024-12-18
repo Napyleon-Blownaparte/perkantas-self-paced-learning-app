@@ -35,12 +35,14 @@ class AttemptHistoryController extends Controller
     {
         $validatedData = $request->validated();
 
+
         $attemptHistory = AttemptHistory::create([
             'assessment_id' => $assessment->id,
             'learner_id' => $request->user()->id,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
 
         foreach ($validatedData['answers'] as $questionId => $answer) {
             $question = Question::find($questionId);
@@ -50,13 +52,12 @@ class AttemptHistoryController extends Controller
             }
 
             $essayAnswer = $question->questionable_type === 'App\Models\EssayQuestion' ? $answer : null;
-            $multipleChoiceAnswer = $question->questionable_type === 'App\Models\MultipleChoiceQuestion' ? $answer : null;
 
             LearnersAnswer::create([
                 'attempt_history_id' => $attemptHistory->id,
                 'question_id' => $questionId,
                 'essay_answer' => $essayAnswer,
-                'multiple_choice_answer' => $multipleChoiceAnswer,
+                'multiple_choice_answer' => $answer,
             ]);
         }
 
