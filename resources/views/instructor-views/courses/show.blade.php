@@ -1,26 +1,23 @@
 <x-app-layout>
-    <section class="hero bg-cover py-16 px-16 bg-customPurple">
-        <div class="mx-auto p-16 pt-8 bg-white rounded-lg shadow-md">
+    <section class="hero bg-cover py-16 px-4 sm:px-8 md:px-16 bg-customPurple">
+        <div class="mx-auto p-6 sm:p-10 md:p-16 pt-8 bg-white rounded-lg shadow-md">
 
             <a href="{{ Auth::check() ? route('instructor.instructor-dashboard') : '/' }}"
                 class="mb-4 inline-block text-justify bg-white text-gray-800 font-semibold py-2 px-4 rounded-md hover:bg-gray-200">
                 ← Back
             </a>
 
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ $course->title }}</h1>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">{{ $course->title }}</h1>
             <p class="text-gray-600 mb-4 md:w-[60%] break-words">{{ $course->description }}</p>
 
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">
+            <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
                 Instructor:
                 <span>
                     {{ $course->instructors->map(fn($instructor) => $instructor->user->name)->implode(', ') }}
                 </span>
             </h2>
 
-
-
-            <div class="flex items-center justify-between mt-6">
-
+            <div class="flex flex-col sm:flex-row items-center justify-between mt-6">
                 @php
                     $enrolledCount = $course->enrollments->count();
                 @endphp
@@ -36,12 +33,12 @@
                     </a>
                 @endcan
 
-
-                <span class="text-green-600 font-semibold">{{ $enrolledCount }} people already enrolled</span>
-
+                <span class="text-green-600 font-semibold mt-4 sm:mt-0">{{ $enrolledCount }} people already
+                    enrolled</span>
             </div>
+
             <div class="mt-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="p-4 border rounded-lg text-center">
                         <h4 class="font-semibold">Estimated Time of Completion</h4>
                         <p class="text-gray-600">{{ $course->estimated_time }} hours</p>
@@ -52,42 +49,38 @@
                     </div>
                     <div class="p-4 border rounded-lg text-center">
                         <h4 class="font-semibold">Course Start Period</h4>
-                        <p class="text-gray-600">{{ \Carbon\Carbon::parse($course->start_period)->format('d F Y') }}
-                        </p>
+                        <p class="text-gray-600">{{ \Carbon\Carbon::parse($course->start_period)->format('d F Y') }}</p>
                     </div>
                     <div class="p-4 border rounded-lg text-center">
                         <h4 class="font-semibold">Course End Period</h4>
                         <p class="text-gray-600">{{ \Carbon\Carbon::parse($course->end_period)->format('d F Y') }}</p>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="mx-auto my-8 p-8 bg-white rounded-lg shadow-md">
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div class="mx-auto my-8 p-6 sm:p-8 md:p-8 bg-white rounded-lg shadow-md">
 
-
-                <div class="md:col-span-5 p-6 bg-gray-50 rounded-lg shadow-inner">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">What You'll Learn</h3>
-                    <ul class="list-disc ml-6 text-gray-600">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8">
+                <div class="md:col-span-5 p-4 sm:p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">What You'll Learn</h3>
+                    <ul class="list-disc ml-4 sm:ml-6 text-gray-600">
                         @foreach ($course->courseOutcomes as $courseOutcome)
                             <li>{{ $courseOutcome->outcome }}</li>
                         @endforeach
-
                     </ul>
                 </div>
 
-                <div class="md:col-span-7 p-6 bg-gray-50 rounded-lg shadow-inner">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Chapters</h3>
+                <div class="md:col-span-7 p-4 sm:p-6 bg-gray-50 rounded-lg shadow-inner">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Chapters</h3>
                     <div class="divide-y divide-gray-300">
                         @foreach ($course->chapters as $chapter)
                             <div class="py-4">
-                                <div class="flex justify-between items-center">
+                                <div class="flex flex-col sm:flex-row justify-between items-center">
                                     <h4 class="font-semibold text-gray-800 flex-1">{{ $chapter->title }}</h4>
-                                    <div class="flex space-x-2 ml-4">
+                                    <div class="flex space-x-2 mt-4 sm:mt-0 ml-0 sm:ml-4">
                                         @can('update', $course)
-                                            <a href="{{ route('instructor.chapters.edit', $chapter->id) }}" 
+                                            <a href="{{ route('instructor.chapters.edit', $chapter->id) }}"
                                                 class="text-gray-800 bg-gray-100 hover:bg-gray-300 font-semibold flex items-center px-4 py-2 rounded-lg transition-colors duration-300 ease-in-out">
                                                 Edit
                                             </a>
@@ -135,24 +128,22 @@
                                 </div>
 
                                 @can('update', $course)
-                                    <div class="mt-4">
+                                    <div class="mt-4 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
                                         <a href="{{ route('instructor.chapters.materials.create', $chapter->id) }}">
                                             <button
-                                                class="bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                                                class="w-full sm:w-auto bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 text-center">
                                                 Add Material
                                             </button>
                                         </a>
 
                                         <a href="{{ route('instructor.chapters.assessments.create', $chapter->id) }}">
                                             <button
-                                                class="bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                                                class="w-full sm:w-auto bg-green-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 text-center">
                                                 Add Assessment
                                             </button>
                                         </a>
-
                                     </div>
                                 @endcan
-
 
 
                             </div>

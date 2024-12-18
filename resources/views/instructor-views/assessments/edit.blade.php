@@ -32,6 +32,14 @@
 
                         <x-primary-button type="submit">Update Assessment</x-primary-button>
                     </form>
+
+                    {{-- DELETE BUTTON --}}
+                    <form action="{{ route('instructor.assessments.destroy', $assessment) }}" method="POST" class="mt-4">
+                        @csrf
+                        @method('DELETE')
+                        <x-danger-button type="submit">Delete assessment</x-danger-button>
+                    </form>
+
                     {{-- END HERE --}}
                 </div>
             </div>

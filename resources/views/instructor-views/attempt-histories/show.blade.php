@@ -29,10 +29,11 @@
                     $key_index = $question->questionable->multiple_choice_options->search(function ($option) {
                         return $option->is_true_option == 1;
                     });
+                    // dd($key_index)
                 @endphp
 
                 <x-learner-answer-multi :question_text="$question->question_text" :answer_1="$answers[0]" :answer_2="$answers[1]" :answer_3="$answers[2]"
-                    :answer_4="$answers[3]" :key_index="$key_index" :learner_answer="$learner_answer->multiple_choice_answer">
+                    :answer_4="$answers[3]" :key_index="$key_index" :learner_answer="$learner_answer->multiple_choice_answer-1">
                 </x-learner-answer-multi>
             @endif
         @endforeach
