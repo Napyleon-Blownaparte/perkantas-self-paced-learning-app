@@ -52,12 +52,13 @@ class AttemptHistoryController extends Controller
             }
 
             $essayAnswer = $question->questionable_type === 'App\Models\EssayQuestion' ? $answer : null;
+            $multipleChoiceAnswer = $question->questionable_type === 'App\Models\MultipleChoiceQuestion' ? $answer : null;
 
             LearnersAnswer::create([
                 'attempt_history_id' => $attemptHistory->id,
                 'question_id' => $questionId,
                 'essay_answer' => $essayAnswer,
-                'multiple_choice_answer' => $answer,
+                'multiple_choice_answer' => $multipleChoiceAnswer,
             ]);
         }
 
