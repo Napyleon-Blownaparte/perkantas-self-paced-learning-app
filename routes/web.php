@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Enrollment;
+use App\Notifications\EnrollmentNotification;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,15 +46,6 @@ Route::group([
     Route::resource('courses', App\Http\Controllers\Learner\CourseController::class)->only(['index', 'show']);
 });
 
-// Route::group([
-//     'prefix' => 'learner',
-//     'middleware' => 'learnerMiddleware',
-//     'as' => 'learner.',
-// ], function() {
-
-// });
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -58,12 +53,29 @@ Route::middleware('auth')->group(function () {
 
 });
 
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
 // L E A R N E R
 
 
 // I N S T R U C T O R
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::group([
         'prefix' => 'instructor',
         'middleware' => 'instructorMiddleware',

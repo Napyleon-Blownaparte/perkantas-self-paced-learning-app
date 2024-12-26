@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Learner;
 
+use App\Notifications\EnrollmentNotification;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEnrollmentRequest;
 use App\Models\Course;
@@ -32,11 +33,18 @@ class EnrollmentController extends Controller
      */
     public function store(StoreEnrollmentRequest $request, Course $course)
     {
-        Enrollment::create([
+        $enrollment = Enrollment::create([
             'learner_id' => Auth::user()->learner->id,
             'course_id' => $course->id,
             'status' => 'pending',
         ]);
+        
+        $instructors = $enrollment->course->instructors;
+        foreach ($instructors as $instructor) {
+            if ($instructor->user) {
+                $instructor->user->notify(new EnrollmentNotification($enrollment));
+            }
+        }
 
         return redirect()->route('learner.courses.show', $course->id)->with('success', 'You have successfully enrolled in the course');;
     }
