@@ -60,6 +60,12 @@ Make sure you have the following installed on your machine:
    - Create a new database for the project in MySQL (or your preferred database).  
    - Run the migrations to set up the tables:
      ``` bash
+     php artisan migrate
+     ```
+
+     or run the migration with seeder to generate dummy data:
+
+     ``` bash
      php artisan migrate --seed
      ```
 
