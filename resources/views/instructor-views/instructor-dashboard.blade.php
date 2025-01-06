@@ -159,7 +159,7 @@
                         <div class="flex space-x-4 overflow-x-auto col-span-2">
                             @foreach ($courses as $course)
                                 <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
-                                    <img src="{{ $course->thumbnail_image }}" alt="Course Image" class="w-full rounded">
+                                    <img src="{{ $course->thumbnail_image === 'images/placeholder.svg' ? asset($course->thumbnail_image) : asset('storage/'.$course->thumbnail_image) }}" alt="Course Image" class="w-full rounded">
                                     <h3 class="mt-4 text-white text-2xl font-bold max-w-md">{{ $course->title }}</h3>
                                     <p class="mt-2 text-white text-lg font-semibold">
                                         Est. {{ $course->estimated_time }} Hour(s)</p>

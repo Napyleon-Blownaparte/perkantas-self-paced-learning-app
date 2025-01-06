@@ -6,7 +6,7 @@
         @foreach ($courses as $course)
         {{-- {{dd($course)}} --}}
             <div class="min-w-96 max-w-96 bg-gray-500 p-4 rounded shadow-md">
-                <img src="{{ asset('storage/'.$course->thumbnail_image) }}" alt="Course Image" class="object-cover w-[360px] h-[380px]">
+                <img src="{{ $course->thumbnail_image === 'images/placeholder.svg' ? asset($course->thumbnail_image) : asset('storage/'.$course->thumbnail_image) }}" alt="Course Image" class="object-cover w-[360px] h-[380px]">
                 <h3 class="mt-4 text-white text-2xl font-bold max-w-md">{{ $course->title }}</h3>
                 <p class="mt-2 text-white text-lg font-semibold">
                     Est. {{ $course->estimated_time }} Hour(s)</p>

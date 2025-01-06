@@ -15,7 +15,7 @@
 
 <a href="{{ $link_url }}" class="swiper-slide block">
     <div class="bg-white rounded-lg shadow h-96 overflow-hidden flex flex-col justify-between hover:shadow-lg transition-shadow">
-        <img src="{{ asset('storage/' . $image_src) }}" alt="Course Image" class="w-full h-64 object-cover">
+        <img src="{{ $image_src === 'images/placeholder.svg' ? asset($image_src) : asset('storage/'.$image_src) }}" alt="Course Image" class="w-full h-64 object-cover">
 
         <div class="p-4">
             <h3 class="text-lg font-semibold mb-6">{{ $title }}</h3>
